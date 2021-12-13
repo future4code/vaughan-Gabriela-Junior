@@ -21,7 +21,8 @@ function retornaArrayOrdenado(array) {
 
 // EXERCÍCIO 04
 function retornaNumerosPares(array) {
-
+    const numerosPares = array.filter(numero => numero % 2 === 0)
+    return numerosPares
 }
 
 // EXERCÍCIO 05
@@ -100,7 +101,11 @@ function retornaContasComSaldoAtualizado(contas) {
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
-
+//     const consultasOrdemAlfabetica = consultas.map((consulta) => {
+//         consulta.nome.sort()
+//         return consulta
+//     })
+// return consultasOrdemAlfabetica
 }
 
 // EXERCÍCIO 15B
