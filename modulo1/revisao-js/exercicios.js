@@ -64,7 +64,6 @@ function retornaNPrimeirosPares(n) {
             arrayPrimeirosPares.push(i)
         }
     } return arrayPrimeirosPares
-
 }
 
 // EXERCÍCIO 09
@@ -80,8 +79,12 @@ function classificaTriangulo(ladoA, ladoB, ladoC) {
 
 // EXERCÍCIO 10
 function retornaSegundoMaiorESegundoMenor(array) {
-
+    array.sort((a, b) => a - b)
+    arraySegundoMaiorESegundoMenor = [array[array.length-2], array[1]]
+    return arraySegundoMaiorESegundoMenor
 }
+
+console.log(retornaSegundoMaiorESegundoMenor())
 
 // EXERCÍCIO 11
 function retornaChamadaDeFilme(filme) {
@@ -113,13 +116,20 @@ function retornaPessoasNaoAutorizadas(pessoas) {
 
 // EXERCÍCIO 14
 function retornaContasComSaldoAtualizado(contas) {
-
+    //somar as compras e subtrair do saldoTotal, atualizar o saldoTotal com esse valor
+    // let somaCompras = 0
+    // const saldoAtualizado = contas.map((conta) => {
+    //     for (i = 0; i < conta.compras.length; i++) {
+    //         somaCompras += conta.compras[i]
+    //     }
+    // })
+    // return saldoAtualizado
 }
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
     //     const consultasOrdemAlfabetica = consultas.map((consulta) => {
-    //         consulta.nome.sort()
+    //         consulta.nome.sort((a, b) => b[1]-a[1])
     //         return consulta
     //     })
     // return consultasOrdemAlfabetica
