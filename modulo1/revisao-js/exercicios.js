@@ -29,7 +29,7 @@ function retornaNumerosPares(array) {
 function retornaNumerosParesElevadosADois(array) {
     const numerosPares = array.filter(numero => numero % 2 === 0)
     const numerosElevados = numerosPares.map(numero => numero * numero)
-        return numerosElevados
+    return numerosElevados
 }
 
 // EXERCÍCIO 06
@@ -44,7 +44,16 @@ function retornaMaiorNumero(array) {
 
 // EXERCÍCIO 07
 function retornaObjetoEntreDoisNumeros(num1, num2) {
+    const arrayNumeros = [num1, num2]
+    const numeroMaior = Math.max(...arrayNumeros)
+    const numeroMenor = Math.min(...arrayNumeros)
 
+    const objeto = {
+        maiorNumero: numeroMaior,
+        maiorDivisivelPorMenor: numeroMaior % numeroMenor === 0,
+        diferenca: numeroMaior - numeroMenor
+    }
+    return objeto
 }
 
 // EXERCÍCIO 08
@@ -103,11 +112,11 @@ function retornaContasComSaldoAtualizado(contas) {
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
-//     const consultasOrdemAlfabetica = consultas.map((consulta) => {
-//         consulta.nome.sort()
-//         return consulta
-//     })
-// return consultasOrdemAlfabetica
+    //     const consultasOrdemAlfabetica = consultas.map((consulta) => {
+    //         consulta.nome.sort()
+    //         return consulta
+    //     })
+    // return consultasOrdemAlfabetica
 }
 
 // EXERCÍCIO 15B
