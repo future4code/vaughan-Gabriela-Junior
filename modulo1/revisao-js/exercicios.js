@@ -27,7 +27,9 @@ function retornaNumerosPares(array) {
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
-
+    const numerosPares = array.filter(numero => numero % 2 === 0)
+    const numerosElevados = numerosPares.map(numero => numero * numero)
+        return numerosElevados
 }
 
 // EXERCÍCIO 06
