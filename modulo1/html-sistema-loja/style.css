@@ -1,0 +1,35 @@
+
+.cabecalho {
+    background-color: rgb(60, 139, 113);
+}
+
+.botao-paginas {
+    background-color: plum;
+    color: black;
+    margin: 6px;
+}
+
+.corpo {
+    background-color: salmon;
+}
+
+.formulario{
+    background-color: darkgray;
+    width: 25%;
+}
+
+.rodape {
+    background-color:rgb(60, 139, 113);
+    position: fixed;
+    bottom: 0;
+    width: 99%;
+}
+
+.tabela {
+    background-color: plum;
+}
+
+.imagens {
+    width: 200px;
+    height: 200px;
+}
