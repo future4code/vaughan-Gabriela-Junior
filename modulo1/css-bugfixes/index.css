@@ -116,8 +116,9 @@ div:last-child {
 }
 
 table {
-    width: 100%;
+    margin: 0 auto;
     text-align: center;
+    width: 70%;
 }
 
 td button {
@@ -149,4 +150,8 @@ td button:hover {
 
 #back-button:hover {
     background-color: #635a3d
+}
+
+.botao-voltar{
+    text-align: center;
 }
