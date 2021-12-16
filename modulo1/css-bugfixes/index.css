@@ -40,7 +40,10 @@ img {
 }
 
 div>p:first-child {
-    display: inline;
+    display: block;
+    margin: 0 auto;
+    padding-top: 100px;
+    width: 13%;
 }
 
 .botao-amarelo {
@@ -87,12 +90,12 @@ div>p:first-child {
     padding: 15px 0px;
 }
 
-#container-de-descricao > p {
+/* #container-de-descricao > p {
     display: block;
     padding-top: 100px;
     width: 13%;
     margin-left: 585px;
-}
+} */
 
 #container-para-comprar {
     background-color: #e7eb90;
