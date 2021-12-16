@@ -43,6 +43,9 @@ div>p:first-child {
     display: block;
     margin: 0 auto;
     padding-top: 100px;
+}
+
+.paragrafo-azul {
     width: 13%;
 }
 
@@ -90,12 +93,10 @@ div>p:first-child {
     padding: 15px 0px;
 }
 
-/* #container-de-descricao > p {
-    display: block;
-    padding-top: 100px;
-    width: 13%;
-    margin-left: 585px;
-} */
+#container-de-descricao > ol > li {
+    width: 250px;
+    margin: 0 auto;
+}
 
 #container-para-comprar {
     background-color: #e7eb90;
