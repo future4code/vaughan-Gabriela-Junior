@@ -84,6 +84,8 @@ div img {
 #container-de-descricao > p {
     display: block;
     padding-top: 100px;
+    width: 13%;
+    margin-left: 585px;
 }
 
 #container-para-comprar {
