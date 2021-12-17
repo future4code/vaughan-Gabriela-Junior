@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+}
+
+.container-descricao {
+    margin: 50px 400px 0;
+    padding-bottom: 30px;
+    text-align: center;
+    color:rgb(107, 133, 107)
+}
+
+.container-descricao-img {
+    border-radius: 300px;
+    width: 150px;
+    height: 150px;
+    padding-bottom: 20px;
+}
+
+.container-descricao-texto {
+    font-size: 20px;
+}
