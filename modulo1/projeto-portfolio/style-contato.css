@@ -1,3 +1,16 @@
 * {
     margin: 0;
 }
+
+.container-titulo2 {
+    text-align: center;
+    background-color: rgb(157, 202, 157);
+    color: rgb(19, 18, 18);
+    margin: 30px 330px 0;
+}
+
+.container-caixas-de-texto {
+    padding: 20px;
+    margin: 0 310px 0;
+    text-align: center;
+}

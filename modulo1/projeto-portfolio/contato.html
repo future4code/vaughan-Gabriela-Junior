@@ -7,32 +7,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style-contato.css">
     <link rel="stylesheet" type="text/css" href="style-padrao.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@300" rel="stylesheet">
     <title>Contato</title>
 </head>
 
 <body>
 
-    <h1 class="container-header">Gabriela Hermenegildo</h1>
+    <div class="container-header">
+        <h1>Gabriela Hermenegildo</h1>
+        <br>
+        <h3>Estudante Web Full Stack</h3>
+    </div>
 
     <div class="container-div-navegacao">
         <a href="index.html"><button class="container-button-navegacao">Página Inicial</button></a>
         <a href="bio.html"><button class="container-button-navegacao">Sobre mim</button></a>
         <a href="projetos-dev.html"><button class="container-button-navegacao">Projetos</button></a>
+        <a href="contato.html"><button class="container-button-navegacao">Contato</button></a>
     </div>
 
-    <h3>Contato</h3>
+    <h2 class="container-titulo2">Contato</h2>
 
-    <div>
+    <div class="container-caixas-de-texto">
         <form action="">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome">
-            <label for="email">Email:</label>
-            <input type="text" id="email" name="email">
-            <label for="telefone">Telefone:</label>
-            <input type="text" id="telefone" name="telefone">
-            <label for="mensagem">Mensagem:</label>
-            <input type="text" id="mensagem" name="mensagem">
-            <input type="submit">
+            <div>
+                <label for="nome">Nome:</label>
+                <br>
+                <input type="text" id="nome" name="nome">
+                <br>
+                <br>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <br>
+                <input type="text" id="email" name="email">
+                <br>
+                <br>
+            </div>
+            <div>
+                <label for="telefone">Telefone:</label>
+                <br>
+                <input type="text" id="telefone" name="telefone">
+                <br>
+                <br>
+            </div>
+            <div>
+                <label for="mensagem">Mensagem:</label>
+                <br>
+                <textarea id="mensagem" name="mensagem" rows="10" cols="60">
+            </textarea>
+            </div>
+            <div>
+                <br>
+                <input type="submit">
+            </div>
         </form>
     </div>
 

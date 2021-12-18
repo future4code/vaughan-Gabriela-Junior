@@ -2,17 +2,20 @@
     margin: 0;
 }
 
-.container-fundo {
-    background-color: rgb(80, 37, 80);
-    margin-bottom: 0;
+body {
+    font-family: 'Lato', sans-serif;
+    color: rgb(255, 220, 204);
+    background-color: rgb(19, 18, 18);
 }
 
 .container-header {
-    background-color: rgb(80, 37, 80);
+    background-color: rgb(255, 189, 159);
     text-align: center;
     padding: 20px;
     margin-bottom: 0;
-    color: rgb(107, 133, 107);
+    color: rgb(19, 18, 18);
+    font-family: 'Bebas Neue', cursive;
+    font-size: 25px;
 }
 
 a {
@@ -25,24 +28,30 @@ a {
 }
 
 .container-button-navegacao {
-    background-color: rgb(157, 202, 157);
+    background-color: rgb(255, 189, 159);
     font-weight: bold;
     padding: 8px;
     border-radius: 300px;
-    border-color: rgb(78, 100, 78);
+    border-color: rgb(250, 121, 62);
     width: 130px;
     height: 50px;
     margin-top: 20px;
 }
 
 .container-button-navegacao:hover {
-    background-color: rgb(78, 100, 78);
+    background-color: rgb(250, 121, 62);
+    border-color: rgb(255, 189, 159);
     color: whitesmoke;
 }
 
+.container-titulo2 {
+    text-align: center;
+    background-color: rgb(255, 189, 159);
+    color: rgb(19, 18, 18);
+}
+
 .container-rodape {
-    background-color: rgb(157, 202, 157);
-    padding: 10px;
+    background-color: rgb(255, 189, 159);
 }
 
 .container-rodape-icones {
@@ -55,14 +64,13 @@ a {
 .container-rodape-navegacao {
     display: inline-block;
     padding: 10px;
-    margin-left: 1000px;
+    text-align: center;
 
 }
 
 .container-rodape-copyright {
-    background-color:rgb(80, 37, 80);
+    background-color:rgb(19, 18, 18);
     text-align: center;
     font-weight: bold;
     padding: 10px;
-    color: rgb(107, 133, 107);
 }
