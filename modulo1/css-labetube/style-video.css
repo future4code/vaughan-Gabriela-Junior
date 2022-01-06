@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.container-videos {
+    width: 900px;
+    height: 500px;
+}
+
+@media screen and (min-device-width : 100px) and (max-device-width : 800px) {
+    .container-videos {
+        width: 80%;
+        height: 80%;
+    }
+}
