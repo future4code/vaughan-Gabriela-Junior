@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+}
+
+.container-descricao {
+    margin: 50px 400px 0;
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.container-descricao-img {
+    border-radius: 70%;
+    width: 150px;
+    height: 150px;
+    padding-bottom: 20px;
+}
+
+.container-descricao-texto {
+    font-size: 20px;
+}

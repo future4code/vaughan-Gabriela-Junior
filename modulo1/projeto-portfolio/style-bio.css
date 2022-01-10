@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+}
+
+.container-texto {
+    padding: 30px;
+    margin: 0 300px 0;
+    text-align: justify;
+}
+
+.container-titulo2 {
+    text-align: center;
+    background-color: rgb(157, 202, 157);
+    color: rgb(19, 18, 18);
+}
