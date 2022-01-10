@@ -21,6 +21,11 @@ header {
   height: 10%;
 }
 
+.imagem-logo {
+  width: 40px;
+  height: 40px;
+}
+
 main {
   min-height: 80%;
   display: flex;
