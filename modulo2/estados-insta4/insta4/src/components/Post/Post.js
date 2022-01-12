@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 
 import {IconeComContador} from '../IconeComContador/IconeComContador'
-
 import iconeCoracaoBranco from '../../img/favorite-white.svg'
 import iconeCoracaoPreto from '../../img/favorite.svg'
 import iconeFavoritarPreto from '../../img/bookmark-black.svg'
 import iconeFavoritarBranco from '../../img/bookmark-border.svg'
+import iconeCompartilhar from '../../img/share.svg'
 import iconeComentario from '../../img/comment_icon.svg'
 import {SecaoComentario} from '../SecaoComentario/SecaoComentario'
 
@@ -50,6 +50,7 @@ class Post extends React.Component {
     comentando: false,
     numeroComentarios: 0,
     favoritado: false,
+    compartilhado: false
   }
 
   onClickCurtida = () => {
@@ -69,6 +70,7 @@ class Post extends React.Component {
     })
   }
 
+   
   onClickComentario = () => {
     this.setState({
       comentando: !this.state.comentando,
@@ -119,6 +121,10 @@ class Post extends React.Component {
           onClickIcone={this.onClickCurtida}
           valorContador={this.state.numeroCurtidas}
         />
+
+        <IconeComContador
+          icone={iconeCompartilhar}
+          />
 
         <IconeComContador
           icone={iconeFavoritar}
