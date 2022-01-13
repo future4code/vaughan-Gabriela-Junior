@@ -14,7 +14,7 @@ const Formulario = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding-bottom: 20px;
 `
 
 const MargemFormulario = styled.div `

@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 
 const CommentContainer = styled.div`
@@ -12,26 +12,53 @@ const InputComentario = styled.input`
     margin-right: 5px;
 `
 
+const EstiloComentario = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+`
+
 export class SecaoComentario extends Component {
 	state = {
-	texto: ""
+		comentarios: [],
+		texto: "",
 	}
 
 	onChangeComentario = (event) => {
 		this.setState({ texto: event.target.value });
-		console.log(event.target.value)
+		// console.log(event.target.value)
+	}
+
+	enviarComentario = () => {
+		const novoComentarios = [...this.state.comentarios, this.state.texto]
+		this.setState({ comentarios: novoComentarios })
+		this.setState({texto:""})
 	}
 
 
 
 	render() {
-		return <CommentContainer>
+		console.log(this.state.comentarios)
+		return <div>
+		<CommentContainer>
 			<InputComentario
 				placeholder={'Comentário'}
 				value={this.state.texto}
 				onChange={this.onChangeComentario}
 			/>
-			<button onClick={this.props.aoEnviar}>Enviar</button>
-			</CommentContainer>
+			<button onClick={this.enviarComentario}>Enviar</button>
+
+		</CommentContainer>
+		<EstiloComentario>
+			<h3>Comentários</h3>
+				{this.state.comentarios.map((comentario) => {
+					return (
+					<p>{comentario}</p>)
+				})}
+	
+			</EstiloComentario>
+		</div>
 	}
 }
