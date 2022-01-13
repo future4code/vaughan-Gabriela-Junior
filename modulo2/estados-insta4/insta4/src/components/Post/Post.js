@@ -8,6 +8,9 @@ import iconeFavoritarPreto from '../../img/bookmark-black.svg'
 import iconeFavoritarBranco from '../../img/bookmark-border.svg'
 import iconeCompartilhar from '../../img/share.svg'
 import iconeComentario from '../../img/comment_icon.svg'
+import iconeFacebook from '../../img/facebook.svg'
+import iconeInstagram from '../../img/instagram.svg'
+import iconeTwitter from '../../img/twitter.svg'
 import {SecaoComentario} from '../SecaoComentario/SecaoComentario'
 
 
@@ -43,6 +46,12 @@ const PostPhoto = styled.img`
   width: 100%;
 `
 
+const CentralizarIcones = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 class Post extends React.Component {
   state = {
     curtido: false,
@@ -67,6 +76,22 @@ class Post extends React.Component {
   onClickFavoritar = () => {
     this.setState({
       favoritado: !this.state.favoritado
+    })
+  }
+
+  funcaoIcones = () => {
+    if (this.state.compartilhado === true) {
+      return <div>
+        <img alt="Icone do Facebook" src={iconeFacebook} />
+        <img alt="Icone do Instagram" src={iconeInstagram} />
+        <img alt="Icone do Twitter" src={iconeTwitter} />
+      </div>
+    }
+  }
+
+  onClickCompartilhar = () => {
+    this.setState({
+      compartilhado: !this.state.compartilhado
     })
   }
 
@@ -107,6 +132,8 @@ class Post extends React.Component {
       componenteComentario = <SecaoComentario aoEnviar={this.aoEnviarComentario}/>
     }
 
+
+
     return <PostContainer>
       <PostHeader>
         <UserPhoto src={this.props.fotoUsuario} alt={'Imagem do usuario'}/>
@@ -124,6 +151,7 @@ class Post extends React.Component {
 
         <IconeComContador
           icone={iconeCompartilhar}
+          onClickIcone={this.onClickCompartilhar}
           />
 
         <IconeComContador
@@ -137,6 +165,9 @@ class Post extends React.Component {
           valorContador={this.state.numeroComentarios}
         />
       </PostFooter>
+      <CentralizarIcones>
+      {this.funcaoIcones()}
+      </CentralizarIcones>
       {componenteComentario}
     </PostContainer>
   }

@@ -40,7 +40,6 @@ export class SecaoComentario extends Component {
 
 
 	render() {
-		console.log(this.state.comentarios)
 		return <div>
 		<CommentContainer>
 			<InputComentario
