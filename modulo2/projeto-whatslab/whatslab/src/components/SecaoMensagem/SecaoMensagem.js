@@ -1,59 +1,13 @@
 import React from 'react';
-import styled from 'styled-components'
-
-const CardMensagem = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    border: 2px solid black;
-    height: 98vh;
-    width: 80vh;
-    background-color: #292828;
-`
-const BalaoMensagem = styled.div`
-    display: flex;
-    padding: 10px;
-    background-color: white;
-    color: black;
-    margin: 10px;
-    border-radius: 0.5em;
-    box-shadow: 2px 3px 5px 2px #121111;
-    `
-
-const InputContainer = styled.div`
-    position: fixed;
-    bottom: 0;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-`
-
-const EstiloInputNome = styled.input`
-    width: 5%;
-    padding: 5px;
-    margin-right: 8px;
-    border-radius: 0.5em;
-`
-
-const EstiloNome = styled.p`
-    font-weight: bold;
-    margin-right: 5px;
-`
-
-const EstiloInputMensagem = styled.input`
-    width: 24%;
-    margin-right: 8px;
-    padding: 5px;
-    border-radius: 0.5em;
-`
-
-const EstiloMensagens = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 50px;
-`
+import {CardMensagem} from './style-SecaoMensagem.js';
+import {BalaoMensagem} from './style-SecaoMensagem.js';
+import {InputContainer} from './style-SecaoMensagem.js';
+import {EstiloInputNome} from './style-SecaoMensagem.js';
+import {EstiloNome} from './style-SecaoMensagem.js';
+import {EstiloInputMensagem} from './style-SecaoMensagem.js';
+import {EstiloMensagens} from './style-SecaoMensagem.js';
+import { EstiloBotao } from './style-SecaoMensagem.js';
+import enviarIcone from '../../imgs/send.svg'
 
 class SecaoMensagem extends React.Component {
 
@@ -83,7 +37,6 @@ class SecaoMensagem extends React.Component {
         this.setState({ inputMensagem: "" });
     };
 
-
     render() {
 
         const apareceMensagens = this.state.mensagens.map((item) => {
@@ -110,7 +63,7 @@ class SecaoMensagem extends React.Component {
                     value={this.state.inputMensagem}
                     onChange={this.onChangeMensagem}
                 />
-                <button onClick={this.enviarMensagem} type="submit" >Enviar</button>
+                <EstiloBotao onClick={this.enviarMensagem} type="submit" ><img src={enviarIcone} alt="Ícone de Enviar"/></EstiloBotao>
             </InputContainer>
 
             <EstiloMensagens>
