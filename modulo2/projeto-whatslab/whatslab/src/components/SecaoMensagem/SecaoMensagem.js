@@ -57,27 +57,26 @@ class SecaoMensagem extends React.Component {
 
 
         return <CardMensagem>
-            <InputContainer>
-                <EstiloInputNome
-                    placeholder={`Nome`}
-                    value={this.state.inputNomeUsuario}
-                    onChange={this.onChangeNomeUsuario}
-                />
-
-                <EstiloInputMensagem
-                    placeholder={`Mensagem`}
-                    value={this.state.inputMensagem}
-                    onChange={this.onChangeMensagem}
-                    onKeyPress={this.enviarMensagemComEnter}
-                />
-                <EstiloBotao onClick={this.enviarMensagem} type="submit" ><img src={enviarIcone} alt="Ícone de Enviar"/></EstiloBotao>
-            </InputContainer>
-
             <EstiloMensagens>
                 {apareceMensagens}
             </EstiloMensagens>
-        </CardMensagem>
 
+            <InputContainer>
+            <EstiloInputNome
+                placeholder={`Nome`}
+                value={this.state.inputNomeUsuario}
+                onChange={this.onChangeNomeUsuario}
+            />
+
+            <EstiloInputMensagem
+                placeholder={`Mensagem`}
+                value={this.state.inputMensagem}
+                onChange={this.onChangeMensagem}
+                onKeyPress={this.enviarMensagemComEnter}
+            />
+            <EstiloBotao onClick={this.enviarMensagem} type="submit" ><img src={enviarIcone} alt="Ícone de Enviar"/></EstiloBotao>
+        </InputContainer>
+        </CardMensagem>
     }
 }
 

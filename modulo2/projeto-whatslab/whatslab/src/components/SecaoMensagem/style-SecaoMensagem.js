@@ -1,13 +1,19 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const CardMensagem = styled.div`
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: flex-end;
     border: 2px solid black;
     height: 98vh;
-    width: 80vh;
-    background-color: #292828;
+    width: 100vh;
+    background-color: #292828; */
+    display: grid;
+    align-content: end;
+    border: 1px solid gray;
+    width: 50vw;
+    height: 100vh;
+    margin: 10px 0;
 `
 export const BalaoMensagem = styled.div`
     display: flex;
@@ -20,16 +26,17 @@ export const BalaoMensagem = styled.div`
     `
 
 export const InputContainer = styled.div`
-    position: fixed;
-    bottom: 0;
-    width: 100vw;
+    /* position: fixed;
+    bottom: 0; */
+    width: 50vw;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    margin: 20px 0;
+    margin-bottom: 20px;
 `
 
 export const EstiloInputNome = styled.input`
-    width: 5%;
+    width: 20%;
     padding: 5px;
     margin-right: 8px;
     border-radius: 0.5em;
@@ -45,7 +52,7 @@ export const EstiloNome = styled.p`
 `
 
 export const EstiloInputMensagem = styled.input`
-    width: 24%;
+    width: 70%;
     margin-right: 8px;
     padding: 5px;
     border-radius: 0.5em;
@@ -58,8 +65,8 @@ export const EstiloInputMensagem = styled.input`
 export const EstiloMensagens = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+    margin-right: 30vw;
 `
 
 export const EstiloBotao = styled.button`

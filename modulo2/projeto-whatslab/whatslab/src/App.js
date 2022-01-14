@@ -1,5 +1,4 @@
 import logo from './logo.svg';
-// import './App.css';
 import SecaoMensagem from './components/SecaoMensagem/SecaoMensagem';
 import React from 'react';
 import styled from 'styled-components';
@@ -9,7 +8,6 @@ const GlobalStyle = createGlobalStyle`
     * {
         margin: 0;
         padding: 0;
-        /* background-color: #121111; */
         box-sizing: border-box;
 
     }
@@ -19,8 +17,10 @@ const GlobalStyle = createGlobalStyle`
 const EstilizacaoPrincipal = styled.div `
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     height: 100vh;
+    background-color: lightgray;
 `
 
 function App() {
