@@ -37,6 +37,12 @@ class SecaoMensagem extends React.Component {
         this.setState({ inputMensagem: "" });
     };
 
+    enviarMensagemComEnter = (event) => {
+        if (event.key === 'Enter') { 
+         this.enviarMensagem()
+        }
+    }
+
     render() {
 
         const apareceMensagens = this.state.mensagens.map((item) => {
@@ -62,6 +68,7 @@ class SecaoMensagem extends React.Component {
                     placeholder={`Mensagem`}
                     value={this.state.inputMensagem}
                     onChange={this.onChangeMensagem}
+                    onKeyPress={this.enviarMensagemComEnter}
                 />
                 <EstiloBotao onClick={this.enviarMensagem} type="submit" ><img src={enviarIcone} alt="Ícone de Enviar"/></EstiloBotao>
             </InputContainer>

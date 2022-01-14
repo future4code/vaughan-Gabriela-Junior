@@ -33,6 +33,10 @@ export const EstiloInputNome = styled.input`
     padding: 5px;
     margin-right: 8px;
     border-radius: 0.5em;
+    border: none;
+    :focus {
+        border: 2px solid purple; 
+    }
 `
 
 export const EstiloNome = styled.p`
@@ -45,6 +49,10 @@ export const EstiloInputMensagem = styled.input`
     margin-right: 8px;
     padding: 5px;
     border-radius: 0.5em;
+    border: none;
+    :focus {
+        border: 2px solid purple; 
+    }
 `
 
 export const EstiloMensagens = styled.div`
@@ -55,14 +63,13 @@ export const EstiloMensagens = styled.div`
 `
 
 export const EstiloBotao = styled.button`
-    background-color: lightgray;
+    background-color: violet;
     border: 0;
     padding: 5px;
-    border-radius: 50%;
+    border-radius: 0.5em;
     cursor: pointer;
 
     :hover {
-    background-color: white;
-
+        background-color: #f8baff;
 }
 `
