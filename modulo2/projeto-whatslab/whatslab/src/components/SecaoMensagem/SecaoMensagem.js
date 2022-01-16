@@ -9,13 +9,14 @@ import { EstiloMensagens } from './style-SecaoMensagem.js';
 import { EstiloBotao } from './style-SecaoMensagem.js';
 import { BalaoMensagemEu } from './style-SecaoMensagem.js';
 import enviarIcone from '../../imgs/send.svg'
+import { Profiler } from 'react/cjs/react.production.min';
 
 class SecaoMensagem extends React.Component {
 
     state = {
         inputNomeUsuario: "",
         mensagens: [
-            { nome: "", mensagem: "" }
+            { nome: "", mensagem: "", id: "" }
         ],
         inputMensagem: ""
     };
@@ -31,7 +32,8 @@ class SecaoMensagem extends React.Component {
     enviarMensagem = () => {
         const novaMensagem = {
             nome: this.state.inputNomeUsuario,
-            mensagem: this.state.inputMensagem
+            mensagem: this.state.inputMensagem,
+            id: Math.random(),
         };
         const novoMensagens = [...this.state.mensagens, novaMensagem]
         this.setState({ mensagens: novoMensagens });
@@ -41,7 +43,15 @@ class SecaoMensagem extends React.Component {
     enviarMensagemComEnter = (event) => {
         if (event.key === 'Enter') {
             this.enviarMensagem()
-        }
+        };
+    };
+
+    removerMensagem = (idMensagem) => {
+        const mensagensCopia = [...this.state.mensagens];
+        const mensagensNaoExcluidas = mensagensCopia.filter((item) => {
+            return idMensagem !== item.id;
+        });
+        this.setState({mensagens: mensagensNaoExcluidas })
     }
 
     render() {
@@ -50,11 +60,11 @@ class SecaoMensagem extends React.Component {
             if (item.nome === "" || item.mensagem === "") {
             } else {
                 if (item.nome === "eu") {
-                    return <BalaoMensagemEu>
+                    return <BalaoMensagemEu onDoubleClick={() => {this.removerMensagem(item.id)}}>
                         <p>{item.mensagem}</p>
                     </BalaoMensagemEu>
                 } else {
-                    return <BalaoMensagem>
+                    return <BalaoMensagem onDoubleClick={() => {this.removerMensagem(item.id)}}>
                         <EstiloNome>{item.nome}</EstiloNome>
                         <p>{item.mensagem}</p>
                     </BalaoMensagem>

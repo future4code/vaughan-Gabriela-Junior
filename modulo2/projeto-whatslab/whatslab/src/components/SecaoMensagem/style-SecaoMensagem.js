@@ -17,11 +17,10 @@ export const BalaoMensagem = styled.div`
     align-self: flex-start;
     padding: 10px;
     background-color: white;
-    color: black;
     margin: 10px;
     border-radius: 0.5em;
     box-shadow: 2px 3px 5px 2px #121111;
-    max-width: 50%;
+    max-width: 45%;
     word-wrap: break-word;
     `
 
@@ -63,6 +62,8 @@ export const EstiloInputNome = styled.input`
 export const EstiloNome = styled.p`
     font-weight: bold;
     margin-right: 5px;
+    font-size: 13px;
+    color: #5b386e;
 `
 
 export const EstiloInputMensagem = styled.input`
