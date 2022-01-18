@@ -26,23 +26,21 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    localStorage.setItem("texto", JSON.stringify(this.state.tarefas.texto))
-    localStorage.setItem("tarefas", JSON.stringify(this.state.tarefas))
+    const tarefasString = JSON.stringify(this.state.tarefas)
+    localStorage.setItem("listaDeTarefas", tarefasString);
   };
 
   componentDidMount() {
-    this.salvarTarefas();
+    const tarefasLocais = JSON.parse(localStorage.getItem("listaDeTarefas"))
+
+    if (tarefasLocais) {
+      this.setState({ tarefas: tarefasLocais})
+    }
   };
 
   onChangeInput = (event) => {
     this.setState({ inputValue: event.target.value });
   };
-
-  salvarTarefas = () => {
-    const salvaTarefa =
-      JSON.parse(localStorage.getItem("listaDeTarefas"))
-      this.setState({ tarefas: salvaTarefa})
-  }
 
   criaTarefa = () => {
     const novaTarefa = {
@@ -52,7 +50,7 @@ class App extends React.Component {
     }
     const novoArrayTarefas = [...this.state.tarefas, novaTarefa]
 
-    localStorage.setItem("listaDeTarefas", JSON.stringify(novoArrayTarefas));
+    // localStorage.setItem("listaDeTarefas", JSON.stringify(novoArrayTarefas));
     this.setState({ tarefas: novoArrayTarefas })
     this.setState({ inputValue: "" })
   }
@@ -75,7 +73,6 @@ class App extends React.Component {
   onChangeFilter = (event) => {
     this.setState ({filtro: event.target.value})
   }
-
 
   render() {
     const listaFiltrada = this.state.tarefas.filter(tarefa => {
