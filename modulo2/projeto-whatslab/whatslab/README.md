@@ -7,7 +7,7 @@ O projeto consiste em fazer um aplicativo de troca de mensagens, interface criad
 
 ## Link
 
-https://https://hermenewhats.surge.sh/
+https://hermenewhats.surge.sh/
 
 ## Como utilizar
 
