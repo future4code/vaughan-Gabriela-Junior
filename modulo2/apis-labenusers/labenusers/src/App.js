@@ -110,7 +110,13 @@ class App extends React.Component {
     const usersList = this.state.users.map((user) => {
       return (
         <ListOfUsersStyle key={user.id}>
-          {user.name} <button onClick={() => { this.deleteUser(user.id) }}>X</button>
+          {user.name} <button onClick={() => {
+            if (window.confirm(`Tem certeza que deseja deletar esse usuário?`)) {
+              return this.deleteUser(user.id)
+            } else {
+              return
+            }
+          }}>X</button>
         </ListOfUsersStyle>
       )
     });
@@ -120,8 +126,8 @@ class App extends React.Component {
         return (
           <ListUsersContainers>
             <h1>Lista de usuários</h1>
-              {usersList}
-              <ButtonReturn onClick={this.changeRenderization}>Voltar</ButtonReturn>
+            {usersList}
+            <ButtonReturn onClick={this.changeRenderization}>Voltar</ButtonReturn>
           </ListUsersContainers>
         )
       } else {
