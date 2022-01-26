@@ -7,7 +7,6 @@ export const MainStyle = styled.div`
     justify-items: center;
     align-content: center;
     width: 100vw;
-    /* height: 70vh; */
 `
 
 // Estilização Área de Cadastro
@@ -106,5 +105,13 @@ export const ButtonReturn = styled.div`
     :hover {
     background-color: lightgray;
     color: black;
+    }
+`
+
+export const StyleButtons = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    button{
+        margin-left: 10px;
     }
 `
