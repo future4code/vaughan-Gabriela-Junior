@@ -30,7 +30,8 @@ class App extends React.Component {
       case "users list":
         return <UsersList
           changeToNewUser={this.changeToNewUser}
-          changeToUserDetails={this.changeToUserDetails} />
+          changeToUserDetails={this.changeToUserDetails} 
+          />
       case "user details":
         return <UserDetails
           changeToUsersList={this.changeToUsersList}

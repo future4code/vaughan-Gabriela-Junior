@@ -6,6 +6,7 @@ import { MainStyle, ListOfUsersStyle, ListUsersContainers, ButtonReturn, StyleBu
 export default class UsersList extends React.Component {
     state = {
         users: [],
+        searchNameInput: "",
     }
 
     componentDidMount() {
@@ -23,7 +24,6 @@ export default class UsersList extends React.Component {
         try {
             const response = await axios.get(url, config)
             this.setState({ users: response.data })
-            console.log(response.data)
 
         } catch (error) {
             alert(`Ocorreu um erro. Tente novamente.`)
@@ -49,6 +49,27 @@ export default class UsersList extends React.Component {
         }
     };
 
+    searchUsers = async (nameUser) => {
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/search?name=${nameUser}`
+        const config = {
+            headers: {
+                Authorization: "gabriela-junior-vaughan"
+            }
+        }
+
+        try {
+            const response = await axios.get(url, config)
+            console.log(response.data)
+            this.setState({ users: response.data })
+        } catch (error) {
+            console.log(error.response.data)
+        }
+    }
+
+    changeNameUser = (event) => {
+        this.setState({ searchNameInput: event.target.value })
+    }
+
     render() {
 
         const usersList = this.state.users.map((user) => {
@@ -73,7 +94,14 @@ export default class UsersList extends React.Component {
             <MainStyle>
                 <ListUsersContainers>
                     <h1>Lista de Usuários</h1>
+                    {/* <input
+                        placeholder="Buscar nome de usuário"
+                        value={this.state.searchNameInput}
+                        onChange={this.changeNameUser}
+                    />
+                    <button onClick={() => { this.searchUsers() }}>Procurar</button> */}
                     {this.state.users.length > 0 ? (usersList) : <p>Carregando...</p>}
+
                 </ListUsersContainers>
                 <ButtonReturn onClick={this.props.changeToNewUser}>Voltar</ButtonReturn>
             </MainStyle>
