@@ -115,3 +115,15 @@ export const StyleButtons = styled.div`
         margin-left: 10px;
     }
 `
+
+// Estilização Detalhes do Usuário
+
+export const DetailsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h3{
+        margin: 10px;
+    }
+`

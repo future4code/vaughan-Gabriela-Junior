@@ -29,7 +29,7 @@ export default class NewUser extends React.Component {
         }
 
         axios.post(url, body, config)
-            .then((response) => {
+            .then(() => {
                 this.setState({ inputName: "", inputEmail: "" })
                 alert(`Usuário criado com sucesso`)
             })

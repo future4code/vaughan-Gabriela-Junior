@@ -1,63 +1,83 @@
 import React from 'react';
 import axios from 'axios';
+import { MainStyle, ButtonReturn, ListUsersContainers, DetailsContainer } from '../style-app.js';
+import { ThemeConsumer } from 'styled-components';
+
 
 export default class UserDetails extends React.Component {
-    //     state = {
-    //         users: [{id: "2f8de6df-01e0-4f4a-b4ed-77a52fdbd3a0", name: "Jake", email: "jake@ooo.com"}]
-    //     }
+    state = {
+        user: {},
+        inputOpen: false
+    }
 
-    // getUserById = async (idUser) => {
-    //     const url = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${idUser}`
-    //     const config = {
-    //         headers: {
-    //             Authorization: "gabriela-junior-vaughan"
-    //         }
-    //     }
+    componentDidMount() {
+        this.getUserById()
+    }
 
-    //     try {
-    //         const response = await axios.get(url, config)
-    //         console.log(response.data);
-    //     } catch (error) {
-    //         console.log(error.response.data);
-    //     }
-    // }
+    getUserById = async () => {
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${this.props.idDetails}`
+        const config = {
+            headers: {
+                Authorization: "gabriela-junior-vaughan"
+            }
+        }
 
-    // getAllUsers = async() => {
-    //     const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users'
-    //     const config = {
-    //       headers: {
-    //         Authorization: "gabriela-junior-vaughan"
-    //       }
-    //     };
+        try {
+            const response = await axios.get(url, config)
+            this.setState({ user: response.data })
 
-    //     try {
-    //         const response = await axios.get(url, config)
-    //             this.setState({ users: response.data})
+        } catch (error) {
+            console.log(error.response.data);
+        }
+    }
 
-    //     } catch (error){
-    //         alert(`Ocorreu um erro. Tente novamente.`)
-    //     }
+    deleteUser = async (userId) => {
+        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${userId}`
+        const config = {
+            headers: {
+                Authorization: "gabriela-junior-vaughan"
+            }
+        }
 
-    //   };
+        try {
+            await axios.delete(url, config)
+            alert(`Usuário deletado com sucesso!`)
+            this.props.changeToUsersList()
+        } catch (error) {
+            alert(`Erro ao deletar usuário: ${error.response.data.message}`)
+        }
+    };
+
+    changeOpenInput = () => {
+        this.setState({ inputOpen: !this.state.inputOpen })
+    }
 
     render() {
 
-        // const detailsUsers = this.state.users.map((user) => {
-        //     return (<div key={user.id}>
-        //         <p>{user.name}</p>
-        //         <p>{user.email}</p>
-        //         <button onClick={()=>this.getUserById(user.id)}>Detalhe do user</button>
-        //     </div>
-        //     )
-        // })
-
         return (
-            <div>
-                <h1>Detalhe do usuário</h1>
-                {/* {detailsUsers} */}
-                <p>Nome</p>
-                <p>Email</p>
-            </div>
+            <MainStyle>
+                <ListUsersContainers>
+
+                    <h1>Detalhe do Usuário</h1>
+                    <DetailsContainer key={this.state.user.id}>
+                        <h3>{this.state.user.name}</h3>
+                        <p>Email: {this.state.user.email}</p>
+                        <ButtonReturn onClick={this.changeOpenInput}>
+                            Editar
+                        </ButtonReturn>
+                        <ButtonReturn onClick={() => {
+                            if (window.confirm(`Tem certeza que deseja deletar esse usuário?`)) {
+                                return this.deleteUser(this.props.idDetails)
+                            } else {
+                                return
+                            }
+                        }}>Deletar Usuário</ButtonReturn>
+
+                    </DetailsContainer>
+
+                </ListUsersContainers>
+                <ButtonReturn onClick={this.props.changeToUsersList}>Voltar</ButtonReturn>
+            </MainStyle>
         )
     }
 }

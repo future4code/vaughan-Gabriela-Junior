@@ -19,7 +19,8 @@ const GlobalStyle = createGlobalStyle`
 class App extends React.Component {
 
   state = {
-    currentScreen: "new user"
+    currentScreen: "new user",
+    idDetails: ""
   };
 
   renderScreen = () => {
@@ -27,10 +28,14 @@ class App extends React.Component {
       case "new user":
         return <NewUser changeToUsersList={this.changeToUsersList} />
       case "users list":
-        return <UsersList changeToNewUser={this.changeToNewUser} />
+        return <UsersList
+          changeToNewUser={this.changeToNewUser}
+          changeToUserDetails={this.changeToUserDetails} />
       case "user details":
-        console.log("chegou no case")
-        return <UserDetails changeToUserDetails={this.changeToUserDetails} />
+        return <UserDetails
+          changeToUsersList={this.changeToUsersList}
+          idDetails={this.state.idDetails}
+        />
       default:
         return <NewUser />
     };
@@ -44,8 +49,8 @@ class App extends React.Component {
     this.setState({ currentScreen: "users list" });
   };
 
-  changeToUserDetails = () => {
-    console.log("chegou na funçao")
+  changeToUserDetails = (id) => {
+    this.setState({ idDetails: id })
     this.setState({ currentScreen: "user details" });
   };
 
