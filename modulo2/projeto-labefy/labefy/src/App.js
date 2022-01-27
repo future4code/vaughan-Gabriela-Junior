@@ -4,14 +4,18 @@ import PlaylistDetails from "./pages/PlaylistDetails";
 
 class App extends React.Component {
   state = {
-    currentScreen: "playlists"
+    currentScreen: "playlists",
+    idPlaylist: "",
+    namePlaylist: ""
   };
 
   changeToPlaylists = () => {
     this.setState({ currentScreen: "playlists" })
   };
 
-  changeToPlaylistDetails = () => {
+  changeToPlaylistDetails = (name, id) => {
+    this.setState({ namePlaylist: name})
+    this.setState({ idPlaylist: id })
     this.setState({ currentScreen: "details" })
   };
 
@@ -19,15 +23,17 @@ class App extends React.Component {
     switch (this.state.currentScreen) {
       case "playlists":
         return <Playlists
-          changeToPlaylists={this.changeToPlaylists}
+          changeToPlaylistDetails={this.changeToPlaylistDetails}
         />
       case "details":
         return <PlaylistDetails
-          changeToPlaylistDetails={this.changeToPlaylistDetails}
+        namePlaylist={this.state.namePlaylist}
+        idPlaylist={this.state.idPlaylist}
+        changeToPlaylists={this.changeToPlaylists}
         />
       default:
         return <Playlists 
-        changeToPlaylists={this.changeToPlaylists}
+        changeToPlaylistDetails={this.changeToPlaylistDetails}
         />
     }
   }
