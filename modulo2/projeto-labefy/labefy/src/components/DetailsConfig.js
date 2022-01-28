@@ -67,16 +67,12 @@ export default class DetailsConfig extends React.Component {
         this.setState({ inputTrackURL: event.target.value })
     }
 
-    playTrack = (url) => {
-        url.play()
-    }
-
     render() {
 
         const tracksName = this.state.tracks.map((track) => {
             return <div key={track.id}>
-                <button onClick={() => {this.playTrack(track.url)}}>tocar</button>
                 {track.name}
+                <audio src={track.url} controls type="audio/mp3"></audio>
             </div>
         })
 
@@ -98,7 +94,7 @@ export default class DetailsConfig extends React.Component {
                     value={this.state.inputTrackURL}
                     onChange={this.changeTrackURL}
                 />
-                <button onClick={() => {this.addTrackToPlaylist()}}>Adicionar</button>
+                <button onClick={() => { this.addTrackToPlaylist() }}>Adicionar</button>
 
                 <h2>Detalhes Playlist</h2>
                 {this.state.tracks.length > 0 ?

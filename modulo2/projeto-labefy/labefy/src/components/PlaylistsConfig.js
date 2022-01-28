@@ -1,5 +1,9 @@
 import axios from "axios";
 import React from "react";
+import { PlaylistContainer, CreatePlaylistContainer, PlaylistList, ButtonsContainer, ButtonNoStyle } from "../components/styled-config";
+import playPlaylist from '../assets/imgs/playlist-play.svg';
+import deleteIcon from '../assets/imgs/delete-white.svg';
+import addPlaylist from '../assets/imgs/playlist-add.svg'
 
 export default class PlaylistsConfig extends React.Component {
     state = {
@@ -73,27 +77,29 @@ export default class PlaylistsConfig extends React.Component {
 
         const playlistsNames = this.state.playlists.map((playlist) => {
             return (
-                <div key={playlist.id}>
-                    {playlist.name}
-                    <button onClick={() => {this.props.changeToPlaylistDetails(playlist.name, playlist.id)}}>Detalhes</button>
-                    <button onClick={() => {this.deletePlaylist(playlist.id)}}>Deletar</button>
-                </div>
+                <PlaylistList key={playlist.id}>
+                    <ButtonNoStyle>{playlist.name}</ButtonNoStyle>
+                    <div>
+                    <ButtonsContainer onClick={() => {this.props.changeToPlaylistDetails(playlist.name, playlist.id)}}><img src={playPlaylist} alt="Ícone Tocar Playlist"/></ButtonsContainer>
+                    <ButtonsContainer onClick={() => {this.deletePlaylist(playlist.id)}}><img src={deleteIcon} alt="Ícone de Deletar"/></ButtonsContainer>
+                    </div>
+                </PlaylistList>
             )
         })
         return (
-            <div>
+            <PlaylistContainer>
+                <CreatePlaylistContainer>
                 <h3>Criar Nova Playlist</h3>
                 <input
                     placeholder="Nome da Playlist"
                     value={this.state.inputName}
                     onChange={this.changeInputName}
                 />
-                <button onClick={this.createPlaylist}>Criar Playlist</button>
-
-                <h3>Lista de Playlist</h3>
+                <ButtonsContainer  onClick={this.createPlaylist}><img src={addPlaylist} alt="Ícone Adicionar Playlist"/></ButtonsContainer >
+                </CreatePlaylistContainer>
 
                 {this.state.playlists.length > 0 ? (playlistsNames) : <p>Carregando...</p>}
-            </div>
+            </PlaylistContainer>
         )
     }
 }

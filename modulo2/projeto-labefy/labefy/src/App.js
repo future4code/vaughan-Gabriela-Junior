@@ -1,6 +1,9 @@
 import React from "react";
 import Playlists from "./pages/Playlists";
 import PlaylistDetails from "./pages/PlaylistDetails";
+import Header from "./components/Header";
+import Footer from './components/Footer';
+import { GlobalStyle } from "./styled-app";
 
 class App extends React.Component {
   state = {
@@ -41,8 +44,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hermenefy</h1>
+        <GlobalStyle />
+        <Header />
         {this.renderScreen()}
+        <Footer />
       </div>
     )
   }
