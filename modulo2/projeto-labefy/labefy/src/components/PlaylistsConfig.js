@@ -4,6 +4,7 @@ import { PlaylistContainer, CreatePlaylistContainer, PlaylistList, ButtonsContai
 import playPlaylist from '../assets/imgs/playlist-play.svg';
 import deleteIcon from '../assets/imgs/delete-white.svg';
 import addPlaylist from '../assets/imgs/playlist-add.svg'
+import audioTrackIcon from "../assets/imgs/audiotrack-white.svg"
 
 export default class PlaylistsConfig extends React.Component {
     state = {
@@ -11,7 +12,7 @@ export default class PlaylistsConfig extends React.Component {
         inputName: "",
     }
 
-    componentDidMount () {
+    componentDidMount() {
         this.getAllPlaylists()
     }
 
@@ -31,6 +32,7 @@ export default class PlaylistsConfig extends React.Component {
         }
         try {
             const response = await axios.post(url, body, config)
+            alert(`Playlist criada com sucesso!`)
             this.getAllPlaylists()
             this.setState({ inputName: "" })
 
@@ -65,10 +67,11 @@ export default class PlaylistsConfig extends React.Component {
         }
         try {
             const response = await axios.delete(url, config)
+            alert(`Playlist deletada com sucesso!`)
             this.getAllPlaylists()
 
-        } catch (error){
-            console.log(error.response)
+        } catch (error) {
+            alert(`Não foi possível deletar a playlist. Tente novamente.`)
         }
 
     }
@@ -78,10 +81,21 @@ export default class PlaylistsConfig extends React.Component {
         const playlistsNames = this.state.playlists.map((playlist) => {
             return (
                 <PlaylistList key={playlist.id}>
-                    <ButtonNoStyle>{playlist.name}</ButtonNoStyle>
+                    <img src={audioTrackIcon} alt="Ícone de Música" /> {playlist.name}
                     <div>
-                    <ButtonsContainer onClick={() => {this.props.changeToPlaylistDetails(playlist.name, playlist.id)}}><img src={playPlaylist} alt="Ícone Tocar Playlist"/></ButtonsContainer>
-                    <ButtonsContainer onClick={() => {this.deletePlaylist(playlist.id)}}><img src={deleteIcon} alt="Ícone de Deletar"/></ButtonsContainer>
+                        <ButtonsContainer onClick={() => {
+                            this.props.changeToPlaylistDetails(playlist.name, playlist.id)
+                        }
+                        }>
+                            <img src={playPlaylist} alt="Ícone Tocar Playlist" /></ButtonsContainer>
+                        <ButtonsContainer onClick={() => {
+                            if (window.confirm(`Tem certeza que deseja deletar essa playlist?`)) {
+                            this.deletePlaylist(playlist.id)
+                        } else {
+                            return
+                        }
+                        }}>
+                            <img src={deleteIcon} alt="Ícone de Deletar" /></ButtonsContainer>
                     </div>
                 </PlaylistList>
             )
@@ -89,13 +103,13 @@ export default class PlaylistsConfig extends React.Component {
         return (
             <PlaylistContainer>
                 <CreatePlaylistContainer>
-                <h3>Criar Nova Playlist</h3>
-                <input
-                    placeholder="Nome da Playlist"
-                    value={this.state.inputName}
-                    onChange={this.changeInputName}
-                />
-                <ButtonsContainer  onClick={this.createPlaylist}><img src={addPlaylist} alt="Ícone Adicionar Playlist"/></ButtonsContainer >
+                    <h3>Criar Nova Playlist</h3>
+                    <input
+                        placeholder="Nome da Playlist"
+                        value={this.state.inputName}
+                        onChange={this.changeInputName}
+                    />
+                    <ButtonsContainer onClick={this.createPlaylist}><img src={addPlaylist} alt="Ícone Adicionar Playlist" /></ButtonsContainer >
                 </CreatePlaylistContainer>
 
                 {this.state.playlists.length > 0 ? (playlistsNames) : <p>Carregando...</p>}

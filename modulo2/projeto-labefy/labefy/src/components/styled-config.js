@@ -135,6 +135,103 @@ export const ButtonsContainer = styled.button`
     }
 `
 
+//Playlist Details Style
+export const MainDivDetails = styled.div`
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    padding: 10px;
+`
+
+export const DetailsStyle = styled.div`
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h2{
+        margin: 20px;
+    }
+`
+
+export const ButtonReturn = styled.button`
+    padding: 10px 15px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    background-color: ${corPrimaria};
+    border: 1px solid ${corTerciaria};
+    cursor: pointer;
+    :hover{
+        background-color: ${corTerciaria};
+        border: 1px solid white;
+    }
+`
+
+export const PageStyle = styled.div`
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+`
+
+export const AddTrackStyle = styled.div`
+    grid-area: 1 / 1 / -4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 60%;
+    margin: 0 10px 20px;
+    border: 1px solid ${corTerciaria};
+    h3 {
+        margin: 10px;
+    }
+    input{
+        margin: 10px;
+        padding: 5px;
+    }
+    button {
+        background-color: #141414;
+        margin: 10px 0 0;
+        border: none;
+        border-radius: 50%;
+        padding: 5px;
+        cursor: pointer;
+        :hover{
+            background-color: ${corTerciaria};
+        }
+    }
+`
+
+export const ButtonDelete = styled.button`
+        background-color: #141414;
+        margin: 10px;
+        border: none;
+        border-radius: 50%;
+        padding: 5px;
+        cursor: pointer;
+        :hover{
+            background-color: ${corPrimaria};
+        }
+`
+
+export const TracksStyle = styled.div `
+    margin: 10px;
+    padding: 10px;
+    width: 90%;
+    border: 1px solid ${corTerciaria};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    p {
+        padding: 10px;
+    }
+    :hover{
+        background-color: ${corTerciaria};
+    }
+`
+
 //Footer Style
 export const FooterStyle = styled.div`
     background-color: ${corPrimaria};
