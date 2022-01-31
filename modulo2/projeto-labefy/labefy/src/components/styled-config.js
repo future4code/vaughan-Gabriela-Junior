@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { corPrimaria, corSecundaria, corTerciaria } from '../constants/colors'
+import { mainColor, secondColor, thirdColor } from '../constants/colors'
 
 //Header Style
 export const HeaderStyle = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: ${corPrimaria};
+    background-color: ${mainColor};
     height: 10vh;
     padding: 0 15px;
     position: fixed;
@@ -20,12 +20,12 @@ export const HeaderStyle = styled.div`
     button {
         padding: 10px;
         font-size: 1rem;
-        background-color: ${corSecundaria};
-        border: 1px solid ${corTerciaria};
+        background-color: ${secondColor};
+        border: 1px solid ${thirdColor};
         color: white;
         cursor: pointer;
         :hover {
-            background-color: ${corTerciaria};
+            background-color: ${thirdColor};
             border: 1px solid white;
             color: black;
         }
@@ -37,7 +37,6 @@ export const HeaderStyle = styled.div`
 `
 //Playlist Page Style
 export const PlaylistDiv = styled.div`
-    /* display: grid; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -69,8 +68,7 @@ export const CreatePlaylistContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* width: 20%; */
-    border: 1px solid ${corTerciaria};
+    border: 1px solid ${thirdColor};
     h3 {
         padding: 20px;
     }
@@ -83,12 +81,12 @@ export const CreatePlaylistContainer = styled.div`
         padding: 10px;
         width: 50px;
         height: 50px;
-        background-color: ${corSecundaria};
-        border: 1px solid ${corTerciaria};
+        background-color: ${secondColor};
+        border: 1px solid ${thirdColor};
         border-radius: 50%;
         cursor: pointer;
         :hover{
-        background-color: ${corPrimaria};
+        background-color: ${mainColor};
             img {
             width: 25px;
             height: 25px;
@@ -98,16 +96,16 @@ export const CreatePlaylistContainer = styled.div`
 `
 
 export const PlaylistList = styled.div`
-    border: 1px solid ${corTerciaria};
+    border: 1px solid ${thirdColor};
     margin: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
     font-size: 1.3rem;
-    padding: 10px;
+    padding: 5px;
     :hover{
-        background-color: ${corTerciaria};
+        background-color: ${thirdColor};
     }
 `
 
@@ -122,12 +120,12 @@ export const ButtonsContainer = styled.button`
     padding: 10px;
     width: 50px;
     height: 50px;
-    background-color: ${corSecundaria};
-    border: 1px solid ${corTerciaria};
+    background-color: ${secondColor};
+    border: 1px solid ${thirdColor};
     border-radius: 50%;
     cursor: pointer;
     :hover{
-        background-color: ${corPrimaria};
+        background-color: ${mainColor};
     }
     img {
         width: 25px;
@@ -158,11 +156,11 @@ export const ButtonReturn = styled.button`
     color: white;
     font-weight: bold;
     font-size: 1.2rem;
-    background-color: ${corPrimaria};
-    border: 1px solid ${corTerciaria};
+    background-color: ${mainColor};
+    border: 1px solid ${thirdColor};
     cursor: pointer;
     :hover{
-        background-color: ${corTerciaria};
+        background-color: ${thirdColor};
         border: 1px solid white;
     }
 `
@@ -183,7 +181,7 @@ export const AddTrackStyle = styled.div`
     padding: 20px;
     width: 60%;
     margin: 0 10px 20px;
-    border: 1px solid ${corTerciaria};
+    border: 1px solid ${thirdColor};
     h3 {
         margin: 10px;
     }
@@ -199,20 +197,20 @@ export const AddTrackStyle = styled.div`
         padding: 5px;
         cursor: pointer;
         :hover{
-            background-color: ${corTerciaria};
+            background-color: ${thirdColor};
         }
     }
 `
 
 export const ButtonDelete = styled.button`
-        background-color: #141414;
+        background-color: ${secondColor};
         margin: 10px;
-        border: none;
+        border: 1px solid ${thirdColor};
         border-radius: 50%;
         padding: 5px;
         cursor: pointer;
         :hover{
-            background-color: ${corPrimaria};
+            background-color: ${mainColor};
         }
 `
 
@@ -220,7 +218,7 @@ export const TracksStyle = styled.div `
     margin: 10px;
     padding: 10px;
     width: 90%;
-    border: 1px solid ${corTerciaria};
+    border: 1px solid ${thirdColor};
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -228,14 +226,14 @@ export const TracksStyle = styled.div `
         padding: 10px;
     }
     :hover{
-        background-color: ${corTerciaria};
+        background-color: ${thirdColor};
     }
 `
 
 //Footer Style
 export const FooterStyle = styled.div`
-    background-color: ${corPrimaria};
-    border-top: 1px solid ${corTerciaria};
+    background-color: ${mainColor};
+    border-top: 1px solid ${thirdColor};
     height: 10vh;
     display: flex;
     justify-content: center;
@@ -259,7 +257,7 @@ export const ButtonIcon = styled.button`
     padding: 5px;
     cursor: pointer;
     :hover{
-        background-color: ${corTerciaria};
+        background-color: ${thirdColor};
     }
 
 `

@@ -1,6 +1,5 @@
-import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
-import { corSecundaria } from './constants/colors'
+import { secondColor } from './constants/colors'
 import './assets/fonts/fonts.css';
 
 export const GlobalStyle = createGlobalStyle`
@@ -10,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-    background-color: ${corSecundaria};
+    background-color: ${secondColor};
     color: white;
     font-family: 'Roboto', sans-serif;
     }

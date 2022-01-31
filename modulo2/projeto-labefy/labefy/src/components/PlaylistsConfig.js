@@ -3,70 +3,70 @@ import React from "react";
 import { PlaylistContainer, CreatePlaylistContainer, PlaylistList, ButtonsContainer, ButtonNoStyle } from "../components/styled-config";
 import playPlaylist from '../assets/imgs/playlist-play.svg';
 import deleteIcon from '../assets/imgs/delete-white.svg';
-import addPlaylist from '../assets/imgs/playlist-add.svg'
-import audioTrackIcon from "../assets/imgs/audiotrack-white.svg"
+import addPlaylist from '../assets/imgs/playlist-add.svg';
+import audioTrackIcon from "../assets/imgs/audiotrack-white.svg";
+import { labefyURL } from '../constants/urlApis';
 
 export default class PlaylistsConfig extends React.Component {
     state = {
         playlists: [],
         inputName: "",
-    }
+    };
 
     componentDidMount() {
         this.getAllPlaylists()
-    }
+    };
 
     changeInputName = (event) => {
         this.setState({ inputName: event.target.value })
-    }
+    };
 
     createPlaylist = async () => {
-        const url = "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists"
+        const url = labefyURL
         const body = {
             name: this.state.inputName
-        }
+        };
         const config = {
             headers: {
                 Authorization: "gabriela-junior-vaughan"
             }
-        }
+        };
         try {
-            const response = await axios.post(url, body, config)
+            await axios.post(url, body, config)
             alert(`Playlist criada com sucesso!`)
             this.getAllPlaylists()
             this.setState({ inputName: "" })
 
         } catch (error) {
             alert(`Não foi possível criar essa playlist! ${error.response.data.message}`)
-        }
-    }
+        };
+    };
 
     getAllPlaylists = async () => {
-        const url = "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists"
+        const url = labefyURL
         const config = {
             headers: {
                 Authorization: "gabriela-junior-vaughan"
             }
-        }
+        };
         try {
             const response = await axios.get(url, config)
             this.setState({ playlists: response.data.result.list })
 
         } catch (error) {
             alert(`Ocorreu um erro! Tente novamente.`)
-            console.log(error.response.data)
-        }
-    }
+        };
+    };
 
     deletePlaylist = async (id) => {
-        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}`
+        const url = `${labefyURL}${id}`
         const config = {
             headers: {
                 Authorization: "gabriela-junior-vaughan"
             }
-        }
+        };
         try {
-            const response = await axios.delete(url, config)
+            await axios.delete(url, config)
             alert(`Playlist deletada com sucesso!`)
             this.getAllPlaylists()
 
@@ -74,7 +74,7 @@ export default class PlaylistsConfig extends React.Component {
             alert(`Não foi possível deletar a playlist. Tente novamente.`)
         }
 
-    }
+    };
 
     render() {
 
@@ -90,16 +90,16 @@ export default class PlaylistsConfig extends React.Component {
                             <img src={playPlaylist} alt="Ícone Tocar Playlist" /></ButtonsContainer>
                         <ButtonsContainer onClick={() => {
                             if (window.confirm(`Tem certeza que deseja deletar essa playlist?`)) {
-                            this.deletePlaylist(playlist.id)
-                        } else {
-                            return
-                        }
+                                this.deletePlaylist(playlist.id)
+                            } else {
+                                return
+                            }
                         }}>
                             <img src={deleteIcon} alt="Ícone de Deletar" /></ButtonsContainer>
                     </div>
                 </PlaylistList>
             )
-        })
+        });
         return (
             <PlaylistContainer>
                 <CreatePlaylistContainer>
@@ -115,5 +115,5 @@ export default class PlaylistsConfig extends React.Component {
                 {this.state.playlists.length > 0 ? (playlistsNames) : <p>Carregando...</p>}
             </PlaylistContainer>
         )
-    }
-}
+    };
+};

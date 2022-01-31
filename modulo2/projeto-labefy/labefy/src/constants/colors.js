@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
-export const corPrimaria = `#471a4d`;
-export const corSecundaria = `#292929`;
-export const corTerciaria = `#a65fb0`;
+export const mainColor = `#230d26`;
+export const secondColor = `#292929`;
+export const thirdColor = `#a65fb0`;

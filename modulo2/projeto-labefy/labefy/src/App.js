@@ -17,7 +17,7 @@ class App extends React.Component {
   };
 
   changeToPlaylistDetails = (name, id) => {
-    this.setState({ namePlaylist: name})
+    this.setState({ namePlaylist: name })
     this.setState({ idPlaylist: id })
     this.setState({ currentScreen: "details" })
   };
@@ -30,16 +30,16 @@ class App extends React.Component {
         />
       case "details":
         return <PlaylistDetails
-        namePlaylist={this.state.namePlaylist}
-        idPlaylist={this.state.idPlaylist}
-        changeToPlaylists={this.changeToPlaylists}
+          namePlaylist={this.state.namePlaylist}
+          idPlaylist={this.state.idPlaylist}
+          changeToPlaylists={this.changeToPlaylists}
         />
       default:
-        return <Playlists 
-        changeToPlaylistDetails={this.changeToPlaylistDetails}
+        return <Playlists
+          changeToPlaylistDetails={this.changeToPlaylistDetails}
         />
-    }
-  }
+    };
+  };
 
   render() {
     return (
@@ -49,8 +49,8 @@ class App extends React.Component {
         {this.renderScreen()}
         <Footer />
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
 export default App;

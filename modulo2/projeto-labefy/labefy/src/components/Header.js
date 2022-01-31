@@ -4,10 +4,10 @@ import playCircle from '../assets/imgs/play-circle-outline.svg';
 
 
 export default class Header extends React.Component {
-    render () {
+    render() {
         return (
             <HeaderStyle>
-                <img src={playCircle} alt="Ícone Play"/>
+                <img src={playCircle} alt="Ícone Play" />
                 <h1>Hermenefy</h1>
                 <button> Login </button>
             </HeaderStyle>

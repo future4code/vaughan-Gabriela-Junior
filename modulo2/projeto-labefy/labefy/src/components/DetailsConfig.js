@@ -1,9 +1,10 @@
 import React from "react";
 import axios from "axios";
 import { DetailsStyle, ButtonReturn, TracksStyle, AddTrackStyle, PageStyle, ButtonDelete } from "./styled-config";
-import audioTrackIcon from "../assets/imgs/audiotrack-white.svg"
-import addIcon from "../assets/imgs/add-white.svg"
+import audioTrackIcon from "../assets/imgs/audiotrack-white.svg";
+import addIcon from "../assets/imgs/add-white.svg";
 import deleteIcon from '../assets/imgs/delete-white.svg';
+import { labefyURL } from '../constants/urlApis';
 
 export default class DetailsConfig extends React.Component {
     state = {
@@ -12,82 +13,81 @@ export default class DetailsConfig extends React.Component {
         inputTrackName: "",
         inputBand: "",
         inputTrackURL: "",
-        isPlaying: false
-    }
+    };
 
     componentDidMount() {
         this.getPlaylistTracks()
-    }
+    };
 
     getPlaylistTracks = async () => {
-        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.idPlaylist}/tracks`
+        const url = `${labefyURL}${this.props.idPlaylist}/tracks`
         const config = {
             headers: {
                 Authorization: "gabriela-junior-vaughan"
             }
-        }
+        };
 
         try {
             const response = await axios.get(url, config)
             this.setState({ tracks: response.data.result.tracks })
 
         } catch (error) {
-            console.log(error.response.data.message)
+            alert(`Ocorreu um erro. Tente novamente!`)
         }
-    }
+    };
 
     addTrackToPlaylist = async () => {
-        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.idPlaylist}/tracks`
+        const url = `${labefyURL}${this.props.idPlaylist}/tracks`
         const body = {
             name: this.state.inputTrackName,
             artist: this.state.inputBand,
             url: this.state.inputTrackURL
-        }
+        };
         const config = {
             headers: {
                 Authorization: "gabriela-junior-vaughan"
             }
-        }
+        };
 
         try {
-            const response = await axios.post(url, body, config)
+            await axios.post(url, body, config)
             alert(`Música adicionada com sucesso!`)
-            this.setState ({ inputTrackName: "", inputBand: "", inputTrackURL: ""})
+            this.setState({ inputTrackName: "", inputBand: "", inputTrackURL: "" })
             this.getPlaylistTracks()
 
         } catch (error) {
-            console.log(error)
+            alert(`Não foi possível adicionar a música. Tente novamente!`)
         }
-    }
+    };
 
     changeTrackName = (event) => {
         this.setState({ inputTrackName: event.target.value })
-    }
+    };
 
     changeBand = (event) => {
         this.setState({ inputBand: event.target.value })
-    }
+    };
 
     changeTrackURL = (event) => {
         this.setState({ inputTrackURL: event.target.value })
-    }
+    };
 
     removeTrackFromPlaylist = async (id) => {
-        const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.idPlaylist}/tracks/${id}`
-        const config = { 
+        const url = `${labefyURL}${this.props.idPlaylist}/tracks/${id}`
+        const config = {
             headers: {
                 Authorization: "gabriela-junior-vaughan"
             }
-        }
+        };
         try {
-            const response = await axios.delete(url, config)
+            await axios.delete(url, config)
             alert(`Música deletada com sucesso!`)
             this.getPlaylistTracks()
 
         } catch (error) {
-            console.log(error.response.data)
-        }
-    }
+            alert(`Não foi possível deletar essa música. Tente novamente!`)
+        };
+    };
 
     render() {
 
@@ -97,14 +97,14 @@ export default class DetailsConfig extends React.Component {
                 <p>{track.artist}</p>
                 <audio src={track.url} controls type="audio/mp3"></audio>
                 <ButtonDelete onClick={() => {
-                    if (window.confirm(`Tem certeza que deseja deletar essa música?`)) { 
-                    this.removeTrackFromPlaylist(track.id)
-                } else {
-                    return
-                }
-                    }}> <img src={deleteIcon} alt="Ícone de deletar"/> </ButtonDelete>
+                    if (window.confirm(`Tem certeza que deseja deletar essa música?`)) {
+                        this.removeTrackFromPlaylist(track.id)
+                    } else {
+                        return
+                    }
+                }}> <img src={deleteIcon} alt="Ícone de deletar" /> </ButtonDelete>
             </TracksStyle>
-        })
+        });
 
         return (
             <DetailsStyle>
@@ -137,5 +137,5 @@ export default class DetailsConfig extends React.Component {
                 </PageStyle>
             </DetailsStyle>
         )
-    }
-}
+    };
+};
