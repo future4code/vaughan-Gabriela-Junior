@@ -1,0 +1,1 @@
+export const labefyURL = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/`;
