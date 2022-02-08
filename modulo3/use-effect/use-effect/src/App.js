@@ -3,6 +3,7 @@ import "./styles.css";
 import axios from "axios";
 import PokeCard from "./components/PokeCard/PokeCard";
 
+
 const App = () => {
 
   const [pokeName, setPokeName] = useState("");
@@ -11,11 +12,12 @@ const App = () => {
   useEffect(() => getPokemon(), [])
 
   const getPokemon = async () => {
-    const url = "https://pokeapi.co/api/v2/pokemon/?limit=151"
+    const url = "https://labenu-cors-proxy.herokuapp.com/?url=https://pokeapi.co/api/v2/pokemon/?limit=151"
     
     try {
       const response = await axios.get(url)
       setPokeList(response.data.results)
+      console.log(response.data.results)
 
     } catch (error) {
       console.log(error)
