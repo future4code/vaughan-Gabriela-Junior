@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ImageProfile } from "./styled-home";
+import { MainStyle, ImageProfile, CardContainer, ButtonContainer, NameAge } from "./styled-home";
 import axios from 'axios';
 import { astroMatchURL } from '../../constants/astroMatchURL';
 import likeIcon from '../../assets/imgs/heart.svg';
@@ -10,35 +10,35 @@ export default function Home(props) {
   const [profile, setProfile] = useState([]);
   useEffect(() => getProfileToChoose(), []);
 
-const getProfileToChoose = async () => {
+  const getProfileToChoose = async () => {
     const url = `${astroMatchURL} gabriela-junior/person`
     const config = {
-        headers: {}
+      headers: {}
     }
 
     try {
-        const response = await axios.get(url, config)
-        setProfile(response.data.profile);
-        console.log(response.data.profile);
+      const response = await axios.get(url, config)
+      setProfile(response.data.profile);
+      console.log(response.data.profile);
 
     } catch (error) {
-        console.log(error.response.data);
+      console.log(error.response.data);
     };
-};
+  };
 
-const choosePerson = async () => {
-  const url = `${astroMatchURL} gabriela-junior/choose-person`
-  const body = {
-    id: profile.id,
-    choice: true
-  }
-  const config = {
+  const choosePerson = async () => {
+    const url = `${astroMatchURL} gabriela-junior/choose-person`
+    const body = {
+      id: profile.id,
+      choice: true
+    }
+    const config = {
       headers: {
-          'Content-Type': 'application/json'
+        'Content-Type': 'application/json'
       }
-  }
+    }
 
-  try {
+    try {
       const response = await axios.post(url, body, config)
       console.log(response);
       if (response.data.isMatch) {
@@ -46,27 +46,30 @@ const choosePerson = async () => {
       }
       getProfileToChoose();
 
-  } catch (error) {
-      console.log (error.response);
+    } catch (error) {
+      console.log(error.response);
+    };
   };
-};
 
-    return (
-      <div>
-        <h1>HermeneMatch</h1>
-        <button onClick={props.changeToMatches}>Matches</button> 
-        <br/>
+  return (
+    <MainStyle>
+      <h1>HermeneMatch</h1>
+      <CardContainer>
+      <button onClick={props.changeToMatches}>Matches</button>
       {profile.length <= 0 ? <p>Carregando...</p> :
-      <>
-        <ImageProfile src={profile.photo} alt="Foto da Pessoa"/>
-        <br />
-        {profile.name}, {profile.age}
-        <br />
-        {profile.bio}
-        <br /></>
+        <>
+          <ImageProfile src={profile.photo} alt="Foto da Pessoa" />
+
+          <NameAge>{profile.name}, {profile.age}</NameAge>
+
+          <p>{profile.bio}</p>
+        </>
       }
-        <button onClick={getProfileToChoose}><img src={dislikeIcon} alt="Botão de Dislike"/></button>
-        <button onClick={() => {choosePerson()}}><img src={likeIcon} alt="Botão de Like"/></button>
-      </div>
-    );
-  }
+      </CardContainer>
+      <ButtonContainer>
+      <button onClick={getProfileToChoose}><img src={dislikeIcon} alt="Botão de Dislike" /></button>
+      <button onClick={() => { choosePerson() }}><img src={likeIcon} alt="Botão de Like" /></button>
+      </ButtonContainer>
+    </MainStyle>
+  );
+}
