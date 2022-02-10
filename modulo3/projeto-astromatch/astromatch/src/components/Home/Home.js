@@ -35,14 +35,9 @@ export default function Home(props) {
       id: profile.id,
       choice: true
     }
-    const config = {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
 
     try {
-      const response = await axios.post(url, body, config)
+      const response = await axios.post(url, body)
       if (response.data.isMatch) {
         alert(`Você deu match com ${profile.name}!`)
       }
@@ -51,6 +46,11 @@ export default function Home(props) {
     } catch (error) {
       alert(`Algo de errado não está certo. Tente novamente. ${error.response.data}`);
     };
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+    }
   };
 
   return (
