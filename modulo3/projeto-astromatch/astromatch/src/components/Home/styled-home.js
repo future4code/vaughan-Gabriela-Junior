@@ -51,12 +51,12 @@ export const ImageProfile = styled.img`
         }
     }};
 @keyframes right {
-    from {transform: translate(0)}
-    to {transform: translate(200px)}
+    from{filter: invert(0)}
+    to {filter: invert(200%);}
 }
 @keyframes left {
-    from {transform: translate(0)}
-    to {transform: translate(-200px)}
+    from {filter: grayscale(0);}
+    to {filter: grayscale(200%);}
 }
 `
 

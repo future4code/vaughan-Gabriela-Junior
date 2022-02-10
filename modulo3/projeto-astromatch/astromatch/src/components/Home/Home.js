@@ -93,12 +93,12 @@ export default function Home(props) {
     };
   };
 
-  const clickedTrue = () => {
+  const clickedLike = () => {
     setClicked(true)
     return choosePerson()
   }
 
-  const clickedFalse = () => {
+  const clickedDislike = () => {
     setClicked(false);
     return getProfileToChoose()
 
@@ -126,13 +126,11 @@ export default function Home(props) {
             </ImageDiv>
             <ButtonContainer>
               <button
-                // onClick={getProfileToChoose}
-                onClick={clickedFalse}
+                onClick={clickedDislike}
               >
                 <XIcon src={dislikeIcon} alt="Botão de Dislike" /></button>
               <button
-                // onClick={() => { choosePerson() }}
-                onClick={clickedTrue}
+                onClick={clickedLike}
               ><HeartIcon src={likeIcon} alt="Botão de Like" /></button>
             </ButtonContainer>
           </>
