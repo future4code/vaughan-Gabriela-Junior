@@ -5,12 +5,14 @@ import { astroMatchURL } from '../../constants/astroMatchURL';
 import likeIcon from '../../assets/imgs/purple-heart.png';
 import dislikeIcon from '../../assets/imgs/dislike.png';
 import MatchIcon from '../../assets/imgs/matches.png';
-import { Loading } from "../../styled-app";
+import { LoadingContainer } from "../../styled-app";
 
 export default function Home(props) {
 
   const [profile, setProfile] = useState([]);
+
   useEffect(() => getProfileToChoose(), []);
+
 
   const getProfileToChoose = async () => {
     const url = `${astroMatchURL}/person`
@@ -52,10 +54,16 @@ export default function Home(props) {
   };
 
   return (
+
     <MainStyle>
       <CardContainer>
         <ButtonMatch onClick={props.changeToMatches}><MatchImg src={MatchIcon} alt="Botão de Matches" /></ButtonMatch>
-        {profile.length <= 0 ? <Loading /> :
+        {profile.length <= 0 ?
+          <LoadingContainer>
+            <div></div>
+            <div></div>
+          </LoadingContainer>
+          :
           <>
             <ImageDiv>
               <ImageProfile src={profile.photo} alt="Foto da Pessoa" />
@@ -64,10 +72,15 @@ export default function Home(props) {
 
                 <p>{profile.bio}</p>
               </NameAge>
-              </ImageDiv>
+            </ImageDiv>
             <ButtonContainer>
-              <button onClick={getProfileToChoose}><XIcon src={dislikeIcon} alt="Botão de Dislike" /></button>
-              <button onClick={() => { choosePerson() }}><HeartIcon src={likeIcon} alt="Botão de Like" /></button>
+              <button
+                onClick={getProfileToChoose}
+              >
+                <XIcon src={dislikeIcon} alt="Botão de Dislike" /></button>
+              <button
+                onClick={() => { choosePerson() }}
+              ><HeartIcon src={likeIcon} alt="Botão de Like" /></button>
             </ButtonContainer>
           </>
         }
@@ -75,4 +88,4 @@ export default function Home(props) {
 
     </MainStyle>
   );
-}
+};

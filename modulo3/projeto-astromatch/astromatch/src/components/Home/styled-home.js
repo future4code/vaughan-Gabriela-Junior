@@ -48,11 +48,8 @@ export const ImageProfile = styled.img`
     display: block;
     border: 2px solid ${mainColor};
     border-radius: .5em; 
-    /* width: 20vw; */
     margin: 10px;
     width: 27vw;
-    /* max-height: 100%;
-    max-width: 100%; */
     max-height: 60vh;
     aspect-ratio: 9/16;
     object-fit: cover;

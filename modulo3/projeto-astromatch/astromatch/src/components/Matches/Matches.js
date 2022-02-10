@@ -4,7 +4,7 @@ import axios from 'axios';
 import { astroMatchURL } from '../../constants/astroMatchURL';
 import returnIcon from '../../assets/imgs/return.png'
 import deleteAllIcon from '../../assets/imgs/delete-all.png'
-import { Loading } from "../../styled-app";
+import { LoadingContainer, LoadingBouncer } from "../../styled-app";
 
 export default function Matches(props) {
   const [matches, setMatches] = useState([])
@@ -63,7 +63,14 @@ export default function Matches(props) {
             }
           }}><img src={deleteAllIcon} alt="Ícone de deletar todos os matches" /></button>
         </div>
-        {matches.length > 0 ? (renderMatches) : <Loading />}
+        {matches.length > 0 ? (renderMatches) : 
+        <LoadingBouncer> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </LoadingBouncer>
+      }
       </MatchesContainer>
     </MainContainer>
   );
