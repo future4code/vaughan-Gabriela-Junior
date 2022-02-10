@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { MainContainer, NameContainer, MatchesContainer } from "./styled-matches";
+import { NameContainer, MatchesContainer } from "./styled-matches";
 import axios from 'axios';
 import { astroMatchURL } from '../../constants/astroMatchURL';
 import returnIcon from '../../assets/imgs/return.png'
@@ -7,8 +7,37 @@ import deleteAllIcon from '../../assets/imgs/delete-all.png'
 import { LoadingContainer, LoadingBouncer } from "../../styled-app";
 
 export default function Matches(props) {
+
   const [matches, setMatches] = useState([])
+
   useEffect(() => { getMatches() }, [])
+
+  useEffect(() => {
+    const keyPressDelete = (event) => {
+      if (event.code === "Space") {
+        if (window.confirm(`Tem certeza que deseja deletar todos os matches?`)) {
+          return clear()
+        }
+
+      }
+    }
+    document.addEventListener("keydown", keyPressDelete);
+    return () => {
+      document.removeEventListener("keydown", keyPressDelete);
+    };
+  }, [])
+
+  useEffect(() => {
+    const keyPressBackSpace = (event) => {
+      if (event.code === "Backspace") {
+        return props.changeToHome()
+      }
+    }
+    document.addEventListener("keydown", keyPressBackSpace);
+    return () => {
+      document.removeEventListener("keydown", keyPressBackSpace);
+    };
+  }, [])
 
   const getMatches = async () => {
     const url = `${astroMatchURL}/matches`
@@ -53,7 +82,7 @@ export default function Matches(props) {
   });
 
   return (
-    <MainContainer>
+    <div>
       <MatchesContainer>
         <div>
           <button onClick={props.changeToHome}><img src={returnIcon} alt="Ícone de voltar" /></button>
@@ -72,6 +101,6 @@ export default function Matches(props) {
       </LoadingBouncer>
       }
       </MatchesContainer>
-    </MainContainer>
+    </div>
   );
 }

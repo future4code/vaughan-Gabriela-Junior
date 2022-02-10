@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MainStyle, ButtonMatch, ImageDiv, ImageProfile, CardContainer, ButtonContainer, NameAge, HeartIcon, XIcon, MatchImg } from "./styled-home";
+import { ButtonMatch, ImageDiv, ImageProfile, CardContainer, ButtonContainer, NameAge, HeartIcon, XIcon, MatchImg } from "./styled-home";
 import axios from 'axios';
 import { astroMatchURL } from '../../constants/astroMatchURL';
 import likeIcon from '../../assets/imgs/purple-heart.png';
@@ -10,9 +10,54 @@ import { LoadingContainer } from "../../styled-app";
 export default function Home(props) {
 
   const [profile, setProfile] = useState([]);
+  const [clicked, setClicked] = useState("");
+  const [animation, setAnimation] = useState("");
 
   useEffect(() => getProfileToChoose(), []);
 
+  useEffect(() => {
+    if(clicked) {
+      setAnimation('right')
+    } else if (clicked === false) {
+      setAnimation('left')
+    }
+  }, [clicked])
+
+  useEffect(() => {
+    const keyPressArrowLeft = (event) => {
+      if (event.code === "ArrowLeft") {
+        return getProfileToChoose()
+      }
+    }
+    document.addEventListener("keydown", keyPressArrowLeft);
+    return () => {
+      document.removeEventListener("keydown", keyPressArrowLeft);
+    };
+  }, [])
+
+  useEffect(() => {
+    const keyPressArrowRight = (event) => {
+      if (event.code === "ArrowRight") {
+        return choosePerson()
+      }
+    }
+    document.addEventListener("keydown", keyPressArrowRight);
+    return () => {
+      document.removeEventListener("keydown", keyPressArrowRight);
+    };
+  }, [profile])
+
+  useEffect(() => {
+    const keyPressM = (event) => {
+      if (event.code === "KeyM") {
+        return props.changeToMatches()
+      }
+    }
+    document.addEventListener("keydown", keyPressM);
+    return () => {
+      document.removeEventListener("keydown", keyPressM);
+    };
+  }, [])
 
   const getProfileToChoose = async () => {
     const url = `${astroMatchURL}/person`
@@ -25,7 +70,7 @@ export default function Home(props) {
       setProfile(response.data.profile);
 
     } catch (error) {
-      alert(`Algo deu errado. Tente novamente. ${error.response.data}`)
+        alert(`Algo deu errado. Tente novamente. ${error.response.data}`)
     };
   };
 
@@ -48,14 +93,20 @@ export default function Home(props) {
     };
   };
 
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-    }
-  };
+  const clickedTrue = () => {
+    setClicked(true)
+    return choosePerson()
+  }
+
+  const clickedFalse = () => {
+    setClicked(false);
+    return getProfileToChoose()
+
+  }
 
   return (
 
-    <MainStyle>
+    <div>
       <CardContainer>
         <ButtonMatch onClick={props.changeToMatches}><MatchImg src={MatchIcon} alt="Botão de Matches" /></ButtonMatch>
         {profile.length <= 0 ?
@@ -66,7 +117,7 @@ export default function Home(props) {
           :
           <>
             <ImageDiv>
-              <ImageProfile src={profile.photo} alt="Foto da Pessoa" />
+              <ImageProfile animation = {animation} src={profile.photo} alt="Foto da Pessoa" />
               <NameAge>
                 <h3>{profile.name}, {profile.age}</h3>
 
@@ -75,17 +126,19 @@ export default function Home(props) {
             </ImageDiv>
             <ButtonContainer>
               <button
-                onClick={getProfileToChoose}
+                // onClick={getProfileToChoose}
+                onClick={clickedFalse}
               >
                 <XIcon src={dislikeIcon} alt="Botão de Dislike" /></button>
               <button
-                onClick={() => { choosePerson() }}
+                // onClick={() => { choosePerson() }}
+                onClick={clickedTrue}
               ><HeartIcon src={likeIcon} alt="Botão de Like" /></button>
             </ButtonContainer>
           </>
         }
       </CardContainer>
 
-    </MainStyle>
+    </div>
   );
 };

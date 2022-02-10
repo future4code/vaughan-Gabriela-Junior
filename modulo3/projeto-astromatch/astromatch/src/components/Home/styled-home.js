@@ -1,17 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { mainColor, secondaryColor } from '../../constants/color';
 
-export const MainStyle = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    h1{
-        color: ${mainColor};
-        margin: 20px 0 10px;
-    }
-`
-
 export const CardContainer = styled.div`
     display: grid;
     justify-items: center; 
@@ -54,6 +43,21 @@ export const ImageProfile = styled.img`
     aspect-ratio: 9/16;
     object-fit: cover;
     object-position: top;
+    animation: ${props => {
+        if (props.animation === "right") {
+            return "right 0.8s 0s"
+        } else if (props.animation === "left") {
+            return "left 0.8s 0s"
+        }
+    }};
+@keyframes right {
+    from {transform: translate(0)}
+    to {transform: translate(200px)}
+}
+@keyframes left {
+    from {transform: translate(0)}
+    to {transform: translate(-200px)}
+}
 `
 
 export const NameAge = styled.div`

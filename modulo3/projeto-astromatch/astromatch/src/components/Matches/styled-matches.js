@@ -1,13 +1,6 @@
 import styled from "styled-components";
 import { mainColor, secondaryColor} from '../../constants/color';
 
-export const MainContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`
-
 export const MatchesContainer = styled.div`
     display: flex;
     flex-direction: column;

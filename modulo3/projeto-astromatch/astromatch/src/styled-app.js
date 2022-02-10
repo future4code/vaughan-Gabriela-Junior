@@ -2,6 +2,13 @@ import { createGlobalStyle } from 'styled-components';
 import styled, {keyframes} from "styled-components";
 import { mainColor, secondaryColor} from './constants/color';
 
+export const Main = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
+
 export const GlobalStyle = createGlobalStyle`
     * {
         padding: 0;
@@ -103,5 +110,40 @@ export const LoadingBouncer = styled.div`
     div:nth-child(4) {
         animation-delay: 0.3s;
         opacity: 0.4;
+    }
+`
+
+export const KeyboardKeys = styled.div`
+    display: grid;
+    width: 50vw;
+    justify-content: center;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+    border: 1px solid ${mainColor};
+    padding: 10px;
+    border-radius: .5em;
+    align-items: center;
+    margin-bottom: 10px;
+    h3 {
+        color: white;
+        font-size: .9rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid white;
+        border-radius: .5em;
+        padding: 8px;
+        height: 30px;
+    }
+    p {
+        font-size: 14px;
+        color: ${mainColor};
+    }
+    img {
+        width: 30px;
+        height: 30px;
+        border: 1px solid white;
+        margin: 10px;
+        border-radius: .5em;
     }
 `
