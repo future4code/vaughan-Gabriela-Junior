@@ -22,11 +22,17 @@ function App() {
   const renderScreen = () => {
     switch (currentScreen) {
       case "home":
-        return <Home changeToMatches={changeToMatches} />
+        return <Home 
+        changeToMatches={changeToMatches}
+        changeToHome={changeToHome} 
+        />
       case "matches":
         return <Matches changeToHome={changeToHome} />
       default:
-        return <Home changeToMatches={changeToMatches} />
+        return <Home 
+        changeToMatches={changeToMatches} 
+        changeToHome={changeToHome}
+        />
     }
   }
 
@@ -51,7 +57,6 @@ function App() {
         <p>Voltar</p>
         </KeyboardKeys>
         {renderScreen()}
-        {/* <Matches /> */}
     </Main>
   );
 }

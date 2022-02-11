@@ -5,6 +5,7 @@ import dislikeIcon from '../../assets/imgs/dislike.png';
 import MatchIcon from '../../assets/imgs/matches.png';
 import { LoadingContainer } from "../../styled-app";
 import { clear, getProfileToChoose, choosePerson, getMatches } from '../../services/requests-astromatch-api';
+import Matches from '../Matches/Matches'
 
 export default function Home(props) {
 
@@ -25,6 +26,7 @@ export default function Home(props) {
   useEffect(() => {
     const keyPressArrowLeft = (event) => {
       if (event.code === "ArrowLeft") {
+        setClicked(false)
         return getProfileToChoose(saveProfile)
       }
     }
@@ -37,6 +39,7 @@ export default function Home(props) {
   useEffect(() => {
     const keyPressArrowRight = (event) => {
       if (event.code === "ArrowRight") {
+        setClicked(true)
         return choosePerson(profile, saveProfile)
       }
     }
@@ -73,14 +76,19 @@ export default function Home(props) {
 
   }
 
+  if (profile === null) {
+    alert (`Os perfis acabaram! Delete todos os matches e atualize a página para retornar.`)
+    return <Matches changeToHome={props.changeToHome}/>
+  }
+
   return (
 
     <div>
       <CardContainer>
         <ButtonMatch onClick={props.changeToMatches}><MatchImg src={MatchIcon} alt="Botão de Matches" /></ButtonMatch>
 
-        {profile.length <= 0 ?
-          <LoadingContainer>
+        {profile.length <= 0 ?          
+        <LoadingContainer>
             <div></div>
             <div></div>
           </LoadingContainer>
@@ -109,7 +117,8 @@ export default function Home(props) {
               ><HeartIcon src={likeIcon} alt="Botão de Like" /></button>
 
             </ButtonContainer>
-          </>
+          </> 
+
         }
       </CardContainer>
 

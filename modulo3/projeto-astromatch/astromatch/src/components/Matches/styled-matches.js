@@ -27,6 +27,18 @@ export const MatchesContainer = styled.div`
             height: 40px;
         }
     }
+
+@media (max-width: 480px) {
+    width: 95vw;
+        button{
+        width: 90px;
+        height: 40px;
+            img {
+                width: 20px;
+                height: 20px;
+            }
+        }
+}
 `
 
 export const NameContainer = styled.div`
@@ -51,4 +63,13 @@ export const NameContainer = styled.div`
         object-fit: cover;
         object-position: top;
     }
+
+@media (max-width: 480px) {
+    width: 80vw;
+    height: 60px;
+    img{
+        width: 50px;
+        height: 50px;
+    }
+}
 `

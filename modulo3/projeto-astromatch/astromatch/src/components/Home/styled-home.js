@@ -15,6 +15,9 @@ export const CardContainer = styled.div`
     width: 95vw;
     height: 45vh;
 }
+@media (max-height: 800px) {
+    height: 68vh;
+}
 `
 
 export const ButtonMatch = styled.button`
@@ -33,19 +36,15 @@ export const ButtonMatch = styled.button`
     width: 70px;
     height: 40px;
 }
+
+@media (max-height: 800px) {
+    height: 40px;
+    width: 80px;
+}
 `
 
 export const ImageDiv = styled.div`
     position: relative;
-    /* width: 100%; */
-
-/* @media (max-width: 480px) {
-    width: 100%;
-    height: 35vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
 `
 
 export const ImageProfile = styled.img`
@@ -66,21 +65,25 @@ export const ImageProfile = styled.img`
             return "left 1s 0s"
         }
     }};
-@keyframes right {
-    from{filter: invert(0)}
-    to {filter: invert(200%);}
-}
-@keyframes left {
-    from {filter: grayscale(0);}
-    to {filter: grayscale(200%);}
-}
+    @keyframes right {
+        from{filter: invert(0)}
+        to {filter: invert(200%);}
+    }
+    @keyframes left {
+        from {filter: grayscale(0);}
+        to {filter: grayscale(200%);}
+    }
 
-@media (max-width: 480px) {
-    width: 80vw;
-    display: flex;
-    /* aspect-ratio: 16/9; */
-    max-height: 30vh;
-    object-position: center;
+    @media (max-width: 480px) {
+        width: 80vw;
+        display: flex;
+        max-height: 30vh;
+        object-position: center;
+    }
+
+@media (max-height: 800px) {
+    aspect-ratio: 9/16;
+    height: 48vh;
 }
 `
 
@@ -103,13 +106,21 @@ export const NameAge = styled.div`
         height: 3vw
     }
 
-@media (max-width: 480px) {
-    display: flex;
-    justify-content: center;
+    @media (max-width: 480px) {
+        display: flex;
+        justify-content: center;
 
-    width: 79vw;
-    height: 10vh;
-}
+        width: 79vw;
+        height: 10vh;
+    }
+
+    @media (max-height: 800px) {
+        width: 26.8vw;
+        height: 16vh;
+        h3{
+            height: 4vh;
+        }
+    }
 `
 
 export const ButtonContainer = styled.div`
@@ -141,6 +152,16 @@ export const ButtonContainer = styled.div`
         }
     }
 }
+
+@media (max-height: 800px) {
+    button{
+    height: 40px;
+    width: 80px;
+    }
+    h3{
+        font-size: .68rem;
+    }
+}
 `
 
 export const HeartIcon = styled.img`
@@ -150,6 +171,11 @@ export const HeartIcon = styled.img`
 @media (max-width: 480px) {
     width: 30px;
     height: 30px;
+}
+
+@media (max-height: 800px) {
+    height: 30px;
+    width: 30px;
 }
 `
 
@@ -161,6 +187,11 @@ export const XIcon = styled.img`
     width: 20px;
     height: 20px;
 }
+
+@media (max-height: 800px) {
+    height: 20px;
+    width: 20px;
+}
 `
 
 export const MatchImg = styled.img`
@@ -170,5 +201,10 @@ export const MatchImg = styled.img`
 @media (max-width: 480px) {
     width: 30px;
     height: 30px;
+}
+
+@media (max-height: 800px) {
+    height: 35px;
+    width: 35px;
 }
 `
