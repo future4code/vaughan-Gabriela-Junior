@@ -22,7 +22,7 @@ function App() {
   const renderScreen = () => {
     switch (currentScreen) {
       case "home":
-        return <Home 
+        return <Home
         changeToMatches={changeToMatches}
         changeToHome={changeToHome} 
         />

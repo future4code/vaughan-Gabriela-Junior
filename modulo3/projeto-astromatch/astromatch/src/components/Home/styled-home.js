@@ -13,7 +13,7 @@ export const CardContainer = styled.div`
     overflow: hidden;
 @media (max-width: 480px) {
     width: 95vw;
-    height: 45vh;
+    max-height: 80vh;
 }
 @media (max-height: 800px) {
     height: 68vh;
@@ -59,12 +59,13 @@ export const ImageProfile = styled.img`
     object-fit: cover;
     object-position: top;
     animation: ${props => {
-        if (props.animation === "right") {
-            return "right 1s 0s"
-        } else if (props.animation === "left") {
-            return "left 1s 0s"
+        if (props.animationRight) {
+            return "right 0.8s 0s"
+        } else if (props.animationLeft) {
+            return "left 0.8s 0s"
         }
     }};
+    
     @keyframes right {
         from{filter: invert(0)}
         to {filter: invert(200%);}
@@ -77,7 +78,7 @@ export const ImageProfile = styled.img`
     @media (max-width: 480px) {
         width: 80vw;
         display: flex;
-        max-height: 30vh;
+        max-height: 60vh;
         object-position: center;
     }
 

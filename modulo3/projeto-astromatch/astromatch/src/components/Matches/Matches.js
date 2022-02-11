@@ -15,7 +15,7 @@ export default function Matches(props) {
     const keyPressDelete = (event) => {
       if (event.code === "Space") {
         if (window.confirm(`Tem certeza que deseja deletar todos os matches?`)) {
-          return clear()
+          return clear(getProfile)
         }
       }
     }
@@ -40,7 +40,7 @@ export default function Matches(props) {
   const getProfile = (data) => {
     setMatches(data)
   }
-  
+
   const renderMatches = matches.map((match) => {
     return (
       <NameContainer key={match.id}>

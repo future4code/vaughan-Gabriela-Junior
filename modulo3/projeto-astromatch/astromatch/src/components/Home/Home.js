@@ -10,24 +10,19 @@ import Matches from '../Matches/Matches'
 export default function Home(props) {
 
   const [profile, setProfile] = useState([]);
-  const [clicked, setClicked] = useState("");
-  const [animation, setAnimation] = useState("");
+  const [animationLeft, setAnimationLeft] = useState('');
+  const [animationRight, setAnimationRight] = useState('')
 
   useEffect(() => getProfileToChoose(saveProfile), []);
 
   useEffect(() => {
-    if (clicked) {
-      setAnimation('right')
-    } else if (clicked === false) {
-      setAnimation('left')
-    }
-  }, [clicked])
-
-  useEffect(() => {
     const keyPressArrowLeft = (event) => {
       if (event.code === "ArrowLeft") {
-        setClicked(false)
-        return getProfileToChoose(saveProfile)
+        getProfileToChoose(saveProfile)
+        setAnimationLeft(true)
+        setTimeout(() => {
+          setAnimationLeft(false)
+        }, 500)
       }
     }
     document.addEventListener("keydown", keyPressArrowLeft);
@@ -39,8 +34,11 @@ export default function Home(props) {
   useEffect(() => {
     const keyPressArrowRight = (event) => {
       if (event.code === "ArrowRight") {
-        setClicked(true)
-        return choosePerson(profile, saveProfile)
+        choosePerson(profile, saveProfile)
+        setAnimationRight(true)
+        setTimeout(() => {
+          setAnimationRight(false)
+        }, 500)
       }
     }
     document.addEventListener("keydown", keyPressArrowRight);
@@ -66,14 +64,19 @@ export default function Home(props) {
   }
 
   const clickedLike = () => {
-    setClicked(true)
-    return choosePerson(profile, saveProfile)
+    choosePerson(profile, saveProfile)
+    setAnimationRight(true)
+    setTimeout(() => {
+      setAnimationRight(false)
+    }, 500)
   }
 
   const clickedDislike = () => {
-    setClicked(false);
-    return getProfileToChoose(saveProfile)
-
+    getProfileToChoose(saveProfile)
+    setAnimationLeft(true)
+    setTimeout(() => {
+      setAnimationLeft(false)
+    }, 500)
   }
 
   if (profile === null) {
@@ -95,7 +98,7 @@ export default function Home(props) {
           :
           <>
             <ImageDiv>
-              <ImageProfile animation={animation} src={profile.photo} alt="Foto da Pessoa" />
+              <ImageProfile animationLeft={animationLeft} animationRight={animationRight} src={profile.photo} alt="Foto da Pessoa" />
               <NameAge>
                 <h3>{profile.name}, {profile.age}</h3>
 
@@ -103,11 +106,6 @@ export default function Home(props) {
               </NameAge>
             </ImageDiv>
             <ButtonContainer>
-              <button onClick={() => {
-                if (window.confirm(`Tem certeza que deseja deletar todos os matches?`)) {
-                  return clear()
-                }
-              }}><h3>REINICIAR MATCHES</h3></button>
               <button
                 onClick={clickedDislike}
               >

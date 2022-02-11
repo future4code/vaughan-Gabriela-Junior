@@ -30,6 +30,8 @@ export const MatchesContainer = styled.div`
 
 @media (max-width: 480px) {
     width: 95vw;
+    min-height: 70vh;
+    justify-content: flex-start;
         button{
         width: 90px;
         height: 40px;
