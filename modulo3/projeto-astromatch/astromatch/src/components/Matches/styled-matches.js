@@ -4,13 +4,14 @@ import { mainColor, secondaryColor} from '../../constants/color';
 export const MatchesContainer = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin: 20px;
     border: 2px solid ${mainColor};
     background: rgba(173, 101, 172, .1);
     width: 30vw;
     border-radius: .5em;
+    min-height: 70vh;
     button {
         margin: 10px;
         width: 90px;
@@ -40,6 +41,10 @@ export const MatchesContainer = styled.div`
                 height: 20px;
             }
         }
+}
+
+@media (max-height: 800px) {
+    min-height: 66vh;
 }
 `
 
