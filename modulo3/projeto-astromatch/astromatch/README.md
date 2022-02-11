@@ -34,7 +34,7 @@ O site conta com a opção de navegar pelo teclado, sendo as respectivas teclas 
 *Backspace* = Voltar
 
 ### Responsividade
-O site foi feito desktop-first, mas contém responsividade para Iphone 12.
+O site foi feito desktop-first, mas contém responsividade para mobile.
 
 ### Quando acabam os perfis da API
 Quando acabam os perfis da API aparece uma mensagem avisando, quando o usuário pressiona Ok, ele é levado até a página de Matches onde pode deletar todos os Matches e assim os perfis são resetados.
