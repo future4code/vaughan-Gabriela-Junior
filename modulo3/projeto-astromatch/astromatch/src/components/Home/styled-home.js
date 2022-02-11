@@ -11,12 +11,14 @@ export const CardContainer = styled.div`
     width: 30vw;
     padding: 10px;
     overflow: hidden;
-    button {
-        grid-area: 1 / 1 / 1 / 1;
-    }
+@media (max-width: 480px) {
+    width: 95vw;
+    height: 45vh;
+}
 `
 
 export const ButtonMatch = styled.button`
+    grid-area: 1 / 1 / 1 / 1;
     width: 90px;
     height: 55px;
     border: 2px solid ${mainColor};
@@ -26,10 +28,24 @@ export const ButtonMatch = styled.button`
     :hover {
         background-color: ${secondaryColor};
      }
+
+@media (max-width: 480px) {
+    width: 70px;
+    height: 40px;
+}
 `
 
 export const ImageDiv = styled.div`
     position: relative;
+    /* width: 100%; */
+
+/* @media (max-width: 480px) {
+    width: 100%;
+    height: 35vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
 `
 
 export const ImageProfile = styled.img`
@@ -45,9 +61,9 @@ export const ImageProfile = styled.img`
     object-position: top;
     animation: ${props => {
         if (props.animation === "right") {
-            return "right 0.8s 0s"
+            return "right 1s 0s"
         } else if (props.animation === "left") {
-            return "left 0.8s 0s"
+            return "left 1s 0s"
         }
     }};
 @keyframes right {
@@ -57,6 +73,14 @@ export const ImageProfile = styled.img`
 @keyframes left {
     from {filter: grayscale(0);}
     to {filter: grayscale(200%);}
+}
+
+@media (max-width: 480px) {
+    width: 80vw;
+    display: flex;
+    /* aspect-ratio: 16/9; */
+    max-height: 30vh;
+    object-position: center;
 }
 `
 
@@ -76,7 +100,16 @@ export const NameAge = styled.div`
     h3{
         grid-area: 3 / 1 / 4 / 3;
         margin-bottom: 10px;
+        height: 3vw
     }
+
+@media (max-width: 480px) {
+    display: flex;
+    justify-content: center;
+
+    width: 79vw;
+    height: 10vh;
+}
 `
 
 export const ButtonContainer = styled.div`
@@ -90,24 +123,52 @@ export const ButtonContainer = styled.div`
         border: 2px solid ${mainColor};
         background: none;
         border-radius: .5em;
+        color: white;
+        font-weight: 600;
         cursor: pointer;
         :hover {
             background-color: ${secondaryColor};
         }
     }
+
+@media (max-width: 480px) {
+    button{
+        width: 24vw;
+        height: 35px;
+        h3 {
+            font-size: .55rem;
+            word-wrap: wrap;
+        }
+    }
+}
 `
 
 export const HeartIcon = styled.img`
     width: 40px;
     height: 40px;
+
+@media (max-width: 480px) {
+    width: 30px;
+    height: 30px;
+}
 `
 
 export const XIcon = styled.img`
     width: 30px;
     height: 30px;
+
+@media (max-width: 480px) {
+    width: 20px;
+    height: 20px;
+}
 `
 
 export const MatchImg = styled.img`
     width: 45px;
     height: 45px;
+
+@media (max-width: 480px) {
+    width: 30px;
+    height: 30px;
+}
 `

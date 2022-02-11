@@ -1,16 +1,15 @@
 import { useState, useEffect } from "react";
 import { NameContainer, MatchesContainer } from "./styled-matches";
-import axios from 'axios';
-import { astroMatchURL } from '../../constants/astroMatchURL';
 import returnIcon from '../../assets/imgs/return.png'
 import deleteAllIcon from '../../assets/imgs/delete-all.png'
-import { LoadingContainer, LoadingBouncer } from "../../styled-app";
+import { LoadingBouncer } from "../../styled-app";
+import { clear, getMatches } from "../../services/requests-astromatch-api";
 
 export default function Matches(props) {
 
   const [matches, setMatches] = useState([])
 
-  useEffect(() => { getMatches() }, [])
+  useEffect(() => { getMatches(getProfile) }, [])
 
   useEffect(() => {
     const keyPressDelete = (event) => {
@@ -18,7 +17,6 @@ export default function Matches(props) {
         if (window.confirm(`Tem certeza que deseja deletar todos os matches?`)) {
           return clear()
         }
-
       }
     }
     document.addEventListener("keydown", keyPressDelete);
@@ -39,39 +37,10 @@ export default function Matches(props) {
     };
   }, [])
 
-  const getMatches = async () => {
-    const url = `${astroMatchURL}/matches`
-    const config = {
-      headers: {}
-    }
-
-    try {
-      const response = await axios.get(url, config)
-      setMatches(response.data.matches);
-
-    } catch (error) {
-      alert(`Algo deu errado. Tente novamente. ${error.response.data}`);
-    };
-  };
-
-  const clear = async () => {
-    const url = `${astroMatchURL}/clear`
-    const config = {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
-
-    try {
-     await axios.put(url, config)
-      alert(`Todos os seus matches foram deletados!`)
-      getMatches()
-
-    } catch (error) {
-      alert(`Algo deu errado. Tente novamente. ${error.response.data}`)
-    };
-  };
-
+  const getProfile = (data) => {
+    setMatches(data)
+  }
+  
   const renderMatches = matches.map((match) => {
     return (
       <NameContainer key={match.id}>
@@ -88,7 +57,7 @@ export default function Matches(props) {
           <button onClick={props.changeToHome}><img src={returnIcon} alt="Ícone de voltar" /></button>
           <button onClick={() => {
             if (window.confirm(`Tem certeza que deseja deletar todos os matches?`)) {
-              return clear()
+              return clear(getProfile)
             }
           }}><img src={deleteAllIcon} alt="Ícone de deletar todos os matches" /></button>
         </div>

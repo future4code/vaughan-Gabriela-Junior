@@ -146,4 +146,20 @@ export const KeyboardKeys = styled.div`
         margin: 10px;
         border-radius: .5em;
     }
+
+@media (max-width: 480px) {
+    width: 95vw;
+    img {
+        width: 20px;
+        height: 20px;
+        margin: 5px;
+    }
+    h3 {
+        height: 20px;
+        font-size: .6rem;
+    }
+    p {
+        font-size: .65rem;
+    }
+}
 `
