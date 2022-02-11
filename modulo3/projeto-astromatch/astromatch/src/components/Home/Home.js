@@ -4,21 +4,20 @@ import likeIcon from '../../assets/imgs/purple-heart.png';
 import dislikeIcon from '../../assets/imgs/dislike.png';
 import MatchIcon from '../../assets/imgs/matches.png';
 import { LoadingContainer } from "../../styled-app";
-import { clear, getProfileToChoose, choosePerson, getMatches } from '../../services/requests-astromatch-api';
+import { getProfileToChoose, choosePerson} from '../../services/requests-astromatch-api';
 import Matches from '../Matches/Matches'
 
 export default function Home(props) {
 
-  const [profile, setProfile] = useState([]);
   const [animationLeft, setAnimationLeft] = useState('');
-  const [animationRight, setAnimationRight] = useState('')
+  const [animationRight, setAnimationRight] = useState('');
 
-  useEffect(() => getProfileToChoose(saveProfile), []);
+  useEffect(() => getProfileToChoose(props.saveProfile), []);
 
   useEffect(() => {
     const keyPressArrowLeft = (event) => {
       if (event.code === "ArrowLeft") {
-        getProfileToChoose(saveProfile)
+        getProfileToChoose(props.saveProfile)
         setAnimationLeft(true)
         setTimeout(() => {
           setAnimationLeft(false)
@@ -29,12 +28,12 @@ export default function Home(props) {
     return () => {
       document.removeEventListener("keydown", keyPressArrowLeft);
     };
-  }, [])
+  }, []);
 
   useEffect(() => {
     const keyPressArrowRight = (event) => {
       if (event.code === "ArrowRight") {
-        choosePerson(profile, saveProfile)
+        choosePerson(props.profile, props.saveProfile)
         setAnimationRight(true)
         setTimeout(() => {
           setAnimationRight(false)
@@ -45,7 +44,7 @@ export default function Home(props) {
     return () => {
       document.removeEventListener("keydown", keyPressArrowRight);
     };
-  }, [profile])
+  }, [props.profile]);
 
   useEffect(() => {
     const keyPressM = (event) => {
@@ -57,32 +56,30 @@ export default function Home(props) {
     return () => {
       document.removeEventListener("keydown", keyPressM);
     };
-  }, [])
-
-  const saveProfile = (data) => {
-    setProfile(data)
-  }
+  }, []);
 
   const clickedLike = () => {
-    choosePerson(profile, saveProfile)
+    choosePerson(props.profile, props.saveProfile)
     setAnimationRight(true)
     setTimeout(() => {
       setAnimationRight(false)
     }, 500)
-  }
+  };
 
   const clickedDislike = () => {
-    getProfileToChoose(saveProfile)
+    getProfileToChoose(props.saveProfile)
     setAnimationLeft(true)
     setTimeout(() => {
       setAnimationLeft(false)
     }, 500)
-  }
+  };
 
-  if (profile === null) {
+  if (props.profile === null) {
     alert (`Os perfis acabaram! Delete todos os matches e atualize a página para retornar.`)
-    return <Matches changeToHome={props.changeToHome}/>
-  }
+    return <Matches changeToHome={props.changeToHome}
+    saveProfile={props.saveProfile}
+    />
+  };
 
   return (
 
@@ -90,7 +87,7 @@ export default function Home(props) {
       <CardContainer>
         <ButtonMatch onClick={props.changeToMatches}><MatchImg src={MatchIcon} alt="Botão de Matches" /></ButtonMatch>
 
-        {profile.length <= 0 ?          
+        {props.profile.length <= 0 ?          
         <LoadingContainer>
             <div></div>
             <div></div>
@@ -98,11 +95,11 @@ export default function Home(props) {
           :
           <>
             <ImageDiv>
-              <ImageProfile animationLeft={animationLeft} animationRight={animationRight} src={profile.photo} alt="Foto da Pessoa" />
+              <ImageProfile animationLeft={animationLeft} animationRight={animationRight} src={props.profile.photo} alt="Foto da Pessoa" />
               <NameAge>
-                <h3>{profile.name}, {profile.age}</h3>
+                <h3>{props.profile.name}, {props.profile.age}</h3>
 
-                <p>{profile.bio}</p>
+                <p>{props.profile.bio}</p>
               </NameAge>
             </ImageDiv>
             <ButtonContainer>

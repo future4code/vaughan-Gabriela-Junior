@@ -4,16 +4,13 @@ import { astroMatchURL } from '../constants/astroMatchURL';
 //Home
 export const getProfileToChoose = async (saveData) => {
     const url = `${astroMatchURL}/person`
-    const config = {
-      headers: {}
-    }
 
     try {
-      const response = await axios.get(url, config)
+      const response = await axios.get(url)
       saveData(response.data.profile);
 
     } catch (error) {
-      alert(`Não tem mais perfis para curtir. Clique ok para reiniciar. ${error.response.data}`)
+      alert(`Algo deu erro. Tente de novo. ${error.response}`)
     };
   };
 
@@ -39,12 +36,9 @@ export const choosePerson = async (profile, data) => {
 // Matches
 export const getMatches = async (saveData) => {
     const url = `${astroMatchURL}/matches`
-    const config = {
-      headers: {}
-    }
 
     try {
-      const response = await axios.get(url, config)
+      const response = await axios.get(url)
       saveData(response.data.matches);
 
     } catch (error) {
@@ -52,13 +46,14 @@ export const getMatches = async (saveData) => {
     };
   };
 
-export const clear = async (data) => {
+export const clear = async (data, saveProfile) => {
     const url = `${astroMatchURL}/clear`
 
     try {
      await axios.put(url)
       alert(`Todos os seus matches foram deletados!`)
       getMatches(data)
+      getProfileToChoose(saveProfile)
 
     } catch (error) {
       alert(`Algo deu errado. Tente novamente. ${error.response.data}`)

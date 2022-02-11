@@ -2,14 +2,19 @@ import { useState } from "react";
 import Home from "./components/Home/Home";
 import Matches from "./components/Matches/Matches";
 import { GlobalStyle } from "./styled-app";
-import HermeneIcon from './assets/imgs/two-hearts.png';
 import { Header, HermeneImg, KeyboardKeys, Main } from "./styled-app";
+import HermeneIcon from './assets/imgs/two-hearts.png';
 import arrowLeftIcon from "./assets/imgs/arrow-left.svg";
 import arrowRightIcon from "./assets/imgs/arrow-right.svg";
 
 function App() {
 
   const [currentScreen, setCurrentScreen] = useState("home");
+  const [profile, setProfile] = useState([]);
+
+  const saveProfile = (data) => {
+    setProfile(data)
+  };
 
   const changeToHome = () => {
     setCurrentScreen("home");
@@ -19,22 +24,29 @@ function App() {
     setCurrentScreen("matches");
   };
 
+
   const renderScreen = () => {
     switch (currentScreen) {
       case "home":
         return <Home
         changeToMatches={changeToMatches}
-        changeToHome={changeToHome} 
+        changeToHome={changeToHome}
+        profile={profile}
+        saveProfile={saveProfile}
         />
       case "matches":
-        return <Matches changeToHome={changeToHome} />
+        return <Matches changeToHome={changeToHome} 
+        saveProfile={saveProfile}
+        />
       default:
         return <Home 
         changeToMatches={changeToMatches} 
         changeToHome={changeToHome}
+        profile={profile}
+        saveProfile={saveProfile}
         />
     }
-  }
+  };
 
   return (
     <Main>
@@ -59,6 +71,6 @@ function App() {
         {renderScreen()}
     </Main>
   );
-}
+};
 
 export default App;

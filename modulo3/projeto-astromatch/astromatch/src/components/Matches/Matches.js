@@ -7,15 +7,15 @@ import { clear, getMatches } from "../../services/requests-astromatch-api";
 
 export default function Matches(props) {
 
-  const [matches, setMatches] = useState([])
+  const [matches, setMatches] = useState([]);
 
-  useEffect(() => { getMatches(getProfile) }, [])
+  useEffect(() => { getMatches(getProfile) }, []);
 
   useEffect(() => {
     const keyPressDelete = (event) => {
       if (event.code === "Space") {
         if (window.confirm(`Tem certeza que deseja deletar todos os matches?`)) {
-          return clear(getProfile)
+          return clear(getProfile, props.saveProfile)
         }
       }
     }
@@ -23,7 +23,7 @@ export default function Matches(props) {
     return () => {
       document.removeEventListener("keydown", keyPressDelete);
     };
-  }, [])
+  }, []);
 
   useEffect(() => {
     const keyPressBackSpace = (event) => {
@@ -35,11 +35,11 @@ export default function Matches(props) {
     return () => {
       document.removeEventListener("keydown", keyPressBackSpace);
     };
-  }, [])
+  }, []);
 
   const getProfile = (data) => {
     setMatches(data)
-  }
+  };
 
   const renderMatches = matches.map((match) => {
     return (
@@ -57,7 +57,7 @@ export default function Matches(props) {
           <button onClick={props.changeToHome}><img src={returnIcon} alt="Ícone de voltar" /></button>
           <button onClick={() => {
             if (window.confirm(`Tem certeza que deseja deletar todos os matches?`)) {
-              return clear(getProfile)
+              return clear(getProfile, props.saveProfile)
             }
           }}><img src={deleteAllIcon} alt="Ícone de deletar todos os matches" /></button>
         </div>
@@ -72,4 +72,4 @@ export default function Matches(props) {
       </MatchesContainer>
     </div>
   );
-}
+};
