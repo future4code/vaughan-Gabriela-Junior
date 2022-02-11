@@ -112,16 +112,9 @@ export const NameAge = styled.div`
         justify-content: center;
 
         width: 79vw;
-        height: 10vh;
+        height: 20vh;
     }
 
-    @media (max-height: 800px) {
-        width: 26.8vw;
-        height: 16vh;
-        h3{
-            height: 4vh;
-        }
-    }
 `
 
 export const ButtonContainer = styled.div`
