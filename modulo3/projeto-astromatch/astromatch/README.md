@@ -41,3 +41,12 @@ Quando acabam os perfis da API aparece uma mensagem avisando, quando o usuário 
 
 ## Desenvolvedores
 Gabriela Hermenegildo Júnior
+
+## Imagens
+
+![image](https://user-images.githubusercontent.com/94693150/153658751-3eac4518-46ed-454b-af4d-56f4d5f0d59a.png)
+![image](https://user-images.githubusercontent.com/94693150/153659077-75030a86-8754-44e7-9d3b-4fa74e5316c8.png)
+![image](https://user-images.githubusercontent.com/94693150/153658978-c29307d1-41b2-4e2d-9f31-bd100f386a4d.png)
+![image](https://user-images.githubusercontent.com/94693150/153659199-4786b801-3c39-4094-ae41-d4eab419b893.png)
+![image](https://user-images.githubusercontent.com/94693150/153659115-d26e603c-503d-4b0a-b864-b61f77d5b7c6.png)
+![image](https://user-images.githubusercontent.com/94693150/153659150-f2df6ce2-4eca-4356-b8d0-c14b3f867bd1.png)
