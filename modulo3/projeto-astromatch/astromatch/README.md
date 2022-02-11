@@ -5,6 +5,7 @@ Projeto de uma plataforma semelhante ao tinder com a possibilidade do usuário p
 Para as funcionalidades foi utilizada a API Astro Match disponibilizada pela Labenu.
 
 ## Link Surge
+https://hermenematch.surge.sh
 
 ## Linguagens utilizadas
 ### Site feito em React
