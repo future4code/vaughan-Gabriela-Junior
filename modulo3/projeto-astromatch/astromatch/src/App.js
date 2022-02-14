@@ -24,7 +24,6 @@ function App() {
     setCurrentScreen("matches");
   };
 
-
   const renderScreen = () => {
     switch (currentScreen) {
       case "home":
