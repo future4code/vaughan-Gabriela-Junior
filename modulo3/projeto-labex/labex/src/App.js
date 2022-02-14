@@ -13,7 +13,7 @@ const App = () => {
     <div>
       <GlobalStyle />
       <Header/>
-      <h1>Esse é o App</h1> 
+      <h1>App</h1> 
       {/* <AdminHomePage />
       <ApplicationFormPage />
       <CreateTripPage />
