@@ -5,6 +5,6 @@ export const TripCard = styled.div`
     width: 25vw;
     border: 1px solid black;
     flex-direction: column;
-    margin: 15px;
+    margin: 10px;
     padding: 10px;
 `
