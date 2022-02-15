@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header'
 import ApplicationForm from '../../components/ApplicationForm/ApplicationForm';
+import {MainStyle} from './style';
 
 const ApplicationFormPage = (props) => {
     const navigate = useNavigate();
@@ -12,9 +13,10 @@ const ApplicationFormPage = (props) => {
     return (
     <div>
         <Header />
-        <h2>Aqui é a Application Form Page!</h2>
+        <MainStyle>
         <button onClick={goToListTrips} > Voltar </button>
         <ApplicationForm trips={props.trips}/>
+        </MainStyle>
     </div>
     )
 }

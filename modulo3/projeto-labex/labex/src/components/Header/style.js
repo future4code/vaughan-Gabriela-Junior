@@ -12,7 +12,7 @@ export const HeaderStyle = styled.div`
         background: none;
         border: none;
         color: #c4c4c4;
-        font-size: 1rem;
+        font-size: 1.5rem;
         cursor: pointer;
         :hover{
             border-bottom: 1px solid #c4c4c4;
@@ -29,7 +29,7 @@ export const ButtonContainer = styled.div`
         margin: 10px;
         background: none;
         border: none;
-        font-size: 1rem;
+        font-size: 1.5rem;
         color: #c4c4c4;
         cursor: pointer;
         :hover{

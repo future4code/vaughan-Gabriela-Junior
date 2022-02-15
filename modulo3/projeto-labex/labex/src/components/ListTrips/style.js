@@ -13,4 +13,5 @@ export const TripCard = styled.div`
     margin: 10px;
     padding: 10px;
     height: 25vh;
+    border-radius: .5em;
 `

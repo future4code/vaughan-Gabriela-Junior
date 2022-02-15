@@ -3,6 +3,14 @@ import { useState, useMemo } from "react";
 import Select from 'react-select';
 import countryList from "react-select-country-list";
 import { BASE_URL } from '../../constants/baseurl';
+import { ApplicationContainer, InputContainer, FormContainer, SelectContainer } from './style';
+
+const customStyles = {
+    option: (provided, state) => ({
+        borderBottom: '1px solid lightgray',
+        padding: 10,
+    }),
+}
 
 const ApplicationForm = (props) => {
     const options = useMemo(() => countryList().getData(), []);
@@ -81,13 +89,14 @@ const ApplicationForm = (props) => {
     });
 
     return (
-        <div>
-            <h2>Inscrever-se</h2>
+        <ApplicationContainer>
+            <h2>Inscreva-se</h2>
+            <FormContainer>
             <select onChange={changeTrip} defaultValue="">
                 <option value="" disabled>Escolha a viagem</option>
                 {renderTripSelect}
             </select>
-
+            <InputContainer>
             <form>
                 <input
                     placeholder="Nome"
@@ -117,15 +126,19 @@ const ApplicationForm = (props) => {
                 >
                 </input>
             </form>
-
+            </InputContainer>
+            <SelectContainer>
             <Select
+            styles={customStyles}
                 options={options}
                 value={countryValue}
                 onChange={countryHandler}
             />
+            </SelectContainer>
 
             <button onClick={() => applyToTrip()}>Enviar</button>
-        </div>
+            </FormContainer>
+        </ApplicationContainer>
     );
 };
 

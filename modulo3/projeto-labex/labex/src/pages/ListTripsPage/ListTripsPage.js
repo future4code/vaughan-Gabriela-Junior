@@ -1,7 +1,7 @@
 import Header from '../../components/Header/Header';
 import ListTrips from "../../components/ListTrips/ListTrips";
 import { useNavigate } from 'react-router-dom';
-import { TripsContainer } from './style';
+import { TripsContainer, ButtonContainer } from './style';
 
 const ListTripsPage = (props) => {
     
@@ -18,10 +18,12 @@ const ListTripsPage = (props) => {
     return (
     <div>
         <Header />
+        <ButtonContainer>
         <button onClick={goToHome}> Voltar </button> 
         <button onClick={goToApplication}>Increva-se</button>
+        </ButtonContainer>
         <TripsContainer>
-        <h2>Lista de viagens</h2>
+        <h2>Lista de Viagens</h2>
         <ListTrips trips={props.trips}/>
         </TripsContainer>
     </div>

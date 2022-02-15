@@ -1,20 +1,11 @@
 import styled from 'styled-components';
 import { mainColor, secondColor } from '../../constants/colors';
 
-export const TripsContainer = styled.div`
+export const MainStyle = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    h2{
-        margin: 10px;
-        color: ${mainColor};
-    }
-`
-
-export const ButtonContainer = styled.div`
-    display: flex;
-    justify-content: center;
     button{
         border-radius: .5em;
         background-color: ${mainColor};

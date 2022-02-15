@@ -31,7 +31,6 @@ const App = () => {
     <div>
       <GlobalStyle />
       <Router trips={trips} />
-
       
     </div>
   );
