@@ -5,13 +5,21 @@ import Header from './components/Header/Header';
 import { GlobalStyle } from './style-app';
 import Router from './route/Router';
 
+
 const App = () => {
 
+
   const [trips, setTrips] = useState([]);
+  const [idTrip, setIdTrip] = useState("");
+
+  const getId = (id) => {
+      setIdTrip(id)
+  }
 
     useEffect(() => 
         {getTrips()}
     , [])
+
 
 
     const getTrips = async () => {
@@ -30,7 +38,10 @@ const App = () => {
   return (
     <div>
       <GlobalStyle />
-      <Router trips={trips} />
+      <Router trips={trips}
+      idTrip={idTrip}
+      getId={getId}
+      />
       
     </div>
   );
