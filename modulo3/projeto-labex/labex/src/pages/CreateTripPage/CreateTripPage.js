@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import CreateTrip from "../../components/CreateTrip/CreateTrip";
 import Header from '../../components/Header/Header';
 
 
@@ -14,7 +15,9 @@ const CreateTripPage = () => {
     <div>
         <Header />
         <h2>Aqui é a Create Trip Page!</h2>
-        <button onClick={goToAdminHome} >Voltar</button>
+        <button onClick={goToAdminHome}>Voltar</button>
+
+        <CreateTrip />
     </div>
     )
 }

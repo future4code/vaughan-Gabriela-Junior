@@ -2,8 +2,11 @@ import Header from '../../components/Header/Header';
 import ListTrips from "../../components/ListTrips/ListTrips";
 import { useNavigate } from 'react-router-dom';
 import { TripsContainer, ButtonContainer } from './style';
+import { useEffect } from 'react';
 
 const ListTripsPage = (props) => {
+    
+    useEffect(() => props.getTrips(), [])
     
     const navigate = useNavigate()
 

@@ -15,8 +15,7 @@ const TripDetailsPage = (props) => {
         <h2>Aqui é a Trip Details Page!</h2>
         <button onClick={goToAdminHome} >Voltar</button>
 
-        <TripDetails idTrip={props.idTrip}
-        />
+        <TripDetails idTrip={props.idTrip}/>
     </div>
     )
 }
