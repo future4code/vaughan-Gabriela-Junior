@@ -38,10 +38,10 @@ const TripDetails = (props) => {
         };
     };
 
-    const decideCandidate = async(id) => {
-        const url = `${BASE_URL}/trips/${props.idTrip}/candidate/${id}/decide`
+    const decideCandidate = async (id, status) => {
+        const url = `${BASE_URL}/trips/${props.idTrip}/candidates/${id}/decide`
         const body = {
-            approve: true
+            approve: status
         }
         const config = {
             headers: {
@@ -52,14 +52,15 @@ const TripDetails = (props) => {
         try {
             const response = await axios.put(url, body, config)
             console.log(response.data)
-            console.log('APROVOU')
+            getTripDetails()
+
         } catch (error) {
             console.log(error.response)
         }
     }
 
-    console.log(tripDetails.approved)
-    console.log(tripDetails.candidates)
+    console.log('aprovados', tripDetails.approved)
+    console.log('pendentes', tripDetails.candidates)
 
     const renderCandidates = () => {
         if (tripDetails.candidates) {
@@ -71,12 +72,29 @@ const TripDetails = (props) => {
                         <p>País: {candidate.country}</p>
                         <p>Profissão: {candidate.profession}</p>
                         <p>Texto de candidatura: {candidate.applicationText}</p>
-                        <button onClick={() => {decideCandidate(candidate.id)}}>Aprovar</button>
-                        <button>Recusar</button>
+                        <button onClick={() => {decideCandidate(candidate.id, true)}}>Aprovar</button>
+                        <button onClick={() => {decideCandidate(candidate.id, false)}}>Recusar</button>
                     </div>
                 )
             })
             return renderCandidates
+        };
+    };
+
+    const renderApproved = () => {
+        if (tripDetails.approved) {
+            const renderApproved = tripDetails.approved.map((candidate) => {
+                return (
+                    <div key={candidate.id}>
+                        <p>Nome: {candidate.name}</p>
+                        <p>Idade: {candidate.age}</p>
+                        <p>País: {candidate.country}</p>
+                        <p>Profissão: {candidate.profession}</p>
+                        <p>Texto de candidatura: {candidate.applicationText}</p>
+                    </div>
+                )
+            })
+            return renderApproved
         }
     }
 
@@ -93,7 +111,7 @@ const TripDetails = (props) => {
                 <p>Data: {tripDetails.date}</p>
 
                 <h3>Candidatos aprovados</h3>
-
+                {renderApproved()}
 
                 <h3>Candidatos pendentes</h3>
 

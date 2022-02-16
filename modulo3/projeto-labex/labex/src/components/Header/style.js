@@ -18,6 +18,9 @@ export const HeaderStyle = styled.div`
             border-bottom: 1px solid #c4c4c4;
         }
     }
+    h1{
+        align-self: center;
+    }
 
 `
 

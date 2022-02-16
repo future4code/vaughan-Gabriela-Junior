@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Login from '../../components/Login/Login';
+import { MainStyle, Button } from './style';
 
 const LoginPage = () => {
 
@@ -17,10 +18,11 @@ const LoginPage = () => {
     return (
     <div>
         <Header />
-        <h2>Aqui é a Login Page!</h2>
-        <button onClick={goToHome}>Voltar</button>
-        <button onClick={goToAdminHome}>Entrar</button>
+        <MainStyle>
+        <Button onClick={goToAdminHome}>Admin</Button>
+        <Button onClick={goToHome}>Voltar</Button>
         <Login />
+        </MainStyle>
     </div>
     )
 }

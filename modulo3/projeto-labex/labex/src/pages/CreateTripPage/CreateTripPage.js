@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import CreateTrip from "../../components/CreateTrip/CreateTrip";
 import Header from '../../components/Header/Header';
+import { Button, MainStyle } from "./style";
 
 
 const CreateTripPage = () => {
@@ -14,10 +15,10 @@ const CreateTripPage = () => {
     return (
     <div>
         <Header />
-        <h2>Aqui é a Create Trip Page!</h2>
-        <button onClick={goToAdminHome}>Voltar</button>
-
+        <MainStyle>
+        <Button onClick={goToAdminHome}>Voltar</Button>
         <CreateTrip />
+        </MainStyle>
     </div>
     )
 }

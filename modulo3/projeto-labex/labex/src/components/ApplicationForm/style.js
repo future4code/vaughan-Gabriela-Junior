@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { mainColor, secondColor } from '../../constants/colors';
+import spaceBackground from '../../assets/imgs/space-background.jpg';
 
 export const ApplicationContainer = styled.div`
     display: flex;
@@ -16,6 +17,9 @@ export const FormContainer = styled.div`
     border: 1px solid black;
     border-radius: .5em;
     padding: 20px;
+    background-image: url(${spaceBackground});
+    background-position: bottom;
+    margin: 10px;
     select{
         width: 31.3vw;
         border-radius: .5em;
@@ -23,6 +27,12 @@ export const FormContainer = styled.div`
         :focus{
             border: 2px solid lightblue;
         }
+    }
+    textarea{
+        border: none;
+        border-radius: .5em;
+        margin-left: 10px;
+        width: 31.4vw;
     }
 `
 

@@ -1,5 +1,6 @@
 import Header from '../../components/Header/Header';
 import SpaceImage from '../../assets/imgs/space_trip.jpg';
+import spaceBackground from '../../assets/imgs/space-background.jpg';
 import { Div, Image, HomeContainer } from './style';
 
 const HomePage = () => {
@@ -8,7 +9,7 @@ const HomePage = () => {
         <Div>
             <Header />
             <HomeContainer>
-                <Image src={SpaceImage} alt="Imagem de Foguete" />
+                <Image src={spaceBackground} alt="Imagem de Foguete" />
                 <p>Anim anim esse laboris elit sint labore. Consequat velit irure minim consectetur aliqua et pariatur laborum id.
                     Quis in eiusmod deserunt dolore pariatur tempor sint. Consequat sint nostrud do quis.
                     Fugiat anim laboris nostrud officia. Ullamco ut ex enim eu laboris aliquip mollit veniam ea ea officia Lorem. 

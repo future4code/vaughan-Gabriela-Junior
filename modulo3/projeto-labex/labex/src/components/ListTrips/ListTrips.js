@@ -8,11 +8,11 @@ const ListTrips = (props) => {
     const renderTrips = props.trips.map((trip) => {
         return (
             <TripCard key={trip.id}>
-                Nome: {trip.name} <br/>
-                Planeta: {trip.planet} <br/>
-                Descrição: {trip.description} <br/>
-                Duração: {trip.durationInDays} dias <br/>
-                Data: {trip.date}
+                <p>Nome: {trip.name}</p>
+                <p>Planeta: {trip.planet}</p>
+                <p>Descrição: {trip.description}</p>
+                <p>Duração: {trip.durationInDays} dias</p>
+                <p>Data: {trip.date}</p>
             </TripCard>
         )
     })

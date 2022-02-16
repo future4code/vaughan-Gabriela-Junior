@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../constants/baseurl";
 import { token } from "../../constants/token";
 import { useProtectedPage } from "../../hooks/useprotectedpage";
+import { CreateTripContainer, InputContainer} from "./style";
 
 const CreateTrip = () => {
 
@@ -68,7 +69,11 @@ const CreateTrip = () => {
     };
 
     return (
-        <div>
+        <CreateTripContainer>
+
+            <h2>Crie sua Viagem!</h2>
+
+            <InputContainer>
             <input
                 placeholder="Nome"
                 value={inputName}
@@ -87,10 +92,11 @@ const CreateTrip = () => {
                 onChange={changeDate}
             />
 
-            <input
+            <textarea
                 placeholder="Descrição"
                 value={inputDescription}
                 onChange={changeDescription}
+                rows="5"
             />
 
             <input
@@ -99,7 +105,9 @@ const CreateTrip = () => {
                 onChange={changeDuration}
             />
             <button onClick={createTrip}>Enviar</button>
-        </div>
+
+            </InputContainer>
+        </CreateTripContainer>
     )
 }
 

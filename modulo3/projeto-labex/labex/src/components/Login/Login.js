@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 import {BASE_URL} from '../../constants/baseurl';
+import { LoginContainer, InputContainer } from './style';
 
 const Login = () => {
 
@@ -38,6 +39,7 @@ const Login = () => {
             setInputPassword("");
             localStorage.setItem('token', response.data.token)
             goToAdminHome()
+            navigate('/admin/trips/list')
 
         } catch (error) {
             alert(`${error.response.data.message}!`)
@@ -47,8 +49,9 @@ const Login = () => {
     };
 
     return (
-    <div>
-        <h2>Login!</h2>
+    <LoginContainer>
+        <h2>Faça o Login</h2>
+        <InputContainer>
         <input
         placeholder="Email"
         value={inputEmail}
@@ -57,12 +60,14 @@ const Login = () => {
         </input>
         <input
         placeholder="Senha"
+        type="password"
         value={inputPassword}
         onChange={changePassword}
         >
         </input>
         <button onClick={login}>Entrar</button>
-    </div>
+        </InputContainer>
+    </LoginContainer>
     )
 }
 

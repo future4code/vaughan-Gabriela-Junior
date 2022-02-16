@@ -26,4 +26,6 @@ export const Image = styled.img`
     height: 89.5vh;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
+    object-position: right;
+    object-fit: cover;
 `

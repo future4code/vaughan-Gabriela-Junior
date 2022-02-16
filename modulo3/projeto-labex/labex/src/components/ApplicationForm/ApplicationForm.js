@@ -102,29 +102,27 @@ const ApplicationForm = (props) => {
                     placeholder="Nome"
                     value={inputName}
                     onChange={changeName}
-                >
-                </input>
+                />
 
                 <input
                     placeholder="Idade"
                     value={inputAge}
                     onChange={changeAge}
-                >
-                </input>
+                />
 
-                <input
+                <textarea
                     placeholder="Texto de Candidatura"
                     value={inputApplicationText}
                     onChange={changeApplicationText}
-                >
-                </input>
+                    rows="5"
+                />
 
                 <input
                     placeholder="Profissão"
                     value={inputProfession}
                     onChange={changeProfession}
-                >
-                </input>
+                />
+
             </form>
             </InputContainer>
             <SelectContainer>
