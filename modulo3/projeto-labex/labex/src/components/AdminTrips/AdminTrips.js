@@ -50,8 +50,6 @@ const AdminTrips = (props) => {
                 <div>
                 <button onClick={() => { 
                     navigate(`/admin/trips/${trip.id}`)
-                    // goToDetails(trip.id) 
-                    
                     }}>Detalhes</button>
                 <button onClick={() => {
                     if (window.confirm(`Tem certeza que quer deletar a viagem?`)) {
