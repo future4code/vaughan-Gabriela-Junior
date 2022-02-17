@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header'
 import ApplicationForm from '../../components/ApplicationForm/ApplicationForm';
-import {MainStyle} from './style';
+import { MainStyle, Button } from '../../style-app';
 
 const ApplicationFormPage = (props) => {
     const navigate = useNavigate();
@@ -14,7 +14,7 @@ const ApplicationFormPage = (props) => {
     <div>
         <Header />
         <MainStyle>
-        <button onClick={goToListTrips} > Voltar </button>
+        <Button onClick={goToListTrips} > Voltar </Button>
         <ApplicationForm trips={props.trips}/>
         </MainStyle>
     </div>

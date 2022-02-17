@@ -11,14 +11,14 @@ export const TripCard = styled.div`
     display: flex;
     color: ${secondColor};
     width: 25vw;
-    border: 1px solid black;
+    border: 1px solid ${secondColor};
     flex-direction: column;
     margin: 10px;
-    padding: 10px;
+    padding: 20px;
     border-radius: .5em;
     background-image: url(${spaceBackground});
     background-position: top;
     p{
-        margin: 5px;
+        margin: 10px;
     }
 `

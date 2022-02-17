@@ -7,27 +7,18 @@ export const TripsContainer = styled.div`
     justify-content: center;
     align-items: center;
     h2{
+        display: flex;
+        justify-content: center;
+        border-radius: .5em;
         margin: 10px;
-        color: ${mainColor};
+        color: ${secondColor};
+        background-color: ${mainColor};
+        padding: 20px;
+        width: 35vw;
     }
 `
 
 export const ButtonContainer = styled.div`
     display: flex;
     justify-content: center;
-    button{
-        border-radius: .5em;
-        background-color: ${mainColor};
-        color: ${secondColor};
-        border: none;
-        margin: 10px;
-        padding: 10px;
-        width: 100px;
-        height: 50px;
-        cursor: pointer;
-        :hover{
-            color: ${mainColor};
-            background-color: ${secondColor};
-        }
-    }
 `

@@ -2,72 +2,76 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
 import {BASE_URL} from '../../constants/baseurl';
-import { LoginContainer, InputContainer } from './style';
+import { InputContainer, TitleContainer } from './style';
+import useForm from '../../hooks/useForm';
+import { MainStyle } from '../../style-app';
 
 const Login = () => {
 
     const navigate = useNavigate();
 
-    const [inputEmail, setInputEmail] = useState("");
-    const [inputPassword, setInputPassword] = useState("");
+    const {form, onChange, cleanFields} = useForm({
+        email: "",
+        password: "",
+    });
 
     const goToAdminHome = () => {
         navigate('/admin/trips/list');
     };
-    
-    const changeEmail = (event) => {
-        setInputEmail(event.target.value);
-        console.log(inputEmail)
-    };
 
-    const changePassword = (event) => {
-        setInputPassword(event.target.value);
-        console.log(inputPassword)
-    };
+    const submitLogin = (event) => {
+        event.preventDefault();
+        login();
+        cleanFields();
+    }
 
-    const login = async () => {
+    const login = async (event) => {
         const url = `${BASE_URL}/login`
-        const body = {
-            email: inputEmail,
-            password: inputPassword
-        };
 
         try {
-            const response = await axios.post(url, body)
-            console.log(response.data.token)
-            setInputEmail("");
-            setInputPassword("");
+            const response = await axios.post(url, form)
             localStorage.setItem('token', response.data.token)
+            console.log(response.data.token)
+            console.log(form);
             goToAdminHome()
             navigate('/admin/trips/list')
 
         } catch (error) {
             alert(`${error.response.data.message}!`)
-            setInputEmail("");
-            setInputPassword("");
         };
     };
 
+
+
     return (
-    <LoginContainer>
-        <h2>Faça o Login</h2>
+    <MainStyle>
+        <TitleContainer>
+        <h2>Login</h2>
+        </TitleContainer>
         <InputContainer>
+        <form onSubmit={submitLogin}>
         <input
         placeholder="Email"
-        value={inputEmail}
-        onChange={changeEmail}
+        name={"email"}
+        value={form.email}
+        type="email"
+        onChange={onChange}
+        required
         >
         </input>
         <input
         placeholder="Senha"
+        name={"password"}
         type="password"
-        value={inputPassword}
-        onChange={changePassword}
+        value={form.password}
+        onChange={onChange}
+        required
         >
         </input>
-        <button onClick={login}>Entrar</button>
+        <button>Entrar</button>
+        </form>
         </InputContainer>
-    </LoginContainer>
+    </MainStyle>
     )
 }
 

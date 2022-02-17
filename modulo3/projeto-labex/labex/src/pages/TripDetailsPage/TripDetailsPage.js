@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 import Header from '../../components/Header/Header';
 import TripDetails from '../../components/TripDetails/TripDetails';
+import { Button, MainStyle } from '../../style-app';
 
-const TripDetailsPage = (props) => {
+const TripDetailsPage = () => {
     const navigate = useNavigate()
 
     const goToAdminHome = () => {
@@ -12,10 +13,11 @@ const TripDetailsPage = (props) => {
     return (
     <div>
         <Header />
-        <h2>Aqui é a Trip Details Page!</h2>
-        <button onClick={goToAdminHome} >Voltar</button>
+        <MainStyle>
+        <Button onClick={goToAdminHome}>Voltar</Button>
 
-        <TripDetails idTrip={props.idTrip}/>
+        <TripDetails />
+        </MainStyle>
     </div>
     )
 }

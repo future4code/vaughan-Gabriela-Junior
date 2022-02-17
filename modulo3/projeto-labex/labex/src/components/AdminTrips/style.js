@@ -2,35 +2,15 @@ import styled from "styled-components";
 import { mainColor, secondColor } from "../../constants/colors";
 import spaceBackground from '../../assets/imgs/space-background.jpg';
 
+export const GridContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+`
+
 export const TripCard = styled.div`
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    color: ${secondColor};
-    padding: 20px;
-    border: 1px solid ${mainColor};
-    margin: 10px;
-    width: 62vw;
-    border-radius: .5em;
-    background-image: url(${spaceBackground});
-    background-size: 100%;
-    background-position: bottom;
-    word-break: break-all;
-    p{
-        margin: 10px;
-    }
-`
-
-export const GridContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-`
-
-export const CandidatesCard = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
     color: ${secondColor};
     padding: 20px;
@@ -39,8 +19,10 @@ export const CandidatesCard = styled.div`
     width: 30vw;
     border-radius: .5em;
     background-image: url(${spaceBackground});
-    background-position: left;
-    word-break: break-all;
+    background-position: right;
+    h3{
+        margin: 10px;
+    }
     button{
         margin: 10px;
         border: 1px solid ${secondColor};
@@ -58,36 +40,10 @@ export const CandidatesCard = styled.div`
             background-color: ${secondColor};
         }
     }
-    p{
-        margin: 10px;
-        font-size: 1rem;
-    }
-`
-
-export const ApprovedCard = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    color: ${secondColor};
-    padding: 20px;
-    border: 1px solid ${mainColor};
-    margin: 10px;
-    width: 30vw;
-    border-radius: .5em;
-    background-image: url(${spaceBackground});
-    background-position: right;
-    word-break: break-all;
-    p{
-        margin: 10px;
-        font-size: 1rem;
-    }
 `
 
 export const ButtonContainer = styled.div`
-    display: flex;
-    align-self: center;
-    margin-top: 10px;
+    display:flex;
 `
 
 export const TitleContainer = styled.div`

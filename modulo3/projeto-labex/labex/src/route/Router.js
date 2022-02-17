@@ -20,11 +20,11 @@ const Router = (props) => {
 
                 <Route path='/login' element={<LoginPage />} />
 
-                <Route path='/admin/trips/list' element={<AdminHomePage trips={props.trips} getId={props.getId} getTrips={props.getTrips}/>} />
+                <Route path='/admin/trips/list' element={<AdminHomePage trips={props.trips} getTrips={props.getTrips}/>} />
 
                 <Route path='/admin/trips/create' element={<CreateTripPage />} />
 
-                <Route path={`/admin/trips/${props.idTrip}`} element={<TripDetailsPage idTrip={props.idTrip} />} />
+                <Route path={`/admin/trips/:id`} element={<TripDetailsPage />} />
 
             </Routes>
         </BrowserRouter>

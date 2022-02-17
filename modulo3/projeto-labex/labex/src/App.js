@@ -4,16 +4,9 @@ import { BASE_URL } from './constants/baseurl';
 import { GlobalStyle } from './style-app';
 import Router from './route/Router';
 
-
 const App = () => {
 
-
   const [trips, setTrips] = useState([]);
-  const [idTrip, setIdTrip] = useState("");
-
-  const getId = (id) => {
-    setIdTrip(id)
-  }
 
   useEffect(() => { getTrips() }
     , [])
@@ -35,8 +28,6 @@ const App = () => {
     <div>
       <GlobalStyle />
       <Router trips={trips}
-        idTrip={idTrip}
-        getId={getId}
         getTrips={getTrips}
       />
 

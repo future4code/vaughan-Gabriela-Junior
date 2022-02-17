@@ -1,16 +1,23 @@
 import { useNavigate } from 'react-router-dom';
 import { HeaderStyle, ButtonContainer } from './style';
+import { token } from '../../constants/token';
+import { useEffect } from 'react';
 
 const Header = () => {
 
     const navigate = useNavigate();
+
 
     const goToListTrips = () => {
         navigate("/trips/list");
     }
 
     const goToLogin = () => {
-        navigate("/login")
+        if (token) {
+            navigate("/admin/trips/list")
+        } else {
+            navigate("/login")
+        }
     }
 
     return (
@@ -19,7 +26,7 @@ const Header = () => {
             <h1>HermeneX</h1>
             <ButtonContainer>
                 <button onClick={goToListTrips}> Viagens </button>
-                <button onClick={goToLogin} > Login </button>
+                <button onClick={goToLogin}> Admin </button>
             </ButtonContainer>
         </HeaderStyle>
     )

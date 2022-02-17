@@ -3,51 +3,33 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../constants/baseurl";
 import { token } from "../../constants/token";
-import { useProtectedPage } from "../../hooks/useprotectedpage";
-import { CreateTripContainer, InputContainer} from "./style";
+import useForm from "../../hooks/useForm";
+import { useProtectedPage } from "../../hooks/useProtectedPage";
+import { MainStyle } from "../../style-app";
+import { CreateTripContainer, InputContainer, TitleContainer } from "./style";
 
 const CreateTrip = () => {
 
     useProtectedPage();
 
-    const [inputName, setInputName] = useState("");
-    const [inputPlanet, setInputPlanet] = useState("");
-    const [inputDate, setInputDate] = useState("");
-    const [inputDescription, setInputDescription] = useState("");
-    const [inputDuration, setInputDuration] = useState("");
+    const { form, onChange, cleanFields } = useForm({
+        name: "",
+        planet: "",
+        date: "",
+        description: "",
+        durationInDays: "",
+    });
 
     const navigate = useNavigate();
 
-    const changeName = (event) => {
-        setInputName(event.target.value);
-        console.log(inputName);
-    };
-    const changePlanet = (event) => {
-        setInputPlanet(event.target.value);
-        console.log(inputPlanet);
-    };
-    const changeDate = (event) => {
-        setInputDate(event.target.value);
-        console.log(inputDate);
-    };
-    const changeDescription = (event) => {
-        setInputDescription(event.target.value);
-        console.log(inputDescription);
-    };
-    const changeDuration = (event) => {
-        setInputDuration(event.target.value);
-        console.log(inputDuration);
-    };
+    const submitTrip = (event) => {
+        event.preventDefault();
+        createTrip();
+        cleanFields();
+    }
 
     const createTrip = async () => {
         const url = `${BASE_URL}/trips`
-        const body = {
-            name: inputName,
-            planet: inputPlanet,
-            date: inputDate,
-            description: inputDescription,
-            durationInDays: inputDuration,
-        }
         const config = {
             headers: {
                 auth: token
@@ -55,59 +37,78 @@ const CreateTrip = () => {
         };
 
         try {
-            const response = await axios.post(url, body, config)
+            const response = await axios.post(url, form, config)
             console.log(response.data)
-            setInputName("")
-            setInputPlanet("")
-            setInputDate("")
-            setInputDescription("")
-            setInputDuration("")
 
         } catch (error) {
-            console.log(error.response)
+            console.log(error.response.data.message)
         };
     };
 
-    return (
-        <CreateTripContainer>
+    const dateToday = new Date().toISOString().slice(0,10)
 
+    return (
+        <MainStyle>
+
+            <TitleContainer>
             <h2>Crie sua Viagem!</h2>
+            </TitleContainer>
 
             <InputContainer>
-            <input
-                placeholder="Nome"
-                value={inputName}
-                onChange={changeName}
-            />
+                <form onSubmit={submitTrip}>
+                    <input
+                        placeholder="Nome"
+                        name="name"
+                        value={form.name}
+                        onChange={onChange}
+                        pattern={"^.{5,}"}
+                        title="Inclua no mínimo 5 letras."
+                        required
+                    />
 
-            <input
-                placeholder="Planeta"
-                value={inputPlanet}
-                onChange={changePlanet}
-            />
+                    <input
+                        placeholder="Planeta"
+                        name="planet"
+                        value={form.planet}
+                        onChange={onChange}
+                        required
+                    />
 
-            <input
-                placeholder="Data (dd/mm/aa)"
-                value={inputDate}
-                onChange={changeDate}
-            />
+                    <input
+                        placeholder="Data (dd/mm/aa)"
+                        name="date"
+                        value={form.date}
+                        onChange={onChange}
+                        type="date"
+                        min={dateToday}
+                        required
+                    />
 
-            <textarea
-                placeholder="Descrição"
-                value={inputDescription}
-                onChange={changeDescription}
-                rows="5"
-            />
+                    <textarea
+                        placeholder="Descrição"
+                        name="description"
+                        value={form.description}
+                        onChange={onChange}
+                        rows="5"
+                        pattern={"^.{30,}"}
+                        title="A descrição precisa ter no mínimo 30 letras."
+                        required
+                    />
 
-            <input
-                placeholder="Duração em dias"
-                value={inputDuration}
-                onChange={changeDuration}
-            />
-            <button onClick={createTrip}>Enviar</button>
+                    <input
+                        placeholder="Duração em dias"
+                        name="durationInDays"
+                        value={form.durationInDays}
+                        onChange={onChange}
+                        type="number"
+                        min={50}
+                        required
+                    />
+                    <button>Enviar</button>
+                </form>
 
             </InputContainer>
-        </CreateTripContainer>
+        </MainStyle>
     )
 }
 

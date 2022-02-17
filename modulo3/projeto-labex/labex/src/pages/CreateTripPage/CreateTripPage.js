@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import CreateTrip from "../../components/CreateTrip/CreateTrip";
 import Header from '../../components/Header/Header';
-import { Button, MainStyle } from "./style";
+import { Button, MainStyle } from "../../style-app";
 
 
 const CreateTripPage = () => {

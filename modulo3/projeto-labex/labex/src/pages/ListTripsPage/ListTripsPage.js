@@ -3,6 +3,7 @@ import ListTrips from "../../components/ListTrips/ListTrips";
 import { useNavigate } from 'react-router-dom';
 import { TripsContainer, ButtonContainer } from './style';
 import { useEffect } from 'react';
+import { Button } from '../../style-app';
 
 const ListTripsPage = (props) => {
     
@@ -22,8 +23,8 @@ const ListTripsPage = (props) => {
     <div>
         <Header />
         <ButtonContainer>
-        <button onClick={goToHome}> Voltar </button> 
-        <button onClick={goToApplication}>Increva-se</button>
+        <Button onClick={goToHome}> Voltar </Button> 
+        <Button onClick={goToApplication}>Increva-se</Button>
         </ButtonContainer>
         <TripsContainer>
         <h2>Lista de Viagens</h2>
