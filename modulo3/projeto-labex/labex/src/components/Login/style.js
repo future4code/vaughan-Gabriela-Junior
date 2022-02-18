@@ -5,7 +5,7 @@ import spaceBackground from '../../assets/imgs/space-background.jpg';
 export const InputContainer = styled.div`
     margin: 10px;
     padding: 20px;
-    border: 1px solid black;
+    border: 1px solid ${secondColor};
     border-radius: .5em;
     background-image: url(${spaceBackground});
     background-position: center;
@@ -42,6 +42,7 @@ export const InputContainer = styled.div`
 
 export const TitleContainer = styled.div`
         h2{
+        border: 1px solid ${secondColor};
         display: flex;
         justify-content: center;
         border-radius: .5em;

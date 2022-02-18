@@ -4,20 +4,22 @@ import Select from 'react-select';
 import countryList from "react-select-country-list";
 import { BASE_URL } from '../../constants/baseurl';
 import useForm from '../../hooks/useForm';
+import useRequestData from '../../hooks/useRequestData';
 import { MainStyle } from '../../style-app';
 import { FormContainer, SelectContainer, TitleContainer } from './style';
 
 const customStyles = {
-    option: (provided, state) => ({
+    option: () => ({
         borderBottom: '1px solid lightgray',
         padding: 10,
     }),
 }
 
-const ApplicationForm = (props) => {
+const ApplicationForm = () => {
     const options = useMemo(() => countryList().getData(), []);
     const [idValue, setIdValue] = useState("");
     const [countryValue, setCountryValue] = useState("");
+    const [trips] = useRequestData(`${BASE_URL}/trips`);
 
     const {form, onChange, cleanFields} = useForm({
         name: "",
@@ -47,6 +49,7 @@ const ApplicationForm = (props) => {
         try {
             const response = await axios.post(url, body)
             setCountryValue("");
+            alert("Você foi inscrito na viagem com sucesso!")
             console.log(response.data)
 
         } catch (error) {
@@ -64,7 +67,7 @@ const ApplicationForm = (props) => {
         console.log(countryValue.label)
     };
 
-    const renderTripSelect = props.trips.map((trip) => {
+    const renderTripSelect = trips && trips.map((trip) => {
         return (
             <option
                 value={trip.id}
@@ -84,8 +87,6 @@ const ApplicationForm = (props) => {
                 <option value="" disabled>Escolha a viagem</option>
                 {renderTripSelect}
             </select>
-
-            {/* <InputContainer> */}
 
                 <input
                     placeholder="Nome"
@@ -128,7 +129,6 @@ const ApplicationForm = (props) => {
                     required
                 />
 
-            {/* </InputContainer> */}
             <SelectContainer>
             <Select
             styles={customStyles}

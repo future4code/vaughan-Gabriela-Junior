@@ -3,7 +3,7 @@ import { mainColor, secondColor } from '../../constants/colors';
 import spaceBackground from '../../assets/imgs/space-background.jpg';
 
 export const InputContainer = styled.div`
-    border: 1px solid black;
+    border: 1px solid ${secondColor};
     border-radius: .5em;
     padding: 20px;
     background-image: url(${spaceBackground});
@@ -48,6 +48,7 @@ export const InputContainer = styled.div`
 
 export const TitleContainer = styled.div`
         h2{
+        border: 1px solid ${secondColor};
         display: flex;
         justify-content: center;
         border-radius: .5em;

@@ -8,13 +8,13 @@ export const GridContainer = styled.div`
 `
 
 export const TripCard = styled.div`
+    border: 1px solid ${secondColor};
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     color: ${secondColor};
     padding: 20px;
-    border: 1px solid ${mainColor};
     margin: 10px;
     width: 30vw;
     border-radius: .5em;
@@ -48,6 +48,7 @@ export const ButtonContainer = styled.div`
 
 export const TitleContainer = styled.div`
         h2{
+        border: 1px solid ${secondColor};
         display: flex;
         justify-content: center;
         border-radius: .5em;

@@ -3,7 +3,7 @@ import { mainColor, secondColor } from '../../constants/colors';
 import spaceBackground from '../../assets/imgs/space-background.jpg';
 
 export const FormContainer = styled.div`
-    border: 1px solid black;
+    border: 1px solid ${secondColor};
     border-radius: .5em;
     padding: 20px;
     background-image: url(${spaceBackground});
@@ -68,6 +68,7 @@ export const TitleContainer = styled.div`
         justify-content: center;
         border-radius: .5em;
         margin: 10px;
+        border: 1px solid ${secondColor};
         color: ${secondColor};
         background-color: ${mainColor};
         padding: 20px;

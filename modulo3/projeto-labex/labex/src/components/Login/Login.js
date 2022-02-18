@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useState } from 'react';
 import {BASE_URL} from '../../constants/baseurl';
 import { InputContainer, TitleContainer } from './style';
 import useForm from '../../hooks/useForm';

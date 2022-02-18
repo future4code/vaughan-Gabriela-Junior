@@ -7,6 +7,7 @@ export const TripsContainer = styled.div`
     justify-content: center;
     align-items: center;
     h2{
+        border: 1px solid ${secondColor};
         display: flex;
         justify-content: center;
         border-radius: .5em;

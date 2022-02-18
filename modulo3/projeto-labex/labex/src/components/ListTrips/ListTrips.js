@@ -1,11 +1,13 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 import { BASE_URL } from '../../constants/baseurl';
 import { TripCard, TripContainer } from './style';
+import useRequestData from '../../hooks/useRequestData'; 
+import { Loading } from '../../style-app';
 
-const ListTrips = (props) => {
+const ListTrips = () => {
 
-    const renderTrips = props.trips.map((trip) => {
+    const [trips, isLoading, errorTrips] = useRequestData(`${BASE_URL}/trips`);
+
+    const renderTrips = trips && trips.map((trip) => {
         return (
             <TripCard key={trip.id}>
                 <p>Nome: {trip.name}</p>
@@ -15,11 +17,21 @@ const ListTrips = (props) => {
                 <p>Data: {trip.date}</p>
             </TripCard>
         )
-    })
+    });
 
     return (
     <TripContainer>
-        {renderTrips}
+        {isLoading && 
+        <Loading> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        </Loading> }
+
+        {!isLoading && errorTrips && <p>Ocorreu um erro. Tente de novo.</p>}
+        {!isLoading && trips && renderTrips}
+        {!isLoading && trips && trips.length === 0 && (<p>Não há viagens.</p>)}
     </TripContainer>
     )
 }

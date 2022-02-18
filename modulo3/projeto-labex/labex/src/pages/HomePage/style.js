@@ -12,9 +12,9 @@ export const HomeContainer = styled.div`
     height: 89.5vh;
     align-items: center;
     text-align: justify;
-    /* background-image: url(${spaceBackground});
+    background-image: url(${spaceBackground});
     background-position: center;
-    background-size: 100%; */
+    background-size: 100%;
 `
 
 export const Image = styled.img`
@@ -35,27 +35,31 @@ export const TextAndButton = styled.div`
     align-items: center;
     margin: 50px;
     padding: 20px;
-    width: 50vw;
+    width: 100vw;
     border-radius: .5em;
+
     button{
         display: flex;
         font-size: 3rem;
         justify-content: center;
         align-items: center;
         border-radius: .5em;
-        border: ${secondColor};
-        background-color: ${mainColor};
+        border: 1px solid ${secondColor};
+        background: none;
         color: ${secondColor};
-        border: none;
         margin: 10px;
         padding: 10px;
         width: 30vw;
         height: 40vh;
         cursor: pointer;
+        box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(1px);
+        /* -webkit-backdrop-filter:blur(8px); */
         :hover{
-            border: 1px solid ${mainColor};
+            backdrop-filter: blur(5px);
+            /* border: 1px solid ${mainColor};
             color: ${mainColor};
-            background-color: ${secondColor};
+            background-color: ${secondColor}; */
         }
     }
 `

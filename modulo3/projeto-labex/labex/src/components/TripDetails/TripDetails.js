@@ -5,27 +5,25 @@ import { useEffect, useState } from 'react';
 import { useProtectedPage } from '../../hooks/useProtectedPage';
 import { token } from '../../constants/token';
 import { TripCard, CandidatesCard, ApprovedCard, GridContainer, ButtonContainer, TitleContainer } from './style';
-import { MainStyle } from '../../style-app';
+import { MainStyle, Loading } from '../../style-app';
 
 const TripDetails = () => {
     const params = useParams()
     const idTrip = params.id;
 
     const [tripDetails, setTripDetails] = useState("");
-
-    useEffect(() => getTripDetails(), []);
+    const [isLoading, setIsLoading] = useState(false);
 
     useProtectedPage();
+
+    useEffect(() => getTripDetails(), []);
 
     useEffect(() => {
         localStorage.getItem('token')
     }, []);
 
-    useEffect(() => {
-        getTripDetails()
-    }, []);
-
     const getTripDetails = async () => {
+        setIsLoading(true)
         const url = `${BASE_URL}/trip/${idTrip}`
         const config = {
             headers: {
@@ -37,8 +35,10 @@ const TripDetails = () => {
             const response = await axios.get(url, config)
             setTripDetails(response.data.trip)
             console.log(response.data.trip)
+            setIsLoading(false);
         } catch (error) {
             console.log(error.response.data.message)
+            setIsLoading(false)
         };
     };
 
@@ -61,10 +61,7 @@ const TripDetails = () => {
         } catch (error) {
             console.log(error.response)
         }
-    }
-
-    console.log('aprovados', tripDetails.approved)
-    console.log('pendentes', tripDetails.candidates)
+    };
 
     const renderCandidates = () => {
         if (tripDetails.candidates) {
@@ -103,30 +100,37 @@ const TripDetails = () => {
             return renderApproved
         };
     };
-
-
     return (
         <MainStyle>
             <TitleContainer>
             <h2>Detalhes da Viagem</h2>
             </TitleContainer>
-            
-            <TripCard >
 
+            {isLoading &&
+                    <Loading>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </Loading>}
+
+                    
+            {!isLoading &&
+            <TripCard >
                 <p>Nome: {tripDetails.name}</p>
                 <p>Descrição: {tripDetails.description}</p>
                 <p>Planeta: {tripDetails.planet}</p>
                 <p>Duração: {tripDetails.durationInDays} dias</p>
                 <p>Data: {tripDetails.date}</p>
 
-            </TripCard>
+            </TripCard>}
 
             <TitleContainer>
             <h2>Candidatos pendentes</h2>
             </TitleContainer>
 
             <GridContainer>
-            {renderCandidates()}
+            {!isLoading && renderCandidates()}
             </GridContainer>
 
             <TitleContainer>
@@ -134,13 +138,11 @@ const TripDetails = () => {
             </TitleContainer>
 
             <GridContainer>
-            {renderApproved()}
+            {!isLoading && renderApproved()}
             </GridContainer>
-
-
 
         </MainStyle>
     )
-}
+};
 
-export default TripDetails
+export default TripDetails;

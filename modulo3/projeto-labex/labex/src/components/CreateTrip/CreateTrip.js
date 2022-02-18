@@ -1,12 +1,10 @@
 import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../constants/baseurl";
 import { token } from "../../constants/token";
 import useForm from "../../hooks/useForm";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { MainStyle } from "../../style-app";
-import { CreateTripContainer, InputContainer, TitleContainer } from "./style";
+import { InputContainer, TitleContainer } from "./style";
 
 const CreateTrip = () => {
 
@@ -20,13 +18,11 @@ const CreateTrip = () => {
         durationInDays: "",
     });
 
-    const navigate = useNavigate();
-
     const submitTrip = (event) => {
         event.preventDefault();
         createTrip();
         cleanFields();
-    }
+    };
 
     const createTrip = async () => {
         const url = `${BASE_URL}/trips`
@@ -39,19 +35,20 @@ const CreateTrip = () => {
         try {
             const response = await axios.post(url, form, config)
             console.log(response.data)
+            alert("Viagem criada com sucesso!")
 
         } catch (error) {
             console.log(error.response.data.message)
         };
     };
 
-    const dateToday = new Date().toISOString().slice(0,10)
+    const dateToday = new Date().toISOString().slice(0, 10)
 
     return (
         <MainStyle>
 
             <TitleContainer>
-            <h2>Crie sua Viagem!</h2>
+                <h2>Crie sua Viagem!</h2>
             </TitleContainer>
 
             <InputContainer>
@@ -110,6 +107,6 @@ const CreateTrip = () => {
             </InputContainer>
         </MainStyle>
     )
-}
+};
 
-export default CreateTrip
+export default CreateTrip;

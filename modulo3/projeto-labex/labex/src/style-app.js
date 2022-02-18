@@ -1,6 +1,6 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import { mainColor, secondColor } from './constants/colors';
-import spaceBackground from './assets/imgs/planets.webp';
+import spaceBackground from './assets/imgs/space-background.jpg';
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -11,11 +11,8 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        /* background-image: url(${spaceBackground});
-        background-position: top;
-        background-size: 100%; */
+        background-color:#332C33;
         font-family: 'Roboto', sans-serif;
-        /* background-color: ${mainColor}; */
         h1{
         font-size: 3rem;
         }
@@ -45,11 +42,10 @@ export const Button = styled.div`
         justify-content: center;
         align-items: center;
         border-radius: .5em;
-        border: ${secondColor};
+        border: 1px solid ${secondColor};
         background-color: ${mainColor};
         color: ${secondColor};
-        border: none;
-        margin: 10px;
+        margin: 20px;
         padding: 10px;
         width: 150px;
         height: 50px;
@@ -59,4 +55,49 @@ export const Button = styled.div`
             color: ${mainColor};
             background-color: ${secondColor};
         }
+`
+
+export const rotate = keyframes`
+    0% {
+        transform: rotate(0deg); border-width: 8px;
+    }
+    50% {
+        transform: rotate(180deg); border-width: 1px;
+    }
+    100% {
+        transform: rotate(360deg); border-width: 8px;
+    }
+`
+
+export const rotateTwo = keyframes`
+    0% {
+        transform: rotate(0deg); border-width: 1px;
+    }
+    50% {
+        transform: rotate(180deg); border-width: 8px;
+    }
+    100% {
+        transform: rotate(360deg); border-width: 1px;
+    }
+`
+
+export const Loading = styled.div`
+    width: 80px;
+    height: 80px;
+    position: relative;
+    margin: 10px;
+    div{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 8px solid transparent;
+        border-top-color:${secondColor};
+        animation: ${rotate} 1.5s linear infinite;
+    }
+    div:nth-child(2){
+        border: 8px solid transparent;
+        border-bottom-color: ${secondColor};
+        animation: ${rotateTwo} 1.5s linear infinite;
+    }
 `

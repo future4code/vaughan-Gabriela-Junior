@@ -15,7 +15,7 @@ const ApplicationFormPage = (props) => {
         <Header />
         <MainStyle>
         <Button onClick={goToListTrips} > Voltar </Button>
-        <ApplicationForm trips={props.trips}/>
+        <ApplicationForm/>
         </MainStyle>
     </div>
     )

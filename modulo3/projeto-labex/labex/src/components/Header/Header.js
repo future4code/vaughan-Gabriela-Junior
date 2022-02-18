@@ -22,7 +22,7 @@ const Header = () => {
 
     return (
         <HeaderStyle>
-            <button>Menu</button>
+            {/* <button>Menu</button> */}
             <h1>HermeneX</h1>
             <ButtonContainer>
                 <button onClick={goToListTrips}> Viagens </button>

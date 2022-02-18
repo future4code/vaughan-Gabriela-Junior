@@ -18,20 +18,21 @@ export const HeaderStyle = styled.div`
         border: none;
         color: ${secondColor};
         font-size: 1.5rem;
+
         cursor: pointer;
         :hover{
             border-bottom: 1px solid #c4c4c4;
         }
     }
     h1{
+        justify-self: center;
         align-self: center;
+        margin: 15px 20px;
     }
 `
 
 export const ButtonContainer = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    margin: 10px;
+    margin-right: 30px;
     button{
         margin: 10px;
         background: none;

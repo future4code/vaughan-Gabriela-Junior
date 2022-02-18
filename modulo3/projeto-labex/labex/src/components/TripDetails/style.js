@@ -9,7 +9,7 @@ export const TripCard = styled.div`
     flex-direction: column;
     color: ${secondColor};
     padding: 20px;
-    border: 1px solid ${mainColor};
+    border: 1px solid ${secondColor};
     margin: 10px;
     width: 62vw;
     border-radius: .5em;
@@ -34,7 +34,7 @@ export const CandidatesCard = styled.div`
     flex-direction: column;
     color: ${secondColor};
     padding: 20px;
-    border: 1px solid ${mainColor};
+    border: 1px solid ${secondColor};
     margin: 10px;
     width: 30vw;
     border-radius: .5em;
@@ -71,7 +71,7 @@ export const ApprovedCard = styled.div`
     flex-direction: column;
     color: ${secondColor};
     padding: 20px;
-    border: 1px solid ${mainColor};
+    border: 1px solid ${secondColor};
     margin: 10px;
     width: 30vw;
     border-radius: .5em;
@@ -92,6 +92,7 @@ export const ButtonContainer = styled.div`
 
 export const TitleContainer = styled.div`
         h2{
+        border: 1px solid ${secondColor};
         display: flex;
         justify-content: center;
         border-radius: .5em;

@@ -7,8 +7,6 @@ import { Button } from '../../style-app';
 
 const ListTripsPage = (props) => {
     
-    useEffect(() => props.getTrips(), [])
-    
     const navigate = useNavigate()
 
     const goToHome = () => {
@@ -28,7 +26,7 @@ const ListTripsPage = (props) => {
         </ButtonContainer>
         <TripsContainer>
         <h2>Lista de Viagens</h2>
-        <ListTrips trips={props.trips}/>
+        <ListTrips />
         </TripsContainer>
     </div>
     )
