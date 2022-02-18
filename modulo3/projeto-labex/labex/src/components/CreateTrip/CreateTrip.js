@@ -1,12 +1,15 @@
 import axios from "axios";
+import { useState } from "react";
 import { BASE_URL } from "../../constants/baseurl";
 import { token } from "../../constants/token";
 import useForm from "../../hooks/useForm";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { MainStyle } from "../../style-app";
+import { Loading } from "../ApplicationForm/style";
 import { InputContainer, TitleContainer } from "./style";
 
 const CreateTrip = () => {
+    const [isLoading, setIsLoading] = useState("");
 
     useProtectedPage();
 
@@ -25,6 +28,7 @@ const CreateTrip = () => {
     };
 
     const createTrip = async () => {
+        setIsLoading(true)
         const url = `${BASE_URL}/trips`
         const config = {
             headers: {
@@ -36,9 +40,11 @@ const CreateTrip = () => {
             const response = await axios.post(url, form, config)
             console.log(response.data)
             alert("Viagem criada com sucesso!")
+            setIsLoading(false)
 
         } catch (error) {
             console.log(error.response.data.message)
+            setIsLoading(false)
         };
     };
 
@@ -101,7 +107,15 @@ const CreateTrip = () => {
                         min={50}
                         required
                     />
-                    <button>Enviar</button>
+
+                    {isLoading &&
+                        <Loading>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </Loading>}
+                    {!isLoading && <button>Enviar</button>}
                 </form>
 
             </InputContainer>

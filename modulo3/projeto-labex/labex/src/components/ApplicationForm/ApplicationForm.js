@@ -6,7 +6,7 @@ import { BASE_URL } from '../../constants/baseurl';
 import useForm from '../../hooks/useForm';
 import useRequestData from '../../hooks/useRequestData';
 import { MainStyle } from '../../style-app';
-import { FormContainer, SelectContainer, TitleContainer } from './style';
+import { FormContainer, SelectContainer, TitleContainer, Loading } from './style';
 
 const customStyles = {
     option: () => ({
@@ -20,6 +20,7 @@ const ApplicationForm = () => {
     const [idValue, setIdValue] = useState("");
     const [countryValue, setCountryValue] = useState("");
     const [trips] = useRequestData(`${BASE_URL}/trips`);
+    const [isLoading, setIsLoading] = useState("");
 
     const {form, onChange, cleanFields} = useForm({
         name: "",
@@ -36,7 +37,7 @@ const ApplicationForm = () => {
 
 
     const applyToTrip = async () => {
-        
+        setIsLoading(true)
         const url = `${BASE_URL}/trips/${idValue}/apply`
         const body = {
             name: form.name,
@@ -51,9 +52,11 @@ const ApplicationForm = () => {
             setCountryValue("");
             alert("Você foi inscrito na viagem com sucesso!")
             console.log(response.data)
+            setIsLoading(false)
 
         } catch (error) {
             console.log(error)
+            setIsLoading(false)
         };
     };
 
@@ -137,8 +140,14 @@ const ApplicationForm = () => {
                 onChange={countryHandler}
             />
             </SelectContainer>
-
-            <button>Enviar</button>
+            {isLoading && 
+            <Loading>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </Loading>}
+            {!isLoading && <button>Enviar</button>}
             </form>
 
             </FormContainer>

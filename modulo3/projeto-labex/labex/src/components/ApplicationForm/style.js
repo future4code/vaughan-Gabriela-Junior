@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { mainColor, secondColor } from '../../constants/colors';
 import spaceBackground from '../../assets/imgs/space-background.jpg';
 
@@ -73,5 +73,50 @@ export const TitleContainer = styled.div`
         background-color: ${mainColor};
         padding: 20px;
         width: 35vw;
+    }
+`
+
+export const rotate = keyframes`
+    0% {
+        transform: rotate(0deg); border-width: 8px;
+    }
+    50% {
+        transform: rotate(180deg); border-width: 1px;
+    }
+    100% {
+        transform: rotate(360deg); border-width: 8px;
+    }
+`
+
+export const rotateTwo = keyframes`
+    0% {
+        transform: rotate(0deg); border-width: 1px;
+    }
+    50% {
+        transform: rotate(180deg); border-width: 8px;
+    }
+    100% {
+        transform: rotate(360deg); border-width: 1px;
+    }
+`
+
+export const Loading = styled.div`
+    width: 40px;
+    height: 40px;
+    position: relative;
+    margin: 10px;
+    div{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: 8px solid transparent;
+        border-top-color:${secondColor};
+        animation: ${rotate} 1.5s linear infinite;
+    }
+    div:nth-child(2){
+        border: 8px solid transparent;
+        border-bottom-color: ${secondColor};
+        animation: ${rotateTwo} 1.5s linear infinite;
     }
 `
