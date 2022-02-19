@@ -86,7 +86,7 @@ const CreateTrip = () => {
                         required
                     />
 
-                    <textarea
+                    <input
                         placeholder="Descrição"
                         name="description"
                         value={form.description}

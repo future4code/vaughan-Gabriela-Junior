@@ -20,13 +20,6 @@ export const InputContainer = styled.div`
                 border-radius: .5em;
                 border: none;
             }
-            textarea{
-                margin: 10px;
-                padding: 10px;
-                width: 40vw;
-                border-radius: .5em;
-                border: none;
-            }
             button {
                 border: 1px solid ${secondColor};
                 font-size: 1rem;
