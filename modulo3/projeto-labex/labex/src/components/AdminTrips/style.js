@@ -6,6 +6,10 @@ export const GridContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 
+@media (max-width: 800px)  {
+    grid-template-columns: repeat(2, 1fr);
+} 
+
 @media (max-width: 480px) {
     grid-template-columns: 1fr;
 }
@@ -24,6 +28,7 @@ export const TripCard = styled.div`
     border-radius: .5em;
     background-image: url(${spaceBackground});
     background-position: right;
+    text-align:center;
     h3{
         margin: 10px;
     }
@@ -45,6 +50,10 @@ export const TripCard = styled.div`
         }
     }
 
+@media (max-width: 800px)  {
+    width: 40vw;
+} 
+
 @media (max-width: 480px) {
     width: 85vw;
 }
@@ -65,12 +74,12 @@ export const TitleContainer = styled.div`
         background-color: ${mainColor};
         padding: 20px;
         width: 35vw;
+        text-align:center;
     }
 
 @media (max-width: 480px) {
     h2{
         width: 85vw;
-        text-align: center;
     }
 }
 `

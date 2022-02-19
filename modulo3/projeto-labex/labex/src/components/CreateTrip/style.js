@@ -45,6 +45,18 @@ export const InputContainer = styled.div`
             }
         }
 
+@media (max-width: 800px) {
+    width: 60vw;
+    form{
+        input{
+            width: 55vw;
+        }
+        textarea{
+            width: 55vw;
+        }
+    }
+}
+
 @media (max-width: 480px) {
     width: 85vw;
     form{
@@ -69,6 +81,7 @@ export const TitleContainer = styled.div`
         background-color: ${mainColor};
         padding: 20px;
         width: 35vw;
+        text-align:center;
     }
 
 @media (max-width: 480px) {

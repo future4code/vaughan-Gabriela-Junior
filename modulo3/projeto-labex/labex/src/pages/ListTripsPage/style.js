@@ -16,11 +16,11 @@ export const TripsContainer = styled.div`
         background-color: ${mainColor};
         padding: 20px;
         width: 35vw;
+        text-align:center;
     }
 @media (max-width: 480px) {
     h2{
         width: 85vw;
-        text-align: center;
     }
 }
 `

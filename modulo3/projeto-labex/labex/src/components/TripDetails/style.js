@@ -31,6 +31,10 @@ export const GridContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 
+@media (max-width: 800px) {
+    grid-template-columns: 1fr;
+}
+
 @media (max-width: 480px) {
     grid-template-columns: 1fr;
 }
@@ -72,6 +76,11 @@ export const CandidatesCard = styled.div`
         font-size: 1rem;
     }
 
+
+@media (max-width: 800px) {
+    width: 62vw;
+}
+
 @media (max-width: 480px) {
     width: 85vw;
 }
@@ -96,6 +105,10 @@ export const ApprovedCard = styled.div`
         font-size: 1rem;
     }
 
+@media (max-width: 800px) {
+    width: 62vw;
+}
+
 @media (max-width: 480px) {
     width: 85vw;
 }
@@ -118,12 +131,12 @@ export const TitleContainer = styled.div`
         background-color: ${mainColor};
         padding: 20px;
         width: 35vw;
+        text-align:center;
     }
 
 @media (max-width: 480px) {
     h2{
         width: 85vw;
-        text-align: center;
     }
 }
 `

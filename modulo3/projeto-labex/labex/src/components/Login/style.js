@@ -9,6 +9,7 @@ export const InputContainer = styled.div`
     border-radius: .5em;
     background-image: url(${spaceBackground});
     background-position: center;
+    width: 30vw;
     form {
         display: flex;
         justify-content: center;
@@ -38,6 +39,16 @@ export const InputContainer = styled.div`
             }
         }
     }
+
+@media (max-width: 800px)  {
+    width: 60vw;
+    form {
+        input {
+            width: 55vw;
+        }
+    }
+} 
+
 @media (max-width: 480px) {
     width: 85vw;
     form {
@@ -58,7 +69,8 @@ export const TitleContainer = styled.div`
         color: ${secondColor};
         background-color: ${mainColor};
         padding: 20px;
-        width: 50vw;
+        width: 30vw;
+        text-align:center;
     }
 
 @media (max-width: 480px) {

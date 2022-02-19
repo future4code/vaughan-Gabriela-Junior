@@ -4,10 +4,15 @@ import { secondColor } from '../../constants/colors';
 
 export const TripContainer = styled.div`
     display: grid;
+    width: 80vw;
     grid-template-columns: repeat(3, 1fr);
 
+@media (max-width: 800px) {
+    grid-template-columns: repeat(2, 1fr);
+}
+
 @media (max-width: 480px) {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1fr);
 }
 `
 
@@ -22,11 +27,16 @@ export const TripCard = styled.div`
     border-radius: .5em;
     background-image: url(${spaceBackground});
     background-position: top;
+    word-break: break-word;
     p{
         margin: 10px;
     }
+
+@media (max-width: 800px)  {
+    width: 40vw;
+} 
+
 @media (max-width: 480px) {
-    word-break: break-word;
     width: 85vw;
 }
 `

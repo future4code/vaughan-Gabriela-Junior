@@ -51,6 +51,16 @@ export const FormContainer = styled.div`
         width: 30vw;
     }
 
+@media (max-width: 800px)  {
+    width: 60vw;
+    select {
+        width: 55vw;
+    }
+    input {
+        width: 55vw;
+    }
+} 
+
 @media (max-width: 480px) {
     width: 85vw;
     select {
@@ -66,6 +76,10 @@ export const FormContainer = styled.div`
 export const SelectContainer = styled.div`
     width: 30vw;
     margin: 10px;
+
+@media (max-width: 800px)  {
+    width: 55vw;
+} 
 
 @media (max-width: 480px) {
     width: 75vw;
@@ -83,6 +97,7 @@ export const TitleContainer = styled.div`
         background-color: ${mainColor};
         padding: 20px;
         width: 35vw;
+        text-align:center;
     }
 
 @media (max-width: 480px) {
