@@ -3,11 +3,11 @@ import axios from 'axios';
 import { BASE_URL } from '../../constants/baseurl';
 import { useEffect, useState } from 'react';
 import { useProtectedPage } from '../../hooks/useProtectedPage';
-import { token } from '../../constants/token';
 import { TripCard, CandidatesCard, ApprovedCard, GridContainer, ButtonContainer, TitleContainer } from './style';
 import { MainStyle, Loading } from '../../style-app';
 
 const TripDetails = () => {
+    const token = localStorage.getItem('token')
     const params = useParams()
     const idTrip = params.id;
 
