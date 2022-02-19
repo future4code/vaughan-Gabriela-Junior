@@ -7,7 +7,7 @@ Projeto criado de uma plataforma para vender viagens e se inscrever em viagens.
 https://hermenex.surge.sh/
 
 ## Tecnologias utilizadas
-React; <br />
+React;
 Node.js
 
 ## Funcionalidades
