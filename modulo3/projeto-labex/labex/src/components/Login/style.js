@@ -38,6 +38,14 @@ export const InputContainer = styled.div`
             }
         }
     }
+@media (max-width: 480px) {
+    width: 85vw;
+    form {
+        input {
+        width: 70vw;
+        }
+    }
+}
 `
 
 export const TitleContainer = styled.div`
@@ -52,4 +60,10 @@ export const TitleContainer = styled.div`
         padding: 20px;
         width: 50vw;
     }
+
+@media (max-width: 480px) {
+    h2 {
+        width: 85vw;
+    }
+}
 `

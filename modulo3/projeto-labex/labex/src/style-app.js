@@ -1,6 +1,5 @@
 import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import { mainColor, secondColor } from './constants/colors';
-import spaceBackground from './assets/imgs/space-background.jpg';
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -55,6 +54,12 @@ export const Button = styled.div`
             color: ${mainColor};
             background-color: ${secondColor};
         }
+
+@media (max-width: 480px) {
+    width: 100px;
+    height: 50px;
+    text-align: center;
+}
 `
 
 export const rotate = keyframes`

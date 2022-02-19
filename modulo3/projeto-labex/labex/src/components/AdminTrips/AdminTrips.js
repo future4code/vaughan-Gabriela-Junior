@@ -7,7 +7,6 @@ import { Loading, MainStyle } from '../../style-app';
 import { TripCard, TitleContainer, GridContainer } from './style';
 import useRequestData from '../../hooks/useRequestData';
 
-
 const AdminTrips = () => {
     const navigate = useNavigate()
     const [trips, isLoading, errorTrips, getTrips] = useRequestData(`${BASE_URL}/trips`);
@@ -15,8 +14,6 @@ const AdminTrips = () => {
     useEffect(() => {
         localStorage.getItem('token')
     }, []);
-
-    console.log(token)
 
     const deleteTrip = async (id) => {
         const url = `${BASE_URL}/trips/${id}`
@@ -27,13 +24,12 @@ const AdminTrips = () => {
         }
 
         try {
-            const response = await axios.delete(url, config)
-            console.log(response.data)
+            await axios.delete(url, config)
             alert(`Viagem deletada.`)
             getTrips(`${BASE_URL}/trips`)
 
         } catch (error) {
-            console.log(error.response.data.message)
+            alert(`Ocorreu um erro. Tente novamente. ${error.response.data.message}`)
         }
 
     }
@@ -69,12 +65,11 @@ const AdminTrips = () => {
                         <div></div>
                         <div></div>
                     </Loading>}
-                {/* {!isLoading && errorTrips && <p>Ocorreu um erro. Tente de novo.</p>} */}
                 {!isLoading && trips && renderTrips}
                 {!isLoading && trips && trips.length === 0 && (<p>Não há viagens.</p>)}
             </GridContainer>
         </MainStyle>
     )
-}
+};
 
 export default AdminTrips;

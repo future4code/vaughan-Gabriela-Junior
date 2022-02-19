@@ -11,14 +11,14 @@ const TripDetailsPage = () => {
     }
 
     return (
-    <div>
-        <Header />
-        <MainStyle>
-        <Button onClick={goToAdminHome}>Voltar</Button>
+        <div>
+            <Header />
+            <MainStyle>
+                <Button onClick={goToAdminHome}>Voltar</Button>
 
-        <TripDetails />
-        </MainStyle>
-    </div>
+                <TripDetails />
+            </MainStyle>
+        </div>
     )
 }
 

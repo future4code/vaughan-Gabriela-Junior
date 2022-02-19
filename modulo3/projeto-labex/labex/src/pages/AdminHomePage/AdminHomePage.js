@@ -35,11 +35,11 @@ const AdminHomePage = () => {
                     <Button onClick={goToCreateTrip} > Criar Viagem </Button>
                     <Button onClick={goLogout} > Logout </Button>
                 </ButtonContainer>
-                </MainStyle>
+            </MainStyle>
 
-                <AdminTrips />
+            <AdminTrips />
         </div>
-    )
-}
+    );
+};
 
-export default AdminHomePage
+export default AdminHomePage;

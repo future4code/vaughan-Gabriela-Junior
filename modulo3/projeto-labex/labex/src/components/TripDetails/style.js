@@ -16,15 +16,24 @@ export const TripCard = styled.div`
     background-image: url(${spaceBackground});
     background-size: 100%;
     background-position: bottom;
-    word-break: break-all;
+    word-break: break-word;
     p{
         margin: 10px;
     }
+
+@media (max-width: 480px) {
+    width: 85vw;
+    background-size: 100vh;
+}
 `
 
 export const GridContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+
+@media (max-width: 480px) {
+    grid-template-columns: 1fr;
+}
 `
 
 export const CandidatesCard = styled.div`
@@ -40,7 +49,7 @@ export const CandidatesCard = styled.div`
     border-radius: .5em;
     background-image: url(${spaceBackground});
     background-position: left;
-    word-break: break-all;
+    word-break: break-word;
     button{
         margin: 10px;
         border: 1px solid ${secondColor};
@@ -62,6 +71,10 @@ export const CandidatesCard = styled.div`
         margin: 10px;
         font-size: 1rem;
     }
+
+@media (max-width: 480px) {
+    width: 85vw;
+}
 `
 
 export const ApprovedCard = styled.div`
@@ -77,11 +90,15 @@ export const ApprovedCard = styled.div`
     border-radius: .5em;
     background-image: url(${spaceBackground});
     background-position: right;
-    word-break: break-all;
+    word-break: break-word;
     p{
         margin: 10px;
         font-size: 1rem;
     }
+
+@media (max-width: 480px) {
+    width: 85vw;
+}
 `
 
 export const ButtonContainer = styled.div`
@@ -102,4 +119,11 @@ export const TitleContainer = styled.div`
         padding: 20px;
         width: 35vw;
     }
+
+@media (max-width: 480px) {
+    h2{
+        width: 85vw;
+        text-align: center;
+    }
+}
 `

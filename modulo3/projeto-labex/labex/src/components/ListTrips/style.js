@@ -5,6 +5,10 @@ import { secondColor } from '../../constants/colors';
 export const TripContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+
+@media (max-width: 480px) {
+    grid-template-columns: repeat(1, 1fr);
+}
 `
 
 export const TripCard = styled.div`
@@ -21,4 +25,8 @@ export const TripCard = styled.div`
     p{
         margin: 10px;
     }
+@media (max-width: 480px) {
+    word-break: break-word;
+    width: 85vw;
+}
 `

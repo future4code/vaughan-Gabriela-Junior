@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom'
 
 export const useProtectedPage = () => {
     const navigate = useNavigate();
-    
+
     useEffect(() => {
         const token = localStorage.getItem("token");
 
         if (token === null) {
-            console.log('Não está logado!')
+            alert(`Você não tem acesso à essa pagina.`)
             navigate('/login')
+
         }
     }, [])
-}
+};

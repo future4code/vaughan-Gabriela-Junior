@@ -2,11 +2,10 @@ import Header from '../../components/Header/Header';
 import ListTrips from "../../components/ListTrips/ListTrips";
 import { useNavigate } from 'react-router-dom';
 import { TripsContainer, ButtonContainer } from './style';
-import { useEffect } from 'react';
 import { Button } from '../../style-app';
 
-const ListTripsPage = (props) => {
-    
+const ListTripsPage = () => {
+
     const navigate = useNavigate()
 
     const goToHome = () => {
@@ -18,18 +17,18 @@ const ListTripsPage = (props) => {
     }
 
     return (
-    <div>
-        <Header />
-        <ButtonContainer>
-        <Button onClick={goToHome}> Voltar </Button> 
-        <Button onClick={goToApplication}>Increva-se</Button>
-        </ButtonContainer>
-        <TripsContainer>
-        <h2>Lista de Viagens</h2>
-        <ListTrips />
-        </TripsContainer>
-    </div>
+        <div>
+            <Header />
+            <ButtonContainer>
+                <Button onClick={goToHome}> Voltar </Button>
+                <Button onClick={goToApplication}>Increva-se</Button>
+            </ButtonContainer>
+            <TripsContainer>
+                <h2>Lista de Viagens</h2>
+                <ListTrips />
+            </TripsContainer>
+        </div>
     )
-}
+};
 
-export default ListTripsPage
+export default ListTripsPage;

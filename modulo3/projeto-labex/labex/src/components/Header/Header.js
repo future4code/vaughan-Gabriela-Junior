@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { HeaderStyle, ButtonContainer } from './style';
 import { token } from '../../constants/token';
-import { useEffect } from 'react';
 
 const Header = () => {
 
@@ -22,7 +21,6 @@ const Header = () => {
 
     return (
         <HeaderStyle>
-            {/* <button>Menu</button> */}
             <h1>HermeneX</h1>
             <ButtonContainer>
                 <button onClick={goToListTrips}> Viagens </button>

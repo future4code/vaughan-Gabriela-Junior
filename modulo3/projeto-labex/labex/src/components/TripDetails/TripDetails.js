@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import axios from 'axios';
 import { BASE_URL } from '../../constants/baseurl';
 import { useEffect, useState } from 'react';
@@ -34,10 +34,9 @@ const TripDetails = () => {
         try {
             const response = await axios.get(url, config)
             setTripDetails(response.data.trip)
-            console.log(response.data.trip)
             setIsLoading(false);
         } catch (error) {
-            console.log(error.response.data.message)
+            alert(`Ocorreu um erro. Tente novamente. ${error.response.data.message}`)
             setIsLoading(false)
         };
     };
@@ -54,12 +53,11 @@ const TripDetails = () => {
         }
 
         try {
-            const response = await axios.put(url, body, config)
-            console.log(response.data)
+            await axios.put(url, body, config)
             getTripDetails()
 
         } catch (error) {
-            console.log(error.response)
+            alert(`Ocorreu um erro. Tente novamente. ${error.response}`)
         }
     };
 
@@ -74,8 +72,8 @@ const TripDetails = () => {
                         <p>Profissão: {candidate.profession}</p>
                         <p>Texto de candidatura: {candidate.applicationText}</p>
                         <ButtonContainer>
-                        <button onClick={() => { decideCandidate(candidate.id, false) }}>Recusar</button>
-                        <button onClick={() => { decideCandidate(candidate.id, true) }}>Aprovar</button>
+                            <button onClick={() => { decideCandidate(candidate.id, false) }}>Recusar</button>
+                            <button onClick={() => { decideCandidate(candidate.id, true) }}>Aprovar</button>
                         </ButtonContainer>
                     </CandidatesCard>
                 )
@@ -103,42 +101,42 @@ const TripDetails = () => {
     return (
         <MainStyle>
             <TitleContainer>
-            <h2>Detalhes da Viagem</h2>
+                <h2>Detalhes da Viagem</h2>
             </TitleContainer>
 
             {isLoading &&
-                    <Loading>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </Loading>}
+                <Loading>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </Loading>}
 
-                    
+
             {!isLoading &&
-            <TripCard >
-                <p>Nome: {tripDetails.name}</p>
-                <p>Descrição: {tripDetails.description}</p>
-                <p>Planeta: {tripDetails.planet}</p>
-                <p>Duração: {tripDetails.durationInDays} dias</p>
-                <p>Data: {tripDetails.date}</p>
+                <TripCard >
+                    <p>Nome: {tripDetails.name}</p>
+                    <p>Descrição: {tripDetails.description}</p>
+                    <p>Planeta: {tripDetails.planet}</p>
+                    <p>Duração: {tripDetails.durationInDays} dias</p>
+                    <p>Data: {tripDetails.date}</p>
 
-            </TripCard>}
+                </TripCard>}
 
             <TitleContainer>
-            <h2>Candidatos pendentes</h2>
+                <h2>Candidatos pendentes</h2>
             </TitleContainer>
 
             <GridContainer>
-            {!isLoading && renderCandidates()}
+                {!isLoading && renderCandidates()}
             </GridContainer>
 
             <TitleContainer>
-            <h2>Candidatos aprovados</h2>
+                <h2>Candidatos aprovados</h2>
             </TitleContainer>
 
             <GridContainer>
-            {!isLoading && renderApproved()}
+                {!isLoading && renderApproved()}
             </GridContainer>
 
         </MainStyle>

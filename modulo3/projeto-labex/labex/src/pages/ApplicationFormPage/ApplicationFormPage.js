@@ -11,14 +11,14 @@ const ApplicationFormPage = (props) => {
     };
 
     return (
-    <div>
-        <Header />
-        <MainStyle>
-        <Button onClick={goToListTrips} > Voltar </Button>
-        <ApplicationForm/>
-        </MainStyle>
-    </div>
-    )
-}
+        <div>
+            <Header />
+            <MainStyle>
+                <Button onClick={goToListTrips} > Voltar </Button>
+                <ApplicationForm />
+            </MainStyle>
+        </div>
+    );
+};
 
-export default ApplicationFormPage
+export default ApplicationFormPage;

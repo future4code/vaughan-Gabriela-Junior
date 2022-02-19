@@ -1,6 +1,6 @@
 import { BASE_URL } from '../../constants/baseurl';
 import { TripCard, TripContainer } from './style';
-import useRequestData from '../../hooks/useRequestData'; 
+import useRequestData from '../../hooks/useRequestData';
 import { Loading } from '../../style-app';
 
 const ListTrips = () => {
@@ -20,20 +20,20 @@ const ListTrips = () => {
     });
 
     return (
-    <TripContainer>
-        {isLoading && 
-        <Loading> 
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        </Loading> }
+        <TripContainer>
+            {isLoading &&
+                <Loading>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </Loading>}
 
-        {!isLoading && errorTrips && <p>Ocorreu um erro. Tente de novo.</p>}
-        {!isLoading && trips && renderTrips}
-        {!isLoading && trips && trips.length === 0 && (<p>Não há viagens.</p>)}
-    </TripContainer>
-    )
-}
+            {!isLoading && errorTrips && <p>Ocorreu um erro. Tente de novo.</p>}
+            {!isLoading && trips && renderTrips}
+            {!isLoading && trips && trips.length === 0 && (<p>Não há viagens.</p>)}
+        </TripContainer>
+    );
+};
 
-export default ListTrips
+export default ListTrips;

@@ -17,6 +17,12 @@ export const TripsContainer = styled.div`
         padding: 20px;
         width: 35vw;
     }
+@media (max-width: 480px) {
+    h2{
+        width: 85vw;
+        text-align: center;
+    }
+}
 `
 
 export const ButtonContainer = styled.div`

@@ -13,14 +13,14 @@ const CreateTripPage = () => {
     }
 
     return (
-    <div>
-        <Header />
-        <MainStyle>
-        <Button onClick={goToAdminHome}>Voltar</Button>
-        <CreateTrip />
-        </MainStyle>
-    </div>
-    )
-}
+        <div>
+            <Header />
+            <MainStyle>
+                <Button onClick={goToAdminHome}>Voltar</Button>
+                <CreateTrip />
+            </MainStyle>
+        </div>
+    );
+};
 
-export default CreateTripPage
+export default CreateTripPage;

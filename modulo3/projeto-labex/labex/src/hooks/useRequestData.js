@@ -15,18 +15,15 @@ const useRequestData = (url) => {
   
       try {
         const response = await axios.get(url)
-        console.log(response.data.trips)
         setData(response.data.trips)
         setIsLoading(false);
   
       } catch (error) {
-        console.log(error)
+        alert(`Ocorreu um erro. Tente novamente. ${error.response}`)
         setError(error);
         setIsLoading(false);
       };
     };
-  
-
   
     return [data, isLoading, error, getTrips];
   };

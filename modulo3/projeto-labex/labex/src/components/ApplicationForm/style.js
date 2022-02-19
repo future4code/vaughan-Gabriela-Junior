@@ -9,6 +9,12 @@ export const FormContainer = styled.div`
     background-image: url(${spaceBackground});
     background-position: bottom;
     margin: 10px;
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
     select{
         margin: 10px;
         width: 30vw;
@@ -18,18 +24,7 @@ export const FormContainer = styled.div`
             border: 2px solid lightblue;
         }
     }
-    textarea{
-        border: none;
-        border-radius: .5em;
-        margin-left: 10px;
-        width: 30vw;
-    }
-    form{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+
     button{
         border: 1px solid ${secondColor};
         font-size: 1rem;
@@ -55,11 +50,26 @@ export const FormContainer = styled.div`
         padding: 10px;
         width: 30vw;
     }
+
+@media (max-width: 480px) {
+    width: 85vw;
+    select {
+        width: 75vw;
+    }
+    input {
+        width: 75vw;
+    }
+
+}
 `
 
 export const SelectContainer = styled.div`
     width: 30vw;
     margin: 10px;
+
+@media (max-width: 480px) {
+    width: 75vw;
+}
 `
 
 export const TitleContainer = styled.div`
@@ -74,6 +84,12 @@ export const TitleContainer = styled.div`
         padding: 20px;
         width: 35vw;
     }
+
+@media (max-width: 480px) {
+    h2{
+        width: 85vw;
+    }
+}
 `
 
 export const rotate = keyframes`

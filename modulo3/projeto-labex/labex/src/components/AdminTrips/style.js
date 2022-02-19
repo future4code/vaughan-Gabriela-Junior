@@ -5,6 +5,10 @@ import spaceBackground from '../../assets/imgs/space-background.jpg';
 export const GridContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+
+@media (max-width: 480px) {
+    grid-template-columns: 1fr;
+}
 `
 
 export const TripCard = styled.div`
@@ -40,6 +44,10 @@ export const TripCard = styled.div`
             background-color: ${secondColor};
         }
     }
+
+@media (max-width: 480px) {
+    width: 85vw;
+}
 `
 
 export const ButtonContainer = styled.div`
@@ -58,4 +66,11 @@ export const TitleContainer = styled.div`
         padding: 20px;
         width: 35vw;
     }
+
+@media (max-width: 480px) {
+    h2{
+        width: 85vw;
+        text-align: center;
+    }
+}
 `

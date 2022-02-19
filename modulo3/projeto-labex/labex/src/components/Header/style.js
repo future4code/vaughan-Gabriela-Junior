@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import spaceBackground from '../../assets/imgs/space-background.jpg';
-import { mainColor, secondColor } from '../../constants/colors';
+import { secondColor } from '../../constants/colors';
 
 export const HeaderStyle = styled.div`
     display: flex;
@@ -29,6 +29,10 @@ export const HeaderStyle = styled.div`
         align-self: center;
         margin: 15px 20px;
     }
+
+@media (max-width: 480px) {
+    width: 100vw;
+}
 `
 
 export const ButtonContainer = styled.div`
@@ -44,4 +48,13 @@ export const ButtonContainer = styled.div`
             border-bottom: 1px solid #c4c4c4;
         }
     }
+
+@media (max-width: 480px) {
+    button{
+        font-size: 1.3rem;
+        border: solid 1px ${secondColor};
+        padding: 10px;
+        border-radius: .5em;
+    }
+}
 `

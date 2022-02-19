@@ -37,13 +37,12 @@ const CreateTrip = () => {
         };
 
         try {
-            const response = await axios.post(url, form, config)
-            console.log(response.data)
+            await axios.post(url, form, config)
             alert("Viagem criada com sucesso!")
             setIsLoading(false)
 
         } catch (error) {
-            console.log(error.response.data.message)
+            alert(`Ocorreu um erro. Tente novamente. ${error.response.data.message}`)
             setIsLoading(false)
         };
     };

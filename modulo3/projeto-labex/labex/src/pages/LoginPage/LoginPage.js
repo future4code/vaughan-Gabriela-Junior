@@ -12,13 +12,13 @@ const LoginPage = () => {
     }
 
     return (
-    <div>
-        <Header />
-        <MainStyle>
-        <Button onClick={goToHome}>Voltar</Button>
-        <Login />
-        </MainStyle>
-    </div>
+        <div>
+            <Header />
+            <MainStyle>
+                <Button onClick={goToHome}>Voltar</Button>
+                <Login />
+            </MainStyle>
+        </div>
     )
 }
 
