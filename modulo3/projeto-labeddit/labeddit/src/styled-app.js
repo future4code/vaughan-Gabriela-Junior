@@ -7,3 +7,10 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     }
 `
+
+export const MainStyle = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`

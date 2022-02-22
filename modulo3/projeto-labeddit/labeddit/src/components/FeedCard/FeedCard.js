@@ -1,14 +1,13 @@
-import axios from "axios";
-import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { baseURL } from "../../constants/url";
-import useRequestData from "../../hooks/useRequestData";
+import { useNavigate } from "react-router-dom";
 import { goToPost } from "../../routes/coordinator";
 import { changePostVote, createPostVote } from "../../services/posts";
+import { PostContainer, ButtonContainer } from "./styled";
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import { Button } from "@material-ui/core";
+import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 
-const FeedCard = () => {
+const FeedCard = ({posts}) => {
     const navigate = useNavigate();
-    const [posts] = useRequestData([], `${baseURL}/posts`);
     console.log(posts);
 
     const changeToPost = (id) => {
@@ -17,17 +16,21 @@ const FeedCard = () => {
 
     const renderPosts = posts && posts.map((post) => {
         return (
-            <div key={post.id}>
+            <PostContainer key={post.id}>
                 <h3>Título: {post.title}</h3>
                 <p>{post.body}</p>
                 <p>Criado por: {post.username}</p>
                 <p>Feito em: {post.createdAt}</p>
-                <p>Comentários: {post.commentCount}</p>
-                <p>Curtidas: {post.voteSum}</p>
+                <p>Comentários: {post.commentCount == null ? 0 : (post.commentCount)}</p>
                 <button onClick={() => changeToPost(post.id)}>Ver post</button>
-                <button onClick ={() => createPostVote(post.id)}>Curtir Post</button>
-                <button onClick ={() => changePostVote(post.id)}>Descurtir Post</button>
-            </div>
+                <ButtonContainer>
+                <Button onClick ={() => changePostVote(post.id)}><ThumbDownIcon /></Button>
+                {post.voteSum == null ? 0 : (post.voteSum) }
+                <Button onClick ={() => createPostVote(post.id)}><ThumbUpIcon /></Button>
+                
+                
+                </ButtonContainer>
+            </PostContainer>
         )
     });
 
