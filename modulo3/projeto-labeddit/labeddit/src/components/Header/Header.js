@@ -45,7 +45,7 @@ const Header = ({loginButton, setLoginButton}) => {
         <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <Typography variant="h6" className={classes.title}>
+            <Typography variant="h4" className={classes.title}>
             HermenEddit
             </Typography>
             <Button color="inherit" onClick={() => goToFeed(navigate)} > Home </Button>

@@ -23,7 +23,6 @@ const LoginPage = ({setLoginButton}) => {
       <MainStyle>
 
         <Login setLoginButton={setLoginButton}/>
-
         <Button variant="contained" color="primary" onClick={() => {goToSignUp(navigate)}}>Cadastre-se</Button>
       </MainStyle>
     );

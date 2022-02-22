@@ -40,7 +40,7 @@ export const createComment = async (id, body, clear, getData) => {
   }
 };
 
-export const createPostVote = async (id) => {
+export const createPostVote = async (id, getData) => {
   const url = `${baseURL}/posts/${id}/votes`
   const body = {
     direction: 1
@@ -54,12 +54,13 @@ export const createPostVote = async (id) => {
   try {
     const response = await axios.post(url, body, config)
     console.log(response.data)
+    getData(`${baseURL}/posts`)
   } catch (error) {
     console.log(error.response)
   }
 };
 
-export const changePostVote = async (id) => {
+export const changePostVote = async (id, getData) => {
   const url = `${baseURL}/posts/${id}/votes`
   const body = {
     direction: -1
@@ -72,12 +73,13 @@ export const changePostVote = async (id) => {
   try {
     const response = await axios.put(url, body, config)
     console.log(response.data)
+    getData(`${baseURL}/posts`)
   } catch (error) {
     console.log(error.response)
   }
 };
 
-export const createCommentVote = async (id) => {
+export const createCommentVote = async (id, getData, param) => {
   const url = `${baseURL}/comments/${id}/votes`
   const body = {
     direction: 1
@@ -90,12 +92,14 @@ export const createCommentVote = async (id) => {
   try {
     const response = await axios.put(url, body, config)
     console.log(response.data)
+    getData(`${baseURL}/posts/${param}/comments`)
+
   } catch (error) {
     console.log(error.response)
-  }
+  };
 };
 
-export const changeCommentVote = async (id) => {
+export const changeCommentVote = async (id, getData, param) => {
   const url = `${baseURL}/comments/${id}/votes`
   const body = {
     direction: -1
@@ -108,12 +112,14 @@ export const changeCommentVote = async (id) => {
   try {
     const response = await axios.put(url, body, config)
     console.log(response.data)
+    getData(`${baseURL}/posts/${param}/comments`)
   } catch (error) {
     console.log(error.response)
-  }
+  };
+
 };
 
-export const deletePostVote = async (id) => {
+export const deletePostVote = async (id, getData) => {
   const url = `${baseURL}/posts/${id}/votes`
   const config = {
       headers: {
@@ -124,12 +130,13 @@ export const deletePostVote = async (id) => {
   try {
       const response = await axios.delete(url, config)
       console.log(response.data);
+      getData(`${baseURL}/posts`)
   } catch (error) {
       console.log(error.response)
   }
 }
 
-export const deleteCommentVote = async (id) => {
+export const deleteCommentVote = async (id, getData, param) => {
   const url = `${baseURL}/comments/${id}/votes`
   const config = {
       headers: {
@@ -140,6 +147,7 @@ export const deleteCommentVote = async (id) => {
   try {
       const response = await axios.delete(url, config)
       console.log(response.data);
+      getData(`${baseURL}/posts/${param}/comments`)
   } catch (error) {
       console.log(error.response)
   }

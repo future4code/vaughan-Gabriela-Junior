@@ -1,15 +1,14 @@
 import SignUp from "../../components/SignUp/SignUp";
-import useUnprotectedPage from '../../hooks/useUnprotectedPage';
+import useUnprotectedPage from "../../hooks/useUnprotectedPage";
+import { MainStyle } from "../../styled-app";
 
 
 const SignUpPage = ({setLoginButton}) => {
-      // useUnprotectedPage();
-
+  useUnprotectedPage();
     return (
-      <div>
-        SignUp Page!
+      <MainStyle>
         <SignUp setLoginButton={setLoginButton}/>
-      </div>
+      </MainStyle>
     );
   }
   

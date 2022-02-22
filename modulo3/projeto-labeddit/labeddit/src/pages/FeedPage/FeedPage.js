@@ -13,7 +13,7 @@ const FeedPage = () => {
     return (
       <MainStyle>
         <PostForm getPosts={getPosts}/>
-        <FeedCard posts={posts}/>
+        <FeedCard posts={posts} getPosts={getPosts}/>
       </MainStyle>
     );
   }

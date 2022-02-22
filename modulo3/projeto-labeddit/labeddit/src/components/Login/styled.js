@@ -9,6 +9,7 @@ export const LoginContainer = styled.div`
     align-items: center;
     margin: 20px;
     width: 40vw;
+    padding: 20px;
     border: 1px solid ${mainColor};
     border-radius: .5em;
     form{

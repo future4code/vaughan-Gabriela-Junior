@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import useForm from '../../hooks/useForm';
 import {login} from '../../services/user';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField, Typography } from '@material-ui/core';
 import { LoginContainer } from './styled';
 
 const Login = ({setLoginButton}) => {
@@ -20,6 +20,7 @@ const Login = ({setLoginButton}) => {
     return (
       <LoginContainer>
         <AccountCircleIcon color="primary" style={{ fontSize: 80 }}/>
+        <Typography variant="h4" color="primary">Login</Typography>
 
         <form
         onSubmit={onSubmitLogin}
@@ -47,6 +48,8 @@ const Login = ({setLoginButton}) => {
           required
           />
             <Button
+            variant="contained"
+            color="primary"
             type="submit"
             margin="normal"
             >Enviar</Button>
