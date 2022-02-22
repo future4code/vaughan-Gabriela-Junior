@@ -1,3 +1,4 @@
+import PostCard from "../../components/PostCard/PostCard";
 import useProtectedPage from "../../hooks/useProtectedPage";
 
 const PostPage = () => {
@@ -6,6 +7,7 @@ const PostPage = () => {
     return (
       <div>
         PostPage!
+        <PostCard />
       </div>
     );
   }

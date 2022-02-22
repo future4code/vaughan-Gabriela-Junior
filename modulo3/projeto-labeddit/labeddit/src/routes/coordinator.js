@@ -14,6 +14,6 @@ export const goToCreatePost = (navigate) => {
     navigate("/createpost");
 };
 
-export const goToPost = (navigate) => {
-    navigate("/post");
+export const goToPost = (navigate, id) => {
+    navigate(`/post/${id}`);
 };

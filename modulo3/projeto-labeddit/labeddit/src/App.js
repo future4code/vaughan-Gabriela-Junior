@@ -16,7 +16,6 @@ const App = () => {
         <Header loginButton={loginButton} setLoginButton={setLoginButton}/>
         <Router setLoginButton={setLoginButton} />
       </BrowserRouter>
-      LabEddit!
     </div>
   );
 }

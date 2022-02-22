@@ -7,10 +7,10 @@ const useRequestData = (initialData, url) => {
     const [data, setData] = useState(initialData);
 
     useEffect(() => {
-        getPosts(url)
+        getData(url)
     }, [url])
 
-    const getPosts = async (url) => {
+    const getData = async (url) => {
         const config = {
             headers: {
                 Authorization: token

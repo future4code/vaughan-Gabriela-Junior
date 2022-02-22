@@ -19,7 +19,7 @@ const Router = ({setLoginButton}) => {
 
                 <Route path="/createpost" element={<CreatePostPage />} />
 
-                <Route path="/post" element={<PostPage />} />
+                <Route path="/post/:id" element={<PostPage />} />
 
                 <Route path="*" element={<ErrorPage/>} />
 
