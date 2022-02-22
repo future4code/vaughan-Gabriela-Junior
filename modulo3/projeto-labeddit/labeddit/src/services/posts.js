@@ -40,10 +40,10 @@ export const createComment = async (id, body, clear, getData) => {
   }
 };
 
-export const createPostVote = async (id, getData) => {
+export const createPostVote = async (id, getData, status) => {
   const url = `${baseURL}/posts/${id}/votes`
   const body = {
-    direction: 1
+    direction: status
   }
   const config = {
     headers: {

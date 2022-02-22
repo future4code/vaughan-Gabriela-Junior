@@ -28,9 +28,9 @@ const FeedCard = ({posts, getPosts}) => {
                 <Typography variant="h5" paragraph>{post.title} </Typography>
                 <Typography variant="body1" paragraph>{post.body} </Typography></CardButton>
                 <ButtonContainer>
-                <Button onClick ={() => changePostVote(post.id, getPosts)}><ThumbDownIcon /></Button>
+                <Button onClick ={() => createPostVote(post.id, getPosts, -1)}><ThumbDownIcon /></Button>
                 <Button onClick={() => deletePostVote(post.id, getPosts)}>{post.voteSum == null ? 0 : (post.voteSum) }</Button>
-                <Button onClick ={() => createPostVote(post.id, getPosts)}><ThumbUpIcon /></Button>
+                <Button onClick ={() => createPostVote(post.id, getPosts, 1)}><ThumbUpIcon /></Button>
                 <Button onClick={() => changeToPost(post.id)}> <CommentIcon /> {post.commentCount == null ? 0 : (post.commentCount)} comentários</Button>
                 </ButtonContainer>
 
