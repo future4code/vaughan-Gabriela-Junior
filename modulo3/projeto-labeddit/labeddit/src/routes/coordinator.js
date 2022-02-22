@@ -10,10 +10,6 @@
     navigate("/signup");
 };
 
-export const goToCreatePost = (navigate) => {
-    navigate("/createpost");
-};
-
 export const goToPost = (navigate, id) => {
     navigate(`/post/${id}`);
 };

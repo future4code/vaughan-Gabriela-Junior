@@ -1,11 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { baseURL } from "../../constants/url";
 import useRequestData from "../../hooks/useRequestData";
 import { goToPost } from "../../routes/coordinator";
+import { changePostVote, createPostVote } from "../../services/posts";
 
 const FeedCard = () => {
     const navigate = useNavigate();
-    const posts = useRequestData([], `${baseURL}/posts`);
+    const [posts] = useRequestData([], `${baseURL}/posts`);
     console.log(posts);
 
     const changeToPost = (id) => {
@@ -22,6 +25,8 @@ const FeedCard = () => {
                 <p>Comentários: {post.commentCount}</p>
                 <p>Curtidas: {post.voteSum}</p>
                 <button onClick={() => changeToPost(post.id)}>Ver post</button>
+                <button onClick ={() => createPostVote(post.id)}>Curtir Post</button>
+                <button onClick ={() => changePostVote(post.id)}>Descurtir Post</button>
             </div>
         )
     });
