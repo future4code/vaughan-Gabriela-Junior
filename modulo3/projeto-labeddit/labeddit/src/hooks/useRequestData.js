@@ -19,14 +19,13 @@ const useRequestData = (initialData, url) => {
 
         try {
             const response = await axios.get(url, config)
-            console.log(response.data)
             setData(response.data)
         } catch (error) {
-            console.log(error.response.data)
-        }
-    }
+            alert(error.response.data)
+        };
+    };
 
-    return (data)
-}
+    return (data);
+};
 
 export default useRequestData;

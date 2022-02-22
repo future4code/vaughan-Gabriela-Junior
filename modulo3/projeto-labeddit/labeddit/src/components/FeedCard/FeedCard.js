@@ -6,11 +6,11 @@ import { goToPost } from "../../routes/coordinator";
 const FeedCard = () => {
     const navigate = useNavigate();
     const posts = useRequestData([], `${baseURL}/posts`);
-    console.log(posts)
+    console.log(posts);
 
     const changeToPost = (id) => {
-        goToPost(navigate, id)
-    }
+        goToPost(navigate, id);
+    };
 
     const renderPosts = posts && posts.map((post) => {
         return (
@@ -24,13 +24,13 @@ const FeedCard = () => {
                 <button onClick={() => changeToPost(post.id)}>Ver post</button>
             </div>
         )
-    })
+    });
 
     return (
         <div>
      {renderPosts}
         </div>
-    )
+    );
 };
 
 export default FeedCard;
