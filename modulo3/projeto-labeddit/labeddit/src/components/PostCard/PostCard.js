@@ -1,5 +1,5 @@
 import { Button, CircularProgress, TextField, Typography } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { baseURL } from '../../constants/url';
 import useForm from '../../hooks/useForm';
@@ -41,6 +41,7 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
 
     const [comments, getComments, isLoadingComments, errorComments] = useRequestData([], `${baseURL}/posts/${params.id}/comments`);
 
+
     const submitComment = (event) => {
         event.preventDefault();
         createComment(params.id, form, clear, getComments, getPosts, `${baseURL}/posts`)
@@ -58,9 +59,13 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
                         <Typography variant="h5" paragraph>{post.title} </Typography>
                         <Typography variant="body1" paragraph>{post.body} </Typography>
                         <ButtonContainer>
-                            <Button onClick={() => changePostVote(post.id, getPosts)}><ThumbDownIcon /></Button>
+                            {post.userVote === 1 || post.userVote === -1 ? <Button onClick={() => changePostVote(post.id, getPosts, -1)}> <ThumbDownIcon /></Button> :
+                                <Button onClick={() => createPostVote(post.id, getPosts, -1)}> <ThumbDownIcon /> </Button>
+                            }
                             <Button onClick={() => deletePostVote(post.id, getPosts)}>{post.voteSum == null ? 0 : (post.voteSum)}</Button>
-                            <Button onClick={() => createPostVote(post.id, getPosts, 1)}> <ThumbUpIcon /></Button>
+                            {post.userVote === 1 || post.userVote === -1 ? <Button onClick={() => changePostVote(post.id, getPosts, 1)}> <ThumbUpIcon /></Button> :
+                                <Button onClick={() => createPostVote(post.id, getPosts, 1)}> <ThumbUpIcon /> </Button>
+                            }
                             <Button> <CommentIcon /> {post.commentCount == null ? 0 : (post.commentCount)} comentários</Button>
                         </ButtonContainer>
                     </CardContent></Card>
@@ -80,9 +85,15 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
                         <Typography variant="caption">{comment.username} em {fullDate} às {time}</Typography>
                     </UserContainer>
                     <Typography variant="h6" paragraph>{comment.body}</Typography>
-                    <Button onClick={() => changeCommentVote(comment.id, getComments, params.id)}><ThumbDownIcon /></Button>
+                    {comment.userVote === 1 || comment.userVote === -1 ?
+                        <Button onClick={() => changeCommentVote(comment.id, getComments, params.id, -1)}><ThumbDownIcon /> </Button> :
+                        <Button onClick={() => createCommentVote(comment.id, getComments, params.id, 1)}><ThumbDownIcon /></Button>
+                    }
                     <Button onClick={() => deleteCommentVote(comment.id, getComments, params.id)}>{comment.voteSum == null ? 0 : (comment.voteSum)}</Button>
-                    <Button onClick={() => createCommentVote(comment.id, getComments, params.id)}><ThumbUpIcon /></Button>
+                    {comment.userVote === 1 || comment.userVote === -1 ?
+                        <Button onClick={() => changeCommentVote(comment.id, getComments, params.id, 1)}><ThumbUpIcon /></Button> :
+                        <Button onClick={() => createCommentVote(comment.id, getComments, params.id, 1)}><ThumbUpIcon /></Button>
+                    }
                 </CardContent>
             </Card>
         </CommentContainer>
@@ -96,27 +107,31 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
                 {!isLoading && error && <p>Ocorreu um erro.</p>}
                 {!isLoading && posts && renderPost}
             </PostDiv>
-            {!isLoadingComments && errorComments && <p>Ocorreu um erro.</p>}
-            {!isLoading && comments && <div> <FormContainer>
-                <form onSubmit={submitComment}>
 
-                    <TextField
-                    className={classes.root}
-                        variant="outlined"
-                        label="Novo Comentário"
-                        name="body"
-                        value={form.body}
-                        onChange={onChange}
-                        multiline
-                        minRows={4}
-                        margin="dense"
-                        fullWidth
-                        required
-                    />
-                    <Button variant="contained" color="primary" type="submit">Postar</Button>
-                </form>
-            </FormContainer>
-                {renderComments} </div>
+            {!isLoadingComments && errorComments && <p>Ocorreu um erro.</p>}
+            {!isLoading && comments &&
+                <div>
+                    <FormContainer>
+                        <form onSubmit={submitComment}>
+
+                            <TextField
+                                className={classes.root}
+                                variant="outlined"
+                                label="Novo Comentário"
+                                name="body"
+                                value={form.body}
+                                onChange={onChange}
+                                multiline
+                                minRows={4}
+                                margin="dense"
+                                fullWidth
+                                required
+                            />
+                            <Button variant="contained" color="primary" type="submit">Postar</Button>
+                        </form>
+                    </FormContainer>
+                    {renderComments}
+                </div>
 
             }
         </div>

@@ -11,20 +11,19 @@ const useStyles = makeStyles({
   },
 });
 
-const FeedPage = ({posts, getPosts, currentPage, changeCurrentPage, isLoading, error}) => {
+const FeedPage = ({ posts, getPosts, currentPage, changeCurrentPage, isLoading, error }) => {
   const classes = useStyles()
   useProtectedPage();
 
-    console.log(currentPage)
-    return (
-      <MainStyle>
-        <PostForm getPosts={getPosts}/>
-        {!isLoading && <Pagination className={classes.root} count={10} shape="rounded" color="primary" page={currentPage} onChange={changeCurrentPage}/>}
-        <FeedCard posts={posts} getPosts={getPosts} isLoading={isLoading} error={error} />
-        {!isLoading && <Pagination className={classes.root} count={10} shape="rounded" color="primary" page={currentPage} onChange={changeCurrentPage}/>}
-      </MainStyle>
-    );
-  }
-  
-  export default FeedPage;
-  
+  console.log(currentPage)
+  return (
+    <MainStyle>
+      <PostForm getPosts={getPosts} />
+      {!isLoading && <Pagination className={classes.root} count={10} shape="rounded" color="primary" page={currentPage} onChange={changeCurrentPage} />}
+      <FeedCard posts={posts} getPosts={getPosts} isLoading={isLoading} error={error} />
+      {!isLoading && <Pagination className={classes.root} count={10} shape="rounded" color="primary" page={currentPage} onChange={changeCurrentPage} />}
+    </MainStyle>
+  );
+};
+
+export default FeedPage;
