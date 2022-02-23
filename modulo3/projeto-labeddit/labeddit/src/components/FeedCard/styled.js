@@ -29,3 +29,10 @@ export const CardButton = styled.button`
     width: 100%;
     text-align: start;
 `
+
+export const SearchContainer = styled.button`
+    width: 30vw;
+    display: flex;
+    align-items: center;
+    border: 1px solid ${mainColor}
+`

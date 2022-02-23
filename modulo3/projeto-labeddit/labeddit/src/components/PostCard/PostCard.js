@@ -1,4 +1,4 @@
-import { Button, CircularProgress, TextField, Typography } from '@material-ui/core';
+import { Button, CircularProgress, TextField, Tooltip, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { baseURL } from '../../constants/url';
@@ -62,7 +62,9 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
                             {post.userVote === 1 || post.userVote === -1 ? <Button onClick={() => changePostVote(post.id, getPosts, -1)}> <ThumbDownIcon /></Button> :
                                 <Button onClick={() => createPostVote(post.id, getPosts, -1)}> <ThumbDownIcon /> </Button>
                             }
-                            <Button onClick={() => deletePostVote(post.id, getPosts)}>{post.voteSum == null ? 0 : (post.voteSum)}</Button>
+                            <Tooltip title="Delete seu voto" >
+                                <Button onClick={() => deletePostVote(post.id, getPosts)}>{post.voteSum == null ? 0 : (post.voteSum)}</Button>
+                            </Tooltip>
                             {post.userVote === 1 || post.userVote === -1 ? <Button onClick={() => changePostVote(post.id, getPosts, 1)}> <ThumbUpIcon /></Button> :
                                 <Button onClick={() => createPostVote(post.id, getPosts, 1)}> <ThumbUpIcon /> </Button>
                             }
@@ -77,6 +79,7 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
         const date = new Date(comment.createdAt)
         const fullDate = date.toDateString();
         const time = `${date.getHours()}:${date.getMinutes()}`;
+
         return <CommentContainer key={comment.id}>
             <Card className={classes.root} variant="outlined">
                 <CardContent>
@@ -89,7 +92,9 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
                         <Button onClick={() => changeCommentVote(comment.id, getComments, params.id, -1)}><ThumbDownIcon /> </Button> :
                         <Button onClick={() => createCommentVote(comment.id, getComments, params.id, 1)}><ThumbDownIcon /></Button>
                     }
-                    <Button onClick={() => deleteCommentVote(comment.id, getComments, params.id)}>{comment.voteSum == null ? 0 : (comment.voteSum)}</Button>
+                    <Tooltip title="Delete seu voto" >
+                        <Button onClick={() => deleteCommentVote(comment.id, getComments, params.id)}>{comment.voteSum == null ? 0 : (comment.voteSum)}</Button>
+                    </Tooltip>
                     {comment.userVote === 1 || comment.userVote === -1 ?
                         <Button onClick={() => changeCommentVote(comment.id, getComments, params.id, 1)}><ThumbUpIcon /></Button> :
                         <Button onClick={() => createCommentVote(comment.id, getComments, params.id, 1)}><ThumbUpIcon /></Button>
