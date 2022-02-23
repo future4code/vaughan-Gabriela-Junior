@@ -12,6 +12,7 @@ export const LoginContainer = styled.div`
     padding: 20px;
     border: 1px solid ${mainColor};
     border-radius: .5em;
+    background-color: white;
     form{
         display: flex;
         flex-direction: column;

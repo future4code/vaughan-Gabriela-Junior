@@ -11,6 +11,7 @@ export const PostContainer = styled.div`
     margin: 10px;
     padding: 10px;
     word-break: break-word;
+    background-color: white;
     :hover{
         background: ${lightColor};
     }

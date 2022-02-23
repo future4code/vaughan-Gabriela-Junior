@@ -1,10 +1,18 @@
-import { Button, TextField, Typography } from "@material-ui/core";
+import { Button, makeStyles, TextField, Typography } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
+import { lightBackground } from "../../constants/colors";
 import useForm from "../../hooks/useForm";
 import { signUp } from "../../services/user";
 import { SignUpContainer } from "./styled";
 
+const useStyles = makeStyles({
+    root: {
+      backgroundColor: lightBackground
+    },
+  });
+
 const SignUp = ({setLoginButton}) => {
+    const classes = useStyles();
     const [form, onChange, clear] = useForm({ username: "", email: "", password: "" });
     const navigate = useNavigate();
     
@@ -17,7 +25,9 @@ const SignUp = ({setLoginButton}) => {
         <SignUpContainer>
             <Typography variant="h4" color="primary">Cadastro</Typography>
             <form onSubmit={onSubmitSignUp}>
-                <TextField 
+
+                <TextField
+                className={classes.root} 
                 variant="outlined"
                 label="Username"
                 name="username"
@@ -26,7 +36,9 @@ const SignUp = ({setLoginButton}) => {
                 margin="normal"
                 required
                 />
+
                 <TextField 
+                className={classes.root}
                 variant="outlined"
                 label="Email"
                 name="email"
@@ -37,6 +49,7 @@ const SignUp = ({setLoginButton}) => {
                 required
                 />
                 <TextField 
+                className={classes.root}
                 variant="outlined"
                 label="Senha"
                 name="password"

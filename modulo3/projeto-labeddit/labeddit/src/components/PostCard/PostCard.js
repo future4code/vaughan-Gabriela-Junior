@@ -19,6 +19,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 const useStyles = makeStyles({
     root: {
         minWidth: 275,
+        backgroundColor: '#ffffff'
     },
     bullet: {
         display: 'inline-block',
@@ -100,6 +101,7 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
                 <form onSubmit={submitComment}>
 
                     <TextField
+                    className={classes.root}
                         variant="outlined"
                         label="Novo Comentário"
                         name="body"
@@ -111,7 +113,7 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
                         fullWidth
                         required
                     />
-                    <Button variant="outlined" color="primary" type="submit">Postar</Button>
+                    <Button variant="contained" color="primary" type="submit">Postar</Button>
                 </form>
             </FormContainer>
                 {renderComments} </div>

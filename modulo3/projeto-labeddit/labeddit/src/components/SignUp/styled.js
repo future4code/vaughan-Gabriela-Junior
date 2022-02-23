@@ -10,6 +10,7 @@ export const SignUpContainer = styled.div`
     flex-direction: column;
     align-items: center;
     width: 40vw;
+    background-color: white;
     form{
         display: flex;
         flex-direction: column;

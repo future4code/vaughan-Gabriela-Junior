@@ -1,9 +1,16 @@
 import useForm from "../../hooks/useForm";
 import { createPost } from "../../services/posts";
-import { Button, TextField } from "@material-ui/core";
+import { Button, makeStyles, TextField } from "@material-ui/core";
 import { FormContainer } from "./styled";
 
+const useStyles = makeStyles({
+  root: {
+    backgroundColor: '#ffffff'
+  },
+});
+
 const PostForm = ({ getPosts }) => {
+  const classes = useStyles();
   const [form, onChange, clear] = useForm({ title: "", body: "" });
 
   const submitPost = (event) => {
@@ -16,6 +23,7 @@ const PostForm = ({ getPosts }) => {
       <form onSubmit={submitPost}>
 
         <TextField
+          className={classes.root}
           label="Título do Post"
           name="title"
           value={form.title}
@@ -26,6 +34,7 @@ const PostForm = ({ getPosts }) => {
         />
 
         <TextField
+          className={classes.root}
           label="Crie um novo post"
           name="body"
           value={form.body}

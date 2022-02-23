@@ -39,7 +39,7 @@ const FeedCard = ({posts, getPosts, isLoading, error}) => {
         <div>
             {isLoading && <CircularProgress />}
             {!isLoading && error && <p>Ocorreu um erro.</p>}
-            {!isLoading && renderPosts}
+            {!isLoading && posts && renderPosts}
         </div>
     );
 };
