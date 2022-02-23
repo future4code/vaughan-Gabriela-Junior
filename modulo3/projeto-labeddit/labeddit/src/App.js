@@ -8,7 +8,6 @@ import { ThemeProvider } from "@material-ui/core";
 import useRequestData from "./hooks/useRequestData";
 import { baseURL } from "./constants/url";
 
-
 const App = () => {
   const token = localStorage.getItem("token");
   const [loginButton, setLoginButton] = useState(token ? "Logout " : "Login");

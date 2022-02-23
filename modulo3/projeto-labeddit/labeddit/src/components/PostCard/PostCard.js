@@ -87,12 +87,12 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
                 <CardContent>
                     <UserContainer>
                         <AccountCircleIcon />
-                        <Typography variant="caption">{comment.username} em {fullDate} às {time}</Typography>
+                        <Typography variant="caption"><b>{comment.username}</b> em {fullDate} às {time}</Typography>
                     </UserContainer>
                     <Typography variant="h6" paragraph>{comment.body}</Typography>
                     {comment.userVote === 1 || comment.userVote === -1 ?
                         <Button onClick={() => changeCommentVote(comment.id, getComments, params.id, -1)}><ThumbDownIcon /> </Button> :
-                        <Button onClick={() => createCommentVote(comment.id, getComments, params.id, 1)}><ThumbDownIcon /></Button>
+                        <Button onClick={() => createCommentVote(comment.id, getComments, params.id, -1)}><ThumbDownIcon /> </Button>
                     }
                     <Tooltip title="Delete seu voto" >
                         <Button onClick={() => deleteCommentVote(comment.id, getComments, params.id)}>{comment.voteSum == null ? 0 : (comment.voteSum)}</Button>
@@ -105,7 +105,6 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
             </Card>
         </CommentContainer>
     });
-
 
     return (
         <div>
