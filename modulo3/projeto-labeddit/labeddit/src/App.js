@@ -5,18 +5,34 @@ import { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import theme from "./constants/theme";
 import { ThemeProvider } from "@material-ui/core";
+import useRequestData from "./hooks/useRequestData";
+import { baseURL } from "./constants/url";
 
 
 const App = () => {
   const token = localStorage.getItem("token");
   const [loginButton, setLoginButton] = useState(token ? "Logout " : "Login");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [posts, getPosts, isLoading, error] = useRequestData([], `${baseURL}/posts?page=${currentPage}&size=10`);
+
+  const changeCurrentPage = (event, number) => {
+    setCurrentPage(number);
+    console.log("mudou pra", number);
+};
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <BrowserRouter>
         <Header loginButton={loginButton} setLoginButton={setLoginButton}/>
-        <Router setLoginButton={setLoginButton} />
+        <Router setLoginButton={setLoginButton} 
+          currentPage={currentPage}
+          changeCurrentPage={changeCurrentPage}
+          posts={posts}
+          getPosts={getPosts}
+          isLoading={isLoading}
+          error={error}
+        />
       </BrowserRouter>
     </ThemeProvider>
   );

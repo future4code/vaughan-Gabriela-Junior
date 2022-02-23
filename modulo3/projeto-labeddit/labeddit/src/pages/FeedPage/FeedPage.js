@@ -1,19 +1,18 @@
+import { Pagination } from "@material-ui/lab";
 import FeedCard from "../../components/FeedCard/FeedCard";
 import PostForm from "../../components/PostForm/PostForm";
-import { baseURL } from "../../constants/url";
 import useProtectedPage from "../../hooks/useProtectedPage";
-import useRequestData from "../../hooks/useRequestData";
 import { MainStyle } from "../../styled-app";
 
-const FeedPage = () => {
+const FeedPage = ({posts, getPosts, currentPage, changeCurrentPage, isLoading, error}) => {
   useProtectedPage();
 
-  const [posts, getPosts] = useRequestData([], `${baseURL}/posts`);
-  
+    console.log(currentPage)
     return (
       <MainStyle>
         <PostForm getPosts={getPosts}/>
-        <FeedCard posts={posts} getPosts={getPosts}/>
+        <Pagination count={10} shape="rounded" color="primary" page={currentPage} onChange={changeCurrentPage}/>
+        <FeedCard posts={posts} getPosts={getPosts} isLoading={isLoading} error={error} />
       </MainStyle>
     );
   }

@@ -20,7 +20,7 @@ export const createPost = async (body, clear, getData) => {
   }
 };
 
-export const createComment = async (id, body, clear, getData) => {
+export const createComment = async (id, body, clear, getData, getPost, urlBase) => {
   const url = `${baseURL}/posts/${id}/comments`
   const config = {
     headers: {
@@ -31,6 +31,7 @@ export const createComment = async (id, body, clear, getData) => {
   try {
     const response = await axios.post(url, body, config)
     alert(response.data)
+    getPost(urlBase)
     getData(`${baseURL}/posts/${id}/comments`)
     clear()
 

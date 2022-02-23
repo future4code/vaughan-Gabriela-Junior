@@ -6,10 +6,11 @@ export const PostContainer = styled.div`
     flex-direction: column;
     align-items: flex-start;
     border: 1px solid ${mainColor};
-    border-radius: .5em;
+    border-radius: .3em;
     width: 50vw;
     margin: 10px;
     padding: 10px;
+    word-break: break-word;
     :hover{
         background: ${lightColor};
     }

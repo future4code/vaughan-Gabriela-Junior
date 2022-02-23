@@ -3,12 +3,11 @@ import { goToPost } from "../../routes/coordinator";
 import { changePostVote, createPostVote, deletePostVote } from "../../services/posts";
 import { PostContainer, ButtonContainer, CardButton } from "./styled";
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import { Button, Typography } from "@material-ui/core";
+import { Button, CircularProgress, Typography } from "@material-ui/core";
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import CommentIcon from '@material-ui/icons/Comment';
 
-
-const FeedCard = ({posts, getPosts}) => {
+const FeedCard = ({posts, getPosts, isLoading, error}) => {
     const navigate = useNavigate();
     console.log(posts);
 
@@ -20,8 +19,6 @@ const FeedCard = ({posts, getPosts}) => {
         const date = new Date (post.createdAt)
         const fullDate = date.toDateString();
         const time = `${date.getHours()}:${date.getMinutes()}`;
-        console.log("data:", date)
-        console.log("hora:", time)
         return (
             <PostContainer key={post.id}>
                 <CardButton onClick={() => changeToPost(post.id)}><Typography paragraph variant="caption">Criado por <b>{post.username}</b> em {fullDate} às {time}</Typography>
@@ -40,7 +37,9 @@ const FeedCard = ({posts, getPosts}) => {
 
     return (
         <div>
-     {renderPosts}
+            {isLoading && <CircularProgress />}
+            {!isLoading && error && <p>Ocorreu um erro.</p>}
+            {!isLoading && renderPosts}
         </div>
     );
 };
