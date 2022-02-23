@@ -42,17 +42,19 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
 
     const [comments, getComments, isLoadingComments, errorComments] = useRequestData([], `${baseURL}/posts/${params.id}/comments`);
 
-
     const submitComment = (event) => {
         event.preventDefault();
         createComment(params.id, form, clear, getComments, getPosts, `${baseURL}/posts`, setIsLoadingPost)
     };
 
-    const renderPost = posts && posts.map((post) => {
-        const date = new Date(post.createdAt)
-        const fullDate = date.toDateString();
-        const time = `${date.getHours()}:${date.getMinutes()}`;
-        if (post.id === params.id) {
+    const renderPost = posts && posts
+        .filter((post) => {
+            return (post.id === params.id)
+        })
+        .map((post) => {
+            const date = new Date(post.createdAt)
+            const fullDate = date.toDateString();
+            const time = `${date.getHours()}:${date.getMinutes()}`;
             return <PostContainer key={post.id}>
                 <Card className={classes.root} variant="outlined">
                     <CardContent>
@@ -73,8 +75,7 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
                         </ButtonContainer>
                     </CardContent></Card>
             </PostContainer>
-        }
-    });
+        });
 
     const renderComments = comments && comments.map((comment) => {
         const date = new Date(comment.createdAt)
@@ -133,7 +134,7 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
                                 fullWidth
                                 required
                             />
-                            {isLoadingPost && <CircularProgress/>}
+                            {isLoadingPost && <CircularProgress />}
                             {!isLoadingPost && <Button variant="contained" color="primary" type="submit">Postar</Button>}
                         </form>
                     </FormContainer>
