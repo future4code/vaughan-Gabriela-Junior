@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useForm from '../../hooks/useForm';
 import { login } from '../../services/user';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import { Button, makeStyles, TextField, Typography } from '@material-ui/core';
+import { Button, CircularProgress, makeStyles, TextField, Typography } from '@material-ui/core';
 import { LoginContainer } from './styled';
 import { lightBackground } from '../../constants/colors';
 
@@ -17,11 +17,12 @@ const Login = ({ setLoginButton }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [form, onChange, clear] = useForm({ email: "", password: "" });
+  const [isLoadingPost, setIsLoadingPost] = useState();
 
 
   const onSubmitLogin = (event) => {
     event.preventDefault();
-    login(form, clear, navigate, setLoginButton);
+    login(form, clear, navigate, setLoginButton, setIsLoadingPost);
 
   };
 
@@ -57,12 +58,14 @@ const Login = ({ setLoginButton }) => {
           margin="normal"
           required
         />
-        <Button
+
+        {isLoadingPost && <CircularProgress />}
+        {!isLoadingPost && <Button
           variant="contained"
           color="primary"
           type="submit"
           margin="normal"
-        >Enviar</Button>
+        >Enviar</Button>}
       </form>
     </LoginContainer>
   );

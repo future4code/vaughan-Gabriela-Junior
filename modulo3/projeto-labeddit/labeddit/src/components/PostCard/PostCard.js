@@ -38,13 +38,14 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
     const classes = useStyles();
     const params = useParams();
     const [form, onChange, clear] = useForm({ body: "" });
+    const [isLoadingPost, setIsLoadingPost] = useState();
 
     const [comments, getComments, isLoadingComments, errorComments] = useRequestData([], `${baseURL}/posts/${params.id}/comments`);
 
 
     const submitComment = (event) => {
         event.preventDefault();
-        createComment(params.id, form, clear, getComments, getPosts, `${baseURL}/posts`)
+        createComment(params.id, form, clear, getComments, getPosts, `${baseURL}/posts`, setIsLoadingPost)
     };
 
     const renderPost = posts && posts.map((post) => {
@@ -132,7 +133,8 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
                                 fullWidth
                                 required
                             />
-                            <Button variant="contained" color="primary" type="submit">Postar</Button>
+                            {isLoadingPost && <CircularProgress/>}
+                            {!isLoadingPost && <Button variant="contained" color="primary" type="submit">Postar</Button>}
                         </form>
                     </FormContainer>
                     {renderComments}

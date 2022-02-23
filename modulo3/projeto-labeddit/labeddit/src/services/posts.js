@@ -1,7 +1,8 @@
 import axios from "axios";
 import { baseURL } from "../constants/url";
 
-export const createPost = async (body, clear, getData) => {
+export const createPost = async (body, clear, getData, setIsLoading) => {
+  setIsLoading(true)
   const url = `${baseURL}/posts`
   const config = {
     headers: {
@@ -12,15 +13,18 @@ export const createPost = async (body, clear, getData) => {
   try {
     const response = await axios.post(url, body, config)
     alert(response.data)
+    setIsLoading(false)
     getData(`${baseURL}/posts`)
     clear();
 
   } catch (error) {
     console.log(error.response.data)
+    setIsLoading(false)
   }
 };
 
-export const createComment = async (id, body, clear, getData, getPost, urlBase) => {
+export const createComment = async (id, body, clear, getData, getPost, urlBase, setIsLoading) => {
+  setIsLoading(true)
   const url = `${baseURL}/posts/${id}/comments`
   const config = {
     headers: {
@@ -31,6 +35,7 @@ export const createComment = async (id, body, clear, getData, getPost, urlBase) 
   try {
     const response = await axios.post(url, body, config)
     alert(response.data)
+    setIsLoading(false)
     getPost(urlBase)
     getData(`${baseURL}/posts/${id}/comments`)
     clear()
@@ -38,6 +43,7 @@ export const createComment = async (id, body, clear, getData, getPost, urlBase) 
 
   } catch (error) {
     console.log(error.response)
+    setIsLoading(false)
   }
 };
 
@@ -158,7 +164,7 @@ export const deleteCommentVote = async (id, getData, param) => {
       console.log(response.data);
       getData(`${baseURL}/posts/${param}/comments`)
       console.log("deletou o voto")
-      
+
   } catch (error) {
       console.log(error.response)
   }

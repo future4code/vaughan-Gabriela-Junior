@@ -1,4 +1,5 @@
-import { Button, makeStyles, TextField, Typography } from "@material-ui/core";
+import { Button, CircularProgress, makeStyles, TextField, Typography } from "@material-ui/core";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { lightBackground } from "../../constants/colors";
 import useForm from "../../hooks/useForm";
@@ -15,10 +16,11 @@ const SignUp = ({setLoginButton}) => {
     const classes = useStyles();
     const [form, onChange, clear] = useForm({ username: "", email: "", password: "" });
     const navigate = useNavigate();
+    const [isLoadingPost, setIsLoadingPost] = useState();
     
     const onSubmitSignUp = (event) => {
         event.preventDefault();
-        signUp(form, clear, navigate, setLoginButton)
+        signUp(form, clear, navigate, setLoginButton, setIsLoadingPost)
     }
     
     return (
@@ -59,9 +61,10 @@ const SignUp = ({setLoginButton}) => {
                 margin="normal"
                 required
                 />
-                <Button variant="contained" color="primary"
+                {isLoadingPost && <CircularProgress />}
+                {!isLoadingPost && <Button variant="contained" color="primary"
                     type="submit"
-                >Enviar</Button>
+                >Enviar</Button>}
             </form>
 
         </SignUpContainer>

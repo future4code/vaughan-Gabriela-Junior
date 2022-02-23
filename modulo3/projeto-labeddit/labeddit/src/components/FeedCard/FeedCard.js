@@ -9,6 +9,7 @@ import CommentIcon from '@material-ui/icons/Comment';
 import SearchIcon from '@material-ui/icons/Search';
 import useForm from "../../hooks/useForm";
 import { MainStyle } from "../../styled-app";
+import { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
     search: {

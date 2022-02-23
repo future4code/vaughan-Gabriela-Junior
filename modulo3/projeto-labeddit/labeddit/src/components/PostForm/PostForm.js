@@ -1,7 +1,8 @@
 import useForm from "../../hooks/useForm";
 import { createPost } from "../../services/posts";
-import { Button, makeStyles, TextField } from "@material-ui/core";
+import { Button, CircularProgress, makeStyles, TextField } from "@material-ui/core";
 import { FormContainer } from "./styled";
+import { useState } from "react";
 
 const useStyles = makeStyles({
   root: {
@@ -12,10 +13,11 @@ const useStyles = makeStyles({
 const PostForm = ({ getPosts }) => {
   const classes = useStyles();
   const [form, onChange, clear] = useForm({ title: "", body: "" });
+  const [isLoadingPost, setIsLoadingPost] = useState(); 
 
   const submitPost = (event) => {
     event.preventDefault();
-    createPost(form, clear, getPosts);
+    createPost(form, clear, getPosts, setIsLoadingPost);
   };
 
   return (
@@ -45,7 +47,8 @@ const PostForm = ({ getPosts }) => {
           minRows="5"
           required
         />
-        <Button variant="contained" color="primary" type="submit">Criar Novo Post</Button>
+        {isLoadingPost && <CircularProgress />}
+        {!isLoadingPost && <Button variant="contained" color="primary" type="submit">Criar Novo Post</Button>}
       </form>
     </FormContainer>
   );
