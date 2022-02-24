@@ -16,4 +16,11 @@ export const SignUpContainer = styled.div`
         flex-direction: column;
         width: 35vw;
     }
+
+@media (max-width: 480px) {
+    width: 90vw;
+    form{
+        width: 80vw;
+    }
+}
 `

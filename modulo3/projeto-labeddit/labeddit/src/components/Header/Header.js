@@ -7,22 +7,22 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import RobotIcon from '../../assets/imgs/robot-icon.png';
-import { Image } from './styled';
+import { Image, HeaderContainer, ToolbarStyled, TitleAndIcon, ButtonContainer } from './styled';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     flexGrow: 1,
+//   },
+//   menuButton: {
+//     marginRight: theme.spacing(2),
+//   },
+//   title: {
+//     flexGrow: 1,
+//   },
+// }));
 
 const Header = ({ loginButton, setLoginButton }) => {
-  const classes = useStyles();
+  // const classes = useStyles();
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
@@ -42,18 +42,22 @@ const Header = ({ loginButton, setLoginButton }) => {
 
   return (
 
-    <div className={classes.root}>
+    <HeaderContainer>
       <AppBar position="static">
         <Toolbar>
+          <TitleAndIcon>
           <Image src={RobotIcon} alt="Ícone de Robô" />
-          <Typography variant="h4" className={classes.title}>
+          <Typography variant="h5">
             HermenEddit
           </Typography>
+          </TitleAndIcon>
+          <ButtonContainer>
           <Button color="inherit" onClick={() => goToFeed(navigate)} > Home </Button>
           <Button color="inherit" onClick={loginButtonAction}>{loginButton}</Button>
+          </ButtonContainer>
         </Toolbar>
       </AppBar>
-    </div>
+    </HeaderContainer>
   );
 };
 

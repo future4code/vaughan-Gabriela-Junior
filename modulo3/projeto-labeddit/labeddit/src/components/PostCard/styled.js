@@ -6,6 +6,11 @@ export const PostContainer = styled.div`
     border: 1px solid ${mainColor};
     border-radius: .3em;
     text-align: center;
+    word-break: break-word;
+
+@media (max-width: 480px) {
+    width: 90vw;
+}
 `
 
 export const PostDiv = styled.div`
@@ -24,4 +29,10 @@ export const UserContainer = styled.div`
 export const CommentContainer = styled.div`
     max-width: 50vw;
     margin: 10px;
+    word-break: break-word;
+
+@media (max-width: 480px) {
+    max-width: 90vw;
+
+}
 `

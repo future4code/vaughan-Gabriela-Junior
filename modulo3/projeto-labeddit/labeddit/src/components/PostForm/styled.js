@@ -11,4 +11,10 @@ export const FormContainer = styled.div`
         flex-direction: column;
         width: 40vw;
     }
+
+@media (max-width: 480px) {
+    form{
+        width: 90vw;
+    }
+}
 `

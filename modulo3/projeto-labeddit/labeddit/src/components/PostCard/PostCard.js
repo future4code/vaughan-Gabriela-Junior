@@ -62,15 +62,17 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
                         <Typography variant="h5" paragraph>{post.title} </Typography>
                         <Typography variant="body1" paragraph>{post.body} </Typography>
                         <ButtonContainer>
-                            {post.userVote === 1 || post.userVote === -1 ? <Button onClick={() => changePostVote(post.id, getPosts, -1)}> <ThumbDownIcon /></Button> :
-                                <Button onClick={() => createPostVote(post.id, getPosts, -1)}> <ThumbDownIcon /> </Button>
-                            }
-                            <Tooltip title="Delete seu voto" >
-                                <Button onClick={() => deletePostVote(post.id, getPosts)}>{post.voteSum == null ? 0 : (post.voteSum)}</Button>
-                            </Tooltip>
-                            {post.userVote === 1 || post.userVote === -1 ? <Button onClick={() => changePostVote(post.id, getPosts, 1)}> <ThumbUpIcon /></Button> :
-                                <Button onClick={() => createPostVote(post.id, getPosts, 1)}> <ThumbUpIcon /> </Button>
-                            }
+                            <div>
+                                {post.userVote === 1 || post.userVote === -1 ? <Button onClick={() => changePostVote(post.id, getPosts, -1)}> <ThumbDownIcon /></Button> :
+                                    <Button onClick={() => createPostVote(post.id, getPosts, -1)}> <ThumbDownIcon /> </Button>
+                                }
+                                <Tooltip title="Delete seu voto" >
+                                    <Button onClick={() => deletePostVote(post.id, getPosts)}>{post.voteSum == null ? 0 : (post.voteSum)}</Button>
+                                </Tooltip>
+                                {post.userVote === 1 || post.userVote === -1 ? <Button onClick={() => changePostVote(post.id, getPosts, 1)}> <ThumbUpIcon /></Button> :
+                                    <Button onClick={() => createPostVote(post.id, getPosts, 1)}> <ThumbUpIcon /> </Button>
+                                }
+                            </div>
                             <Button> <CommentIcon /> {post.commentCount == null ? 0 : (post.commentCount)} comentários</Button>
                         </ButtonContainer>
                     </CardContent></Card>

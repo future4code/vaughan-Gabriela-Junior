@@ -1,10 +1,11 @@
 import React from 'react';
+import { MainStyle } from '../../styled-app';
 
 const ErrorPage = () => {
     return (
-        <div>
+        <MainStyle>
             <h1>Página não encontrada!</h1>
-        </div>
+        </MainStyle>
     );
 };
 

@@ -1,4 +1,3 @@
-import { Button } from '@material-ui/core';
 import styled from 'styled-components';
 import { mainColor } from '../../constants/colors';
 
@@ -18,4 +17,11 @@ export const LoginContainer = styled.div`
         flex-direction: column;
         width: 35vw;
     }
+
+@media (max-width: 480px) {
+    width: 90vw;
+    form {
+        width: 80vw;
+    }
+}
 `

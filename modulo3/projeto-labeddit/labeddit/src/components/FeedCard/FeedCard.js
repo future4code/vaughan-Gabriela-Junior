@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { goToPost } from "../../routes/coordinator";
 import { changePostVote, createPostVote, deletePostVote } from "../../services/posts";
-import { PostContainer, ButtonContainer, CardButton, SearchContainer } from "./styled";
+import { PostContainer, ButtonContainer, CardButton, SearchContainer, InputStyled, CardContainer } from "./styled";
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import { Button, CircularProgress, makeStyles, Tooltip, Typography, alpha, TextField, InputBase } from "@material-ui/core";
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
@@ -70,16 +70,19 @@ const FeedCard = ({ posts, getPosts, isLoading, error }) => {
                         <Typography variant="h5" paragraph>{post.title} </Typography>
                         <Typography variant="body1" paragraph>{post.body} </Typography></CardButton>
                     <ButtonContainer>
-                        {post.userVote === 1 || post.userVote === -1 ? <Button onClick={() => changePostVote(post.id, getPosts, -1)}> <ThumbDownIcon /></Button> :
-                            <Button onClick={() => createPostVote(post.id, getPosts, -1)}> <ThumbDownIcon /> </Button>
-                        }
-                        <Tooltip title="Delete seu voto" >
-                            <Button onClick={() => deletePostVote(post.id, getPosts)}>{post.voteSum == null ? 0 : (post.voteSum)}</Button>
-                        </Tooltip>
-                        {post.userVote === 1 || post.userVote === -1 ? <Button onClick={() => changePostVote(post.id, getPosts, 1)}> <ThumbUpIcon /></Button> :
-                            <Button onClick={() => createPostVote(post.id, getPosts, 1)}> <ThumbUpIcon /> </Button>
-                        }
+                        <div>
+                            {post.userVote === 1 || post.userVote === -1 ? <Button onClick={() => changePostVote(post.id, getPosts, -1)}> <ThumbDownIcon /></Button> :
+                                <Button onClick={() => createPostVote(post.id, getPosts, -1)}> <ThumbDownIcon /> </Button>
+                            }
+                            <Tooltip title="Delete seu voto" >
+                                <Button onClick={() => deletePostVote(post.id, getPosts)}>{post.voteSum == null ? 0 : (post.voteSum)}</Button>
+                            </Tooltip>
+                            {post.userVote === 1 || post.userVote === -1 ? <Button onClick={() => changePostVote(post.id, getPosts, 1)}> <ThumbUpIcon /></Button> :
+                                <Button onClick={() => createPostVote(post.id, getPosts, 1)}> <ThumbUpIcon /> </Button>
+                            }
+                        </div>
                         <Button onClick={() => changeToPost(post.id)}> <CommentIcon /> {post.commentCount == null ? 0 : (post.commentCount)} comentários</Button>
+
                     </ButtonContainer>
 
                 </PostContainer>
@@ -88,26 +91,31 @@ const FeedCard = ({ posts, getPosts, isLoading, error }) => {
 
     return (
         <MainStyle>
-            {!isLoading && <SearchContainer className={classes.search}>
-                <div className={classes.searchIcon}>
-                    <SearchIcon color="primary" />
-                </div>
-                <InputBase
-                    placeholder="Pesquisar…"
-                    label="Pesquisar..."
-                    name="search"
-                    value={form.search}
-                    onChange={onChange}
-                    classes={{
-                        root: classes.inputRoot,
-                        input: classes.inputInput,
-                    }}
-                    inputProps={{ 'aria-label': 'search' }}
-                />
-            </SearchContainer>}
+            {!isLoading &&
+                <div>
+                    <SearchContainer className={classes.search}>
+                        <div className={classes.searchIcon}>
+                            <SearchIcon color="primary" />
+                        </div>
+                        <InputBase
+                            placeholder="Pesquisar…"
+                            label="Pesquisar..."
+                            name="search"
+                            value={form.search}
+                            onChange={onChange}
+                            classes={{
+                                root: classes.inputRoot,
+                                input: classes.inputInput,
+                            }}
+                            inputProps={{ 'aria-label': 'search' }}
+                        />
+                    </SearchContainer>
+                </div>}
             {isLoading && <CircularProgress />}
             {!isLoading && error && <p>Ocorreu um erro.</p>}
-            {!isLoading && posts && renderPosts}
+            <CardContainer>
+                {!isLoading && posts && renderPosts}
+            </CardContainer>
         </MainStyle>
     );
 };

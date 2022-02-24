@@ -16,7 +16,6 @@ const App = () => {
 
   const changeCurrentPage = (event, number) => {
     setCurrentPage(number);
-    console.log("mudou pra", number);
   };
 
   return (
