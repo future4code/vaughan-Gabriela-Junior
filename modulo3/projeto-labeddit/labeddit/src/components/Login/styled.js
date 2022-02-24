@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { mainColor } from '../../constants/colors';
+import { mainColor, lightBackground } from '../../constants/colors';
+import { TextField } from '@material-ui/core';
 
 export const LoginContainer = styled.div`
     display: flex;
@@ -24,4 +25,8 @@ export const LoginContainer = styled.div`
         width: 80vw;
     }
 }
+`
+
+export const TextFieldStyled = styled(TextField)`
+    background-color: ${lightBackground};
 `

@@ -9,33 +9,13 @@ import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import CommentIcon from '@material-ui/icons/Comment';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import { ButtonContainer } from '../FeedCard/styled';
-import { CommentContainer, PostContainer, PostDiv, UserContainer } from './styled';
+import { CommentContainer, PostContainer, PostDiv, UserContainer, TextFieldStyled } from './styled';
 import { FormContainer } from '../PostForm/styled';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
-const useStyles = makeStyles({
-    root: {
-        minWidth: 275,
-        backgroundColor: '#ffffff'
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-});
-
 const PostCard = ({ posts, getPosts, isLoading, error }) => {
-    const classes = useStyles();
     const params = useParams();
     const [form, onChange, clear] = useForm({ body: "" });
     const [isLoadingPost, setIsLoadingPost] = useState();
@@ -56,7 +36,7 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
             const fullDate = date.toDateString();
             const time = `${date.getHours()}:${date.getMinutes()}`;
             return <PostContainer key={post.id}>
-                <Card className={classes.root} variant="outlined">
+                <Card variant="outlined">
                     <CardContent>
                         <Typography variant="caption" paragraph> Criado por <b>{post.username}</b> em {fullDate} às {time}</Typography>
                         <Typography variant="h5" paragraph>{post.title} </Typography>
@@ -85,7 +65,7 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
         const time = `${date.getHours()}:${date.getMinutes()}`;
 
         return <CommentContainer key={comment.id}>
-            <Card className={classes.root} variant="outlined">
+            <Card variant="outlined">
                 <CardContent>
                     <UserContainer>
                         <AccountCircleIcon />
@@ -122,8 +102,7 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
                     <FormContainer>
                         <form onSubmit={submitComment}>
 
-                            <TextField
-                                className={classes.root}
+                            <TextFieldStyled
                                 variant="outlined"
                                 label="Novo Comentário"
                                 name="body"

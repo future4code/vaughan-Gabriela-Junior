@@ -1,5 +1,6 @@
+import { TextField } from '@material-ui/core';
 import styled from 'styled-components';
-import { mainColor } from '../../constants/colors';
+import { mainColor, lightBackground } from '../../constants/colors';
 
 export const PostContainer = styled.div`
     width: 50vw;
@@ -35,4 +36,8 @@ export const CommentContainer = styled.div`
     max-width: 90vw;
 
 }
+`
+
+export const TextFieldStyled = styled(TextField)`
+    background-color: white;
 `

@@ -3,18 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import useForm from '../../hooks/useForm';
 import { login } from '../../services/user';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import { Button, CircularProgress, makeStyles, TextField, Typography } from '@material-ui/core';
-import { LoginContainer } from './styled';
-import { lightBackground } from '../../constants/colors';
-
-const useStyles = makeStyles({
-  root: {
-    backgroundColor: lightBackground
-  },
-});
+import { Button, CircularProgress, TextField, Typography } from '@material-ui/core';
+import { LoginContainer, TextFieldStyled } from './styled';
 
 const Login = ({ setLoginButton }) => {
-  const classes = useStyles();
   const navigate = useNavigate();
   const [form, onChange, clear] = useForm({ email: "", password: "" });
   const [isLoadingPost, setIsLoadingPost] = useState();
@@ -35,8 +27,7 @@ const Login = ({ setLoginButton }) => {
         onSubmit={onSubmitLogin}
       >
 
-        <TextField
-          className={classes.root}
+        <TextFieldStyled
           label="Email"
           variant="outlined"
           name="email"
@@ -46,8 +37,7 @@ const Login = ({ setLoginButton }) => {
           margin="normal"
           required
         />
-        <TextField
-          className={classes.root}
+        <TextFieldStyled
           label="Senha"
           variant="outlined"
           name="password"

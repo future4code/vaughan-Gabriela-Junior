@@ -54,8 +54,10 @@ export const SearchContainer = styled.button`
     display: flex;
     align-items: center;
     border: 1px solid ${mainColor};
+    border-radius: .3em;
+    background-color: white;
 
 @media (max-width: 480px) {
-    width: 1vw;
+    width: 60vw;
 }
 `

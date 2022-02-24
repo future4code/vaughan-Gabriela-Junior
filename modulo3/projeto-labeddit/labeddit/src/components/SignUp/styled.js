@@ -1,5 +1,6 @@
+import { TextField } from '@material-ui/core';
 import styled from 'styled-components';
-import { mainColor } from '../../constants/colors';
+import { lightBackground, mainColor } from '../../constants/colors';
 
 export const SignUpContainer = styled.div`
     margin: 20px;
@@ -23,4 +24,8 @@ export const SignUpContainer = styled.div`
         width: 80vw;
     }
 }
+`
+
+export const TextFieldStyled = styled(TextField)`
+    background-color: ${lightBackground};
 `

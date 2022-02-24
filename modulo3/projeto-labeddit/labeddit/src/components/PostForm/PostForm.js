@@ -1,17 +1,10 @@
 import useForm from "../../hooks/useForm";
 import { createPost } from "../../services/posts";
-import { Button, CircularProgress, makeStyles, TextField } from "@material-ui/core";
-import { FormContainer } from "./styled";
+import { Button, CircularProgress } from "@material-ui/core";
+import { FormContainer, TextFieldStyled } from "./styled";
 import { useState } from "react";
 
-const useStyles = makeStyles({
-  root: {
-    backgroundColor: '#ffffff'
-  },
-});
-
 const PostForm = ({ getPosts }) => {
-  const classes = useStyles();
   const [form, onChange, clear] = useForm({ title: "", body: "" });
   const [isLoadingPost, setIsLoadingPost] = useState();
 
@@ -24,8 +17,7 @@ const PostForm = ({ getPosts }) => {
     <FormContainer>
       <form onSubmit={submitPost}>
 
-        <TextField
-          className={classes.root}
+        <TextFieldStyled
           label="Título do Post"
           name="title"
           value={form.title}
@@ -35,8 +27,7 @@ const PostForm = ({ getPosts }) => {
           required
         />
 
-        <TextField
-          className={classes.root}
+        <TextFieldStyled
           label="Crie um novo post"
           name="body"
           value={form.body}

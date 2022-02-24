@@ -1,19 +1,12 @@
-import { Button, CircularProgress, makeStyles, TextField, Typography } from "@material-ui/core";
+import { Button, CircularProgress, Typography } from "@material-ui/core";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { lightBackground } from "../../constants/colors";
 import useForm from "../../hooks/useForm";
 import { signUp } from "../../services/user";
-import { SignUpContainer } from "./styled";
+import { SignUpContainer, TextFieldStyled } from "./styled";
 
-const useStyles = makeStyles({
-    root: {
-        backgroundColor: lightBackground
-    },
-});
 
 const SignUp = ({ setLoginButton }) => {
-    const classes = useStyles();
     const [form, onChange, clear] = useForm({ username: "", email: "", password: "" });
     const navigate = useNavigate();
     const [isLoadingPost, setIsLoadingPost] = useState();
@@ -28,8 +21,7 @@ const SignUp = ({ setLoginButton }) => {
             <Typography variant="h4" color="primary">Cadastro</Typography>
             <form onSubmit={onSubmitSignUp}>
 
-                <TextField
-                    className={classes.root}
+                <TextFieldStyled
                     variant="outlined"
                     label="Username"
                     name="username"
@@ -39,8 +31,7 @@ const SignUp = ({ setLoginButton }) => {
                     required
                 />
 
-                <TextField
-                    className={classes.root}
+                <TextFieldStyled
                     variant="outlined"
                     label="Email"
                     name="email"
@@ -50,8 +41,7 @@ const SignUp = ({ setLoginButton }) => {
                     margin="normal"
                     required
                 />
-                <TextField
-                    className={classes.root}
+                <TextFieldStyled
                     variant="outlined"
                     label="Senha"
                     name="password"

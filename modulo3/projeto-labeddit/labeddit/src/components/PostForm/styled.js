@@ -1,3 +1,4 @@
+import { TextField } from "@material-ui/core";
 import styled from "styled-components";
 
 export const FormContainer = styled.div`
@@ -17,4 +18,8 @@ export const FormContainer = styled.div`
         width: 90vw;
     }
 }
+`
+
+export const TextFieldStyled = styled(TextField)`
+    background-color: white;
 `
