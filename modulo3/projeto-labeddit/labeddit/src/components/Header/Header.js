@@ -21,40 +21,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = ({loginButton, setLoginButton}) => {
-    const classes = useStyles();
-    const token = localStorage.getItem("token");
-    const navigate = useNavigate();
+const Header = ({ loginButton, setLoginButton }) => {
+  const classes = useStyles();
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
-    const logout = () => {
-        localStorage.removeItem("token");
+  const logout = () => {
+    localStorage.removeItem("token");
+  };
+
+  const loginButtonAction = () => {
+    if (token) {
+      logout()
+      setLoginButton("Login");
+      goToLogin(navigate)
+    } else {
+      goToLogin(navigate);
     };
-    
-    const loginButtonAction = () => {
-        if (token){
-            logout()
-            setLoginButton("Login");
-            goToLogin(navigate)
-        } else {
-            goToLogin(navigate);
-        };
-    };
+  };
 
-    return (
+  return (
 
-        <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
-            <Image src={RobotIcon} alt="Ícone de Robô"/> 
-            <Typography variant="h4" className={classes.title}>
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <Image src={RobotIcon} alt="Ícone de Robô" />
+          <Typography variant="h4" className={classes.title}>
             HermenEddit
-            </Typography>
-            <Button color="inherit" onClick={() => goToFeed(navigate)} > Home </Button>
-            <Button color="inherit" onClick={loginButtonAction}>{loginButton}</Button>
-          </Toolbar>
-        </AppBar>
-        </div>
-    );
+          </Typography>
+          <Button color="inherit" onClick={() => goToFeed(navigate)} > Home </Button>
+          <Button color="inherit" onClick={loginButtonAction}>{loginButton}</Button>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 };
 
 export default Header;

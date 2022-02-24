@@ -17,14 +17,14 @@ const App = () => {
   const changeCurrentPage = (event, number) => {
     setCurrentPage(number);
     console.log("mudou pra", number);
-};
+  };
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <BrowserRouter>
-        <Header loginButton={loginButton} setLoginButton={setLoginButton}/>
-        <Router setLoginButton={setLoginButton} 
+        <Header loginButton={loginButton} setLoginButton={setLoginButton} />
+        <Router setLoginButton={setLoginButton}
           currentPage={currentPage}
           changeCurrentPage={changeCurrentPage}
           posts={posts}

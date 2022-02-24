@@ -13,7 +13,7 @@ const useStyles = makeStyles({
 const PostForm = ({ getPosts }) => {
   const classes = useStyles();
   const [form, onChange, clear] = useForm({ title: "", body: "" });
-  const [isLoadingPost, setIsLoadingPost] = useState(); 
+  const [isLoadingPost, setIsLoadingPost] = useState();
 
   const submitPost = (event) => {
     event.preventDefault();

@@ -3,14 +3,15 @@ import useUnprotectedPage from "../../hooks/useUnprotectedPage";
 import { MainStyle } from "../../styled-app";
 
 
-const SignUpPage = ({setLoginButton}) => {
+const SignUpPage = ({ setLoginButton }) => {
   useUnprotectedPage();
-    return (
-      <MainStyle>
-        <SignUp setLoginButton={setLoginButton}/>
-      </MainStyle>
-    );
-  }
-  
-  export default SignUpPage;
-  
+  return (
+    <MainStyle>
+
+      <SignUp setLoginButton={setLoginButton} />
+      
+    </MainStyle>
+  );
+}
+
+export default SignUpPage;

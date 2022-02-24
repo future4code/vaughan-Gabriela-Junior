@@ -3,7 +3,7 @@ import React from 'react';
 const ErrorPage = () => {
     return (
         <div>
-            Página de erro.
+            <h1>Página não encontrada!</h1>
         </div>
     );
 };

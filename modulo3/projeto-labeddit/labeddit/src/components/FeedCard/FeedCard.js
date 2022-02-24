@@ -9,7 +9,6 @@ import CommentIcon from '@material-ui/icons/Comment';
 import SearchIcon from '@material-ui/icons/Search';
 import useForm from "../../hooks/useForm";
 import { MainStyle } from "../../styled-app";
-import { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
     search: {
@@ -51,7 +50,6 @@ const FeedCard = ({ posts, getPosts, isLoading, error }) => {
     const classes = useStyles();
     const [form, onChange] = useForm({ search: "" });
     const navigate = useNavigate();
-    console.log(posts);
 
     const changeToPost = (id) => {
         goToPost(navigate, id);

@@ -15,7 +15,6 @@ const FeedPage = ({ posts, getPosts, currentPage, changeCurrentPage, isLoading, 
   const classes = useStyles()
   useProtectedPage();
 
-  console.log(currentPage)
   return (
     <MainStyle>
       <PostForm getPosts={getPosts} />

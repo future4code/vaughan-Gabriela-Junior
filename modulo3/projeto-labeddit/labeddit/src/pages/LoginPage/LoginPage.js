@@ -14,19 +14,19 @@ export const MainStyle = styled.div`
 
 `
 
-const LoginPage = ({setLoginButton}) => {
-    const navigate = useNavigate();
+const LoginPage = ({ setLoginButton }) => {
+  const navigate = useNavigate();
 
-    useUnprotectedPage();
+  useUnprotectedPage();
 
-    return (
-      <MainStyle>
+  return (
+    <MainStyle>
 
-        <Login setLoginButton={setLoginButton}/>
-        <Button variant="contained" color="primary" onClick={() => {goToSignUp(navigate)}}>Cadastre-se</Button>
-      </MainStyle>
-    );
-  }
-  
-  export default LoginPage;
-  
+      <Login setLoginButton={setLoginButton} />
+      <Button variant="contained" color="primary" onClick={() => { goToSignUp(navigate) }}>Cadastre-se</Button>
+
+    </MainStyle>
+  );
+}
+
+export default LoginPage;
