@@ -26,7 +26,7 @@ const FeedCard = ({ posts, getPosts, isLoading, error }) => {
         .map((post) => {
             const date = new Date(post.createdAt)
             const fullDate = date.toDateString();
-            const time = `${date.getHours()}:${date.getMinutes()}`;
+            const time = `${date.getHours()}: ${date.getMinutes()}`;
             return (
                 <PostContainer key={post.id}>
                     <CardButton onClick={() => changeToPost(post.id)}><Typography paragraph variant="caption">Criado por <b>{post.username}</b> em {fullDate} às {time}</Typography>
@@ -80,4 +80,3 @@ const FeedCard = ({ posts, getPosts, isLoading, error }) => {
 };
 
 export default FeedCard;
-
