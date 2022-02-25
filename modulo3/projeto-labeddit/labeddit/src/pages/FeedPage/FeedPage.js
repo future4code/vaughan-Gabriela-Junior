@@ -15,6 +15,8 @@ const FeedPage = ({ posts, getPosts, currentPage, changeCurrentPage, isLoading, 
       <FeedCard posts={posts} getPosts={getPosts} isLoading={isLoading} error={error} />
       {!isLoading && <PaginationStyled count={10} shape="rounded" color="primary" page={currentPage} onChange={changeCurrentPage} />}
     </MainStyle>
+
+
   );
 };
 

@@ -34,7 +34,7 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
         .map((post) => {
             const date = new Date(post.createdAt)
             const fullDate = date.toDateString();
-            const minutes = (date.getMinutes()<10 ? '0' : '') + date.getMinutes();
+            const minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
             const time = `${date.getHours()}:${minutes}`;
             return <PostContainer key={post.id}>
                 <Card variant="outlined">
@@ -63,7 +63,7 @@ const PostCard = ({ posts, getPosts, isLoading, error }) => {
     const renderComments = comments && comments.map((comment) => {
         const date = new Date(comment.createdAt)
         const fullDate = date.toDateString();
-        const minutes = (date.getMinutes()<10 ? '0' : '') + date.getMinutes();
+        const minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
         const time = `${date.getHours()}:${minutes}`;
         return <CommentContainer key={comment.id}>
             <Card variant="outlined">

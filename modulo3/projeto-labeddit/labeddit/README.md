@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# 🤖 HermenEddit - Projeto LabEddit
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Projeto desenvolvido no Curso Labenu de uma plataforma de rede social baseada no <a href=https://www.reddit.com/>reddit</a>, recebendo a API LabEddit, com página de Login, Cadastro, Feed e Detalhes do Post e seus comentários.
 
-## Available Scripts
+## 💻 Link do Surge
+https://hermeneddit.surge.sh
 
-In the project directory, you can run:
+## 🛠 Ferramentas e Tecnologias
+* React
+* Material UI
+* Styled Components
+* Node.js
 
-### `npm start`
+## ⚙️ Funcionalidades
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Cadastro
+Página de Cadastro com inputs para o usuário cadastrar sua conta com user, email e senha.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Login
+Página de Login em que o usuário pode entrar na Página de Feed através de seu email e senha cadastrados. Quando o usuário faz Login, é possível fazer Logout clicando no botão "Logout" presente no Header em todas as páginas.
 
-### `npm test`
+### Feed
+Página principal em que é possível o usuário criar um post com título e conteúdo e visualizar todos os posts cadastrados na API por outros usuários. Ao clicar no card do Post, o usuário é redirecionado para uma página com o post e seus comentários. Além disso, é possível curtir, descurtir e deletar seu voto em cada post.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Post e Comentários
+Página com um post e todos seus comentários, onde é possível curtir, descurtir e deletar seu voto do post e em cada comentário.
 
-### `npm run build`
+### Loadings
+Enquanto os dados da API estão sendo carregados ou quando o usuário faz login, se cadastra, cria um novo post ou comentário, é possível ver a funcionalidade de Loadings.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Filtro de busca
+É possível buscar por palavras presentes no título e no conteúdo dos posts através de um input de busca.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Páginação do Feed
+Cada página do Feed contém 10 posts, o usuário pode ir até a página 10 para ver posts mais antigos.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Responsividade
+O site é responsivo para mobile.
 
-### `npm run eject`
+## 👩‍💻 Desenvolvedores
+Gabriela Hermenegildo.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📷 Imagens
+![image](https://user-images.githubusercontent.com/94693150/155770014-7a397799-b229-44a5-b1a6-41c07aaf742c.png)
+![image](https://user-images.githubusercontent.com/94693150/155770046-b1c4c0c7-19a9-4fa5-a237-f6569ea40143.png)
+![image](https://user-images.githubusercontent.com/94693150/155769932-f06b2315-df86-405f-b5af-cfabc05cbfdd.png)
+![image](https://user-images.githubusercontent.com/94693150/155769989-fa4169a0-cbc1-4ed9-8058-9d4339c5f481.png)
