@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import useForm from '../../hooks/useForm';
 import { login } from '../../services/user';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import { Button, CircularProgress, TextField, Typography } from '@material-ui/core';
+import { Button, CircularProgress, Typography } from '@material-ui/core';
 import { LoginContainer, TextFieldStyled } from './styled';
 
 const Login = ({ setLoginButton }) => {

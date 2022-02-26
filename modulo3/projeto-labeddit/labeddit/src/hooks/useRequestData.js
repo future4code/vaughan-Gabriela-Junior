@@ -12,6 +12,10 @@ const useRequestData = (initialData, url) => {
         getData(url)
     }, [url])
 
+    useEffect(() => {
+        localStorage.getItem('token')
+    },[])
+
     const getData = async (url) => {
         setIsLoading(true);
 
@@ -27,7 +31,6 @@ const useRequestData = (initialData, url) => {
             setIsLoading(false);
 
         } catch (error) {
-            alert(error.response.data)
             setError(error);
             setIsLoading(false);
         };

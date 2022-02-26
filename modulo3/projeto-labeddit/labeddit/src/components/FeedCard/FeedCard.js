@@ -52,6 +52,7 @@ const FeedCard = ({ posts, getPosts, isLoading, error }) => {
                 </PostContainer>
             )
         });
+        console.log(error)
 
     return (
         <MainStyle>
@@ -72,7 +73,7 @@ const FeedCard = ({ posts, getPosts, isLoading, error }) => {
                     </SearchContainer>
                 </div>}
             {isLoading && <CircularProgress />}
-            {!isLoading && error && <p>Ocorreu um erro.</p>}
+            {!isLoading && error && <p>Ocorreu um erro. Recarregue a página.</p>}
             <CardContainer>
                 {!isLoading && posts && renderPosts}
             </CardContainer>
