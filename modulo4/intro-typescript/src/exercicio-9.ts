@@ -3,7 +3,7 @@ const highSchoolCompleted: boolean = true
 const hoursAvailable: number = 20
 const shift: string = "noturno"
 
-const canStudyInLabenu = (age: number, highSchool: boolean, hours: number, shift: string): any => {
+const canStudyInLabenu = (age: number, highSchool: boolean, hours: number, shift: string): boolean => {
     if (shift === "noturno") {
         if (age >= 18 && highSchool === true && hours >= 20 && shift === "noturno") {
             return true
@@ -16,6 +16,8 @@ const canStudyInLabenu = (age: number, highSchool: boolean, hours: number, shift
         } else {
             return false
         }
+    } else {
+        return false
     }
 };
 
