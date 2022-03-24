@@ -5,10 +5,10 @@
 function obterEstatisticas(numeros: number[]): { maior: number, menor: number, media: number } {
 
     const numerosOrdenados = numeros.sort(
-        (a, b) => a - b
+        (a: number, b: number) => a - b
     )
 
-    let soma = 0
+    let soma: number = 0
 
     for (let num of numeros) {
         soma += num
@@ -29,5 +29,5 @@ function obterEstatisticas(numeros: number[]): { maior: number, menor: number, m
 
 type amostraDeDados = {
     numeros: number[]
-    obterEstatisticas: (numeros: number) => {maior: number, menor: number, media: number}
+    obterEstatisticas: (numeros: number) => {}
 };
