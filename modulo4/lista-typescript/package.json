@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node ./build/exercicio-11.js"
+    "start": "tsc && node ./build/exercicio-10.js"
   },
   "keywords": [],
   "author": "",
