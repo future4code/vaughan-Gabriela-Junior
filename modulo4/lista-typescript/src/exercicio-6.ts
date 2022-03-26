@@ -1,7 +1,7 @@
 type Clientes = {
-    cliente: string,
-    saldoTotal: number,
-    debitos: number[]
+	cliente: string,
+	saldoTotal: number,
+	debitos: number[]
 }[];
 
 const clientesDoBanco: Clientes = [
@@ -13,13 +13,16 @@ const clientesDoBanco: Clientes = [
 	{ cliente: "Soter", saldoTotal: 1200, debitos: [] }
 ];
 
-// const clientesEmNegativo = (array: Clientes): Clientes => {
-//     // array.map(item => {
-//     //     item.debitos.reduce((soma: number, item: number) => {
-//     //         soma = item + soma
-//     //         return soma
-//     //     }, 0)
-//     // })
-// }
+const clientesEmNegativo = (array: Clientes): Clientes => {
+	return array.filter((item) => {
+		const somaDebitos = item.debitos.reduce((soma, valor) =>
+			soma + valor, 0)
+		item.saldoTotal = item.saldoTotal - somaDebitos
+		if (item.saldoTotal < 0) {
+			item.debitos.splice(0)
+			return true
+		}
+	})
+}
 
-// console.log(clientesEmNegativo(clientesDoBanco))
+console.log(clientesEmNegativo(clientesDoBanco))
