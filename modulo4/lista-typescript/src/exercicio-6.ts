@@ -23,6 +23,6 @@ const clientesEmNegativo = (array: Clientes): Clientes => {
 			return true
 		}
 	})
-}
+};
 
-console.log(clientesEmNegativo(clientesDoBanco))
+console.log(clientesEmNegativo(clientesDoBanco));

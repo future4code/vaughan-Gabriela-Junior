@@ -18,12 +18,13 @@ const converterParaRomano = (numero: number): string => {
     if (numero === 0) {
         return '';
     }
+
     for (let i = 0; i < numerosRomanos.length; i++) {
 
         if (numero >= numerosRomanos[i][0]) {
             return numerosRomanos[i][1] + converterParaRomano(numero - numerosRomanos[i][0]);
         }
     }
-}
+};
 
-console.log(converterParaRomano(1998))
+console.log(converterParaRomano(1998));

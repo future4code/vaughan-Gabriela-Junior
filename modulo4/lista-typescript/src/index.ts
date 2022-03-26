@@ -5,10 +5,10 @@ Ex. 2 - FEITO
 Ex. 3 - FEITO
 Ex. 4 - FEITO
 Ex. 5 - FEITO
-Ex. 6
+Ex. 6 - FEITO
 Ex. 7 - FEITO
 Ex. 8 - FEITO
 Ex. 9 - FEITO
-Ex. 10
+Ex. 10 - FEITO
 Ex. 11 - FEITO
 */
