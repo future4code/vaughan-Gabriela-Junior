@@ -4,7 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node ./build/exercicio-10.js"
+    "exercicio1": "tsc && node ./build/exercicio-1.js",
+    "exercicio2": "tsc && node ./build/exercicio-2.js",
+    "exercicio3": "tsc && node ./build/exercicio-3.js",
+    "exercicio4": "tsc && node ./build/exercicio-4.js",
+    "exercicio5": "tsc && node ./build/exercicio-5.js",
+    "exercicio6": "tsc && node ./build/exercicio-6.js",
+    "exercicio7": "tsc && node ./build/exercicio-7.js",
+    "exercicio8": "tsc && node ./build/exercicio-8.js",
+    "exercicio9": "tsc && node ./build/exercicio-9.js",
+    "exercicio10": "tsc && node ./build/exercicio-10.js",
+    "exercicio11": "tsc && node ./build/exercicio-11.js"
   },
   "keywords": [],
   "author": "",

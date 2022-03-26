@@ -28,6 +28,6 @@ const returnNameAndBirthday = (name: string, date: string): string => {
     }
 
     return `Olá, me chamo ${name}, nasci no dia ${writtenDate[0]} do mês de ${month} do ano de ${writtenDate[2]}`
-}
+};
 
-console.log(returnNameAndBirthday("gabriela", "16/09/1996"))
+console.log(returnNameAndBirthday("gabriela", "16/09/1996"));

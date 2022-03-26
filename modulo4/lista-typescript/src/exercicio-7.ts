@@ -1,8 +1,3 @@
-// const ajustaPreco = (preco :number): string => {
-// 	const valorAjustado: string = preco.toFixed(2).replace('.', ',')
-// 	return "R$ "+valorAjustado
-// };
-
 type Produtos = {
     nome: string,
     quantidade: number,

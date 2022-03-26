@@ -8,6 +8,6 @@ const retornarQuantidadeDeAnagramas = (palavra: string): number => {
 
     }
     return fatorial
-}
+};
 
-console.log(retornarQuantidadeDeAnagramas("gato"))
+console.log(retornarQuantidadeDeAnagramas("gato"));
