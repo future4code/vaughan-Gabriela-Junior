@@ -80,10 +80,34 @@ app.get("/todos/:userId", (req, res) => {
 
     const userTasks = toDoList.filter((task) => {
         return Number(userId) === task.userId
-    })
+    });
 
     res.status(201).send(userTasks);
 });
 
 //Exercício 9.
 // https://documenter.getpostman.com/view/19294823/UVyoXynF
+
+//Exercício 10.
+app.get("/todobyuser/:id", (req, res) => {
+    const userId = req.params.id
+
+    const userTasks = toDoList.filter((task) => {
+        return Number(userId) === task.userId
+    });
+
+    const otherTasks = toDoList.filter((task) => {
+        return Number(userId) !== task.userId
+    });
+
+    const newToDoList = {
+        todos: [
+            {
+                selectedUser: [...userTasks],
+                others: [...otherTasks]
+            }
+        ]
+    };
+
+    res.status(201).send(newToDoList);
+});
