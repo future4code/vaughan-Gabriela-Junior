@@ -44,3 +44,33 @@ app.post("/createtask", (req, res) => {
     res.status(201).send(toDoList)
 });
 
+//Exercicio 6.
+app.put("/completed/:id", (req, res) => {
+    const taskId = req.params.id
+
+    const newCompleted = toDoList.filter((task) => {
+        return Number(taskId) === task.id
+    }).map((task) => {
+        if (task.completed === true) {
+            return { userId: task.userId, id: task.id, title: task.title, completed: false }
+        } else if (task.completed === false) {
+            return { userId: task.userId, id: task.id, title: task.title, completed: true }
+        }
+    })
+    console.log(newCompleted)
+    res.status(201).send(newCompleted);
+});
+
+//Exercício 7.
+app.delete("/deletetask/:id", (req, res) => {
+    const taskId = req.params.id;
+
+    const deleteTask = toDoList.filter((task) => {
+        if (task.id !== Number(taskId)) {
+            return task
+        }
+    });
+
+    res.status(201).send(deleteTask);
+});
+
