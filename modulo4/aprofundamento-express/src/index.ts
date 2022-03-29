@@ -74,3 +74,16 @@ app.delete("/deletetask/:id", (req, res) => {
     res.status(201).send(deleteTask);
 });
 
+//Exercício 8.
+app.get("/todos/:userId", (req, res) => {
+    const userId = req.params.userId
+
+    const userTasks = toDoList.filter((task) => {
+        return Number(userId) === task.userId
+    })
+
+    res.status(201).send(userTasks);
+});
+
+//Exercício 9.
+// https://documenter.getpostman.com/view/19294823/UVyoXynF
