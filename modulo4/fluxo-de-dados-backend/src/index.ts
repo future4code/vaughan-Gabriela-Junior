@@ -18,8 +18,8 @@ app.get("/test", (req, res) => {
 
 //Exercício 3.
 app.post("/product/create", (req, res) => {
-    const newName = req.body.name;
-    const newPrice = req.body.price;
+    const newName: string = req.body.name;
+    const newPrice: number = req.body.price;
 
     const newProduct = {
         id: Date.now().toString(),
@@ -29,7 +29,7 @@ app.post("/product/create", (req, res) => {
 
     products.push(newProduct)
 
-    res.status(200).send(products);
+    res.status(201).send(products);
 });
 
 //Exercício 4.
@@ -64,8 +64,8 @@ app.get("/products", (req, res) => {
 
 //Exercício 7.
 app.post("/products/new", (req, res) => {
-    let newName = req.body.name;
-    let newPrice = req.body.price;
+    let newName: string = req.body.name;
+    let newPrice: number = req.body.price;
 
     const newProduct = {
         id: Date.now().toString(),
@@ -84,25 +84,25 @@ app.post("/products/new", (req, res) => {
             throw new Error("Preço precisa ser maior que 0")
         } else {
             products.push(newProduct)
-            res.status(200).send(products);
+            res.status(201).send(products);
         }
 
     } catch (error: any) {
         switch (error.message) {
             case "Campo de nome ou preço não preenchido.":
-                res.status(400).send(error.message)
+                res.status(401).send(error.message)
                 break
             case "Nome precisa ser uma string.":
-                res.status(400).send(error.message)
+                res.status(422).send(error.message)
                 break
             case "Preço precisa ser um número.":
-                res.status(400).send(error.message)
+                res.status(422).send(error.message)
                 break
             case "Preço precisa ser maior que 0":
-                res.status(400).send(error.message)
+                res.status(422).send(error.message)
                 break
             default:
-                res.status(500).send(error.message)
+                res.status(400).send(error.message)
                 break
         }
     }
@@ -111,10 +111,10 @@ app.post("/products/new", (req, res) => {
 //Exercício 8.
 app.put("/products/change/:id", (req, res) => {
     try {
-        const productId = req.params.id
-        const newPrice = req.body.price
+        const productId: string = req.params.id
+        const newPrice: number = req.body.price
 
-        let productFound = false
+        let productFound: boolean = false
 
         for (let i = 0; i < products.length; i++) {
             if (products[i].id === productId) {
@@ -144,16 +144,16 @@ app.put("/products/change/:id", (req, res) => {
     } catch (error: any) {
         switch (error.message) {
             case "Produto não encontrado.":
-                res.status(400).send(error.message)
+                res.status(404).send(error.message)
                 break
             case "Preço precisa ser inserido.":
-                res.status(400).send(error.message)
+                res.status(401).send(error.message)
                 break
             case "Preço precisa ser um número.":
-                res.status(400).send(error.message)
+                res.status(422).send(error.message)
                 break
             case "Preço precisa ser maior que 0.":
-                res.status(400).send(error.message)
+                res.status(422).send(error.message)
                 break
             default:
                 res.status(400).send(error.message)
@@ -186,7 +186,7 @@ app.delete("/products/delete/:id", (req, res) => {
     } catch (error: any) {
         switch (error.message) {
             case "Produto não encontrado.":
-                res.status(400).send(error.message)
+                res.status(404).send(error.message)
                 break
             default:
                 res.status(400).send(error.message)
