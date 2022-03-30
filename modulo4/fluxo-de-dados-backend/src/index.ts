@@ -117,12 +117,12 @@ app.put("/products/change/:id", (req, res) => {
         let productFound = false
 
         for (let i = 0; i < products.length; i++) {
-            if(products[i].id === productId) {
+            if (products[i].id === productId) {
                 productFound = true
             }
         }
         if (!productFound) {
-            throw new Error ("Produto não encontrado.")
+            throw new Error("Produto não encontrado.")
         }
 
         const changePrice = products.filter(product => {
@@ -165,8 +165,17 @@ app.put("/products/change/:id", (req, res) => {
 //Exercício 9.
 app.delete("/products/delete/:id", (req, res) => {
     try {
-        const productId = req.params.id
+        const productId: string = req.params.id
 
+        let productFound: boolean = false
+        for (let i = 0; i < products.length; i++) {
+            if (products[i].id === productId) {
+                productFound = true
+            }
+        }
+        if (!productFound) {
+            throw new Error("Produto não encontrado.")
+        }
 
         const deleteProduct = products.filter((product) => {
             return productId !== product.id
@@ -174,8 +183,13 @@ app.delete("/products/delete/:id", (req, res) => {
 
         res.status(200).send(deleteProduct);
 
-    } catch (error) {
-
-    }
-
+    } catch (error: any) {
+        switch (error.message) {
+            case "Produto não encontrado.":
+                res.status(400).send(error.message)
+                break
+            default:
+                res.status(400).send(error.message)
+        }
+    };
 });
