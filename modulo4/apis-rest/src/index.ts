@@ -33,7 +33,7 @@ app.get("/users", (req, res) => {
    try {
       const type: Type = req.query.type as Type
       const user: User[] | undefined = users.filter((user) => user.type.toLowerCase() === type.toLowerCase());
-      if (!user) {
+      if (user === undefined) {
          errorCode = 404;
          throw new Error ("Não foi encontrado um usuário.");
       }
@@ -43,7 +43,28 @@ app.get("/users", (req, res) => {
       res.status(errorCode).send({message: error.message})
 
    }
-})
+});
+
+//a) Passei por query params
+
+//Exercício 3.
+app.get("/users/:name", (req, res) => {
+   let errorCode = 400
+
+   try {
+      const name: string = req.params.name as string
+      const user: User[] | undefined = users.filter((user) => user.name.toLowerCase() === name.toLowerCase());
+      if (user === undefined) {
+         errorCode = 404;
+         throw new Error ("Não foi encontrado um usuário.");
+      }
+      res.status(200).send(user);
+
+   } catch (error: any) {
+      res.status(errorCode).send({message: error.message})
+
+   }
+});
 
 //Deixar por último
 const server = app.listen(process.env.PORT || 3003, () => {
