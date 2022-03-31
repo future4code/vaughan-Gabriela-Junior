@@ -83,7 +83,7 @@ app.post("/users", (req, res) => {
       users.push(newUser)
       res.status(200).send("Usuário criado com sucesso");
 
-   } catch (error) {
+   } catch (error: any) {
       res.status(errorCode).send({message: error.message})
    }
 })
