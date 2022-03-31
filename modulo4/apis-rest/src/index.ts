@@ -2,6 +2,7 @@ import express, {Express} from 'express'
 import cors from 'cors'
 import { AddressInfo } from "net";
 import { users, Type, User } from './data';
+import { getPriority } from 'os';
 
 const app: Express = express();
 
@@ -65,6 +66,27 @@ app.get("/users/:name", (req, res) => {
 
    }
 });
+
+//Exercício 4.
+app.post("/users", (req, res) => {
+   let errorCode = 400
+
+   try {
+      const newUser: User = {
+         id: 9,
+         name: "Joana",
+         email: 'joana@joana.com',
+         type: Type.NORMAL,
+         age: 30
+      }
+
+      users.push(newUser)
+      res.status(200).send("Usuário criado com sucesso");
+
+   } catch (error) {
+      res.status(errorCode).send({message: error.message})
+   }
+})
 
 //Deixar por último
 const server = app.listen(process.env.PORT || 3003, () => {
