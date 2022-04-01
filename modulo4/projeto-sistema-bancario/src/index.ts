@@ -68,31 +68,53 @@ app.post("/users", (req, res) => {
     }
 });
 
-app.post("/users/balance", (req, res) => {
+app.put("/users/balance/:cpf", (req, res) => {
     let statusCode = 400
 
     try {
-        const username: string = req.body.name;
-        const userCPF: string = req.body.cpf;
+        const userCPF: string = req.params.cpf
         const userBalance: number = req.body.balance as number
+        let foundCPF = false
+        console.log(userCPF)
+        // if (!userCPF) {
+        //     throw new Error ("Colocar CPF.")
+        // }
 
-        const sumBalance = users.filter((user) => {
-            return (username === user.name && userCPF === user.cpf)
-        }).map((user) => {
-            const addBalance = user.balance + userBalance
-            return addBalance
-        });
+        // for (let i = 0; users.length; i++) {
+        //     if (users[i].cpf === userCPF) {
+        //         return foundCPF = true
+        //     }
+        // }
+        // console.log(foundCPF)
+        // console.log(cpfFound)
 
-        const newBalance = {
-            balance: userBalance,
-            balanceDate: new Date,
-            balanceDescription: "Depósito de dinheiro"
-        };
+        // if (foundCPF === false) {
+        //     throw new Error("CPF não encontrado.")
+        // } else {
 
-        res.status(200).send(newBalance)
+            const returnBalance = {
+                balance: userBalance,
+                balanceDate: new Date,
+                balanceDescription: "Depósito de dinheiro"
+            }
 
+            res.status(200).send(returnBalance)
+        // }
+
+        // const sumBalance = users.filter((user) => {
+        //     return (username === user.name && userCPF === user.cpf)
+        // }).map((user) => {
+        //     const addBalance = user.balance + userBalance
+        //     return addBalance
+        // });
 
     } catch (error: any) {
+        switch (error.message) {
+            case "CPF não encontrado.":
+                res.status(400).send(error.message)
+            default:
+                res.status(400).send(error.message)
+        }
 
     }
 });
