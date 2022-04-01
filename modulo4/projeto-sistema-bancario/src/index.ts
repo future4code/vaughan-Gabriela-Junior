@@ -7,7 +7,17 @@ const app: Express = express();
 app.use(express.json());
 app.use(cors());
 
+app.get("/test", (req, res) => {
+    res.send("Api funcionando!")
+});
 
+app.post("/users", (req, res) => {
+    try {
+
+    } catch (error: any) {
+        res.status(400).send(error.message)
+    }
+})
 
 const server = app.listen(process.env.PORT || 3003, () => {
     if (server) {
