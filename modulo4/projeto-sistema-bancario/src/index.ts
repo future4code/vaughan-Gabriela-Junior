@@ -35,7 +35,7 @@ app.post("/users", (req, res) => {
         let birthDateSplit = newDate.split("/");
         arrayBirthDate.push(birthDateSplit[1], birthDateSplit[0], birthDateSplit[2]);
         const formattedBirthDate: number = new Date(Date.parse(arrayBirthDate.join("/"))).getTime();
-        const age: number = Math.floor((dateToday.getTime() - formattedBirthDate) /  31536000000)
+        const age: number = Math.floor((dateToday.getTime() - formattedBirthDate) / 31536000000)
         console.log(age)
 
         if (age < 18) {
@@ -44,7 +44,7 @@ app.post("/users", (req, res) => {
 
         } else if (cpfFound === true) {
 
-           throw new Error("Esse CPF já existe.") ;
+            throw new Error("Esse CPF já existe.");
 
         } else {
 
@@ -54,13 +54,13 @@ app.post("/users", (req, res) => {
         };
 
     } catch (error: any) {
-        switch(error.message) {
+        switch (error.message) {
             case "Precisa ter no mínimo 18 anos para se cadastrar.":
                 res.status(400).send(error.message)
                 break
             case "Esse CPF já existe.":
-                    res.status(400).send(error.message)
-                    break
+                res.status(400).send(error.message)
+                break
             default:
                 res.status(500).send(error.message)
                 break
@@ -81,7 +81,7 @@ app.post("/users/balance", (req, res) => {
         }).map((user) => {
             const addBalance = user.balance + userBalance
             return addBalance
-        })
+        });
 
         const newUserBalance = {
             name: username,
@@ -104,14 +104,28 @@ app.post("/users/statement/:cpf", (req, res) => {
 
         const cpf: string = req.params.cpf
         const payBill: number = req.body.amount as number
-        const dateBill: string = req.body.dateBill
+        let dateBill: string = req.body.date
         const descriptionBill: string = req.body.description
+        const arrayToday = []
+        const arrayBillDate = []
+        const dateToday = ((new Date).toLocaleDateString()).split("/");
+        arrayToday.push(dateToday[1], dateToday[0], dateToday[2]);
+        const todayFormatted = arrayToday.join("/");
+
+        if (!dateBill) {
+            dateBill = todayFormatted;
+        };
 
         const newStatement: Statement = {
             amount: payBill,
             date: dateBill,
             description: descriptionBill
         };
+
+        let paymentDateSplit = dateBill.split("/");
+        arrayBillDate.push(paymentDateSplit[1], paymentDateSplit[0], paymentDateSplit[2]);
+        const formattedBillDate: number = new Date(Date.parse(arrayBillDate.join("/"))).getTime();
+        const isPast = Math.floor((formattedBillDate - (new Date).getTime()) / (1000 * 60 * 60 * 24) % 7);
 
         const addBill = users.filter((user) => {
             return cpf === user.cpf
@@ -120,20 +134,38 @@ app.post("/users/statement/:cpf", (req, res) => {
             return sumBalance
         });
 
-        console.log("addBill", addBill)
+        if (isPast < -1) {
+            throw new Error("Não foi possível cadastrar essa data. Favor colocar a partir do dia atual.")
 
-        const addStatement = users.filter((user) => {
-            return cpf === user.cpf
-        }).map((user) => {
-            (user.statement).push(newStatement)
-            return {name: user.name, cpf: user.cpf, birthDate: user.birthDate, balance: addBill, statement: user.statement}
-        });
+        } else if (addBill[0] < 0) {
 
-        res.status(200).send(addStatement);
+            throw new Error("Não foi possível pagar essa conta pois é maior que seu saldo.")
 
-    } catch (error) {
+        } else {
 
-    }
+            const addStatement = users.filter((user) => {
+                return cpf === user.cpf
+            }).map((user) => {
+                (user.statement).push(newStatement)
+                return { name: user.name, cpf: user.cpf, birthDate: user.birthDate, balance: addBill, statement: user.statement }
+            });
+
+            res.status(200).send(addStatement);
+        };
+
+    } catch (error: any) {
+        switch (error.message) {
+            case "Não foi possível cadastrar essa data. Favor colocar a partir do dia atual.":
+                res.status(400).send(error.message)
+                break
+            case "Não foi possível pagar essa conta pois é maior que seu saldo.":
+                res.status(400).send(error.message)
+                break
+            default:
+                res.status(400).send(error.message)
+                break
+        };
+    };
 });
 
 app.get("/users", (req, res) => {
