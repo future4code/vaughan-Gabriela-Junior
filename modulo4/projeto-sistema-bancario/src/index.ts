@@ -36,6 +36,35 @@ app.post("/users", (req, res) => {
     }
 });
 
+app.post("/users/balance", (req, res) => {
+    let statusCode = 400
+
+    try {
+        const username: string = req.body.name;
+        const userCPF: string = req.body.cpf;
+        const userBalance: number = req.body.balance as number
+
+        const newBalance = users.filter((user) => {
+            return (username === user.name && userCPF === user.cpf)
+        }).map((user) => {
+            const addBalance = user.balance + userBalance
+            return addBalance
+        })
+
+        const newUserBalance = {
+            name: username,
+            cpf: userCPF,
+            balance: newBalance
+        };
+
+        res.status(200).send(newUserBalance)
+
+
+    } catch (error: any) {
+
+    }
+});
+
 app.get("/users", (req, res) => {
     let statusCode = 400
 
@@ -43,10 +72,11 @@ app.get("/users", (req, res) => {
 
         res.status(200).send(users);
 
-    } catch (error) {
+    } catch (error: any) {
 
     }
 });
+
 
 app.get("/users/balance/:cpf/:name", (req, res) => {
     let statusCode = 400
@@ -63,11 +93,11 @@ app.get("/users/balance/:cpf/:name", (req, res) => {
         console.log(findBalance)
         res.status(200).send(findBalance);
 
-    } catch (error) {
+    } catch (error: any) {
 
 
     }
-})
+});
 
 const server = app.listen(process.env.PORT || 3003, () => {
     if (server) {
