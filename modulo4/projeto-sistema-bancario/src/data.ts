@@ -1,31 +1,34 @@
-type Balance = {
+export type Statement = {
     amount: number,
     date: string,
     description: string
 };
 
-type User = {
+export type User = {
     name: string,
     cpf: string,
     birthDate: string,
-    balance: Balance[],
+    balance: number,
+    statement: Statement[],
 };
 
-const users: User[] = [{
+export const users: User[] = [{
     name: "João",
     cpf: "123.456.789-12",
     birthDate: "12/03/1990",
-    balance: [{
-        amount: 0,
-        date: "",
-        description: ""
+    balance: 500,
+    statement: [{
+        amount: 200,
+        date: "aaa",
+        description: "aaaa"
     }]
     },
     {
     name: "Joana",
     cpf: "321.654.987-21",
     birthDate: "09/12/1987",
-    balance: [{
+    balance: 1,
+    statement: [{
         amount: 0,
         date: "",
         description: ""
@@ -35,7 +38,8 @@ const users: User[] = [{
     name: "Joaquina",
     cpf: "789.456.123-99",
     birthDate: "09/12/1987",
-    balance: [{
+    balance: 0,
+    statement: [{
         amount: 0,
         date: "",
         description: ""
