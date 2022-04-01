@@ -8,16 +8,15 @@ const app: Express = express();
 app.use(express.json());
 app.use(cors());
 
-app.get("/test", (req, res) => {
-    res.send("Api funcionando!")
-});
-
 app.post("/users", (req, res) => {
     let statusCode = 400
     try {
-        const newName = req.body.name
-        const newCPF = req.body.cpf
-        const newDate = req.body.birthDate
+        const newName: string = req.body.name
+        const newCPF: string = req.body.cpf
+        const newDate: string = req.body.birthDate
+        const dateToday: Date = new Date;
+        let arrayBirthDate: string[] = []
+        let cpfFound = false
 
         const newUser: User = {
             name: newName,
@@ -27,12 +26,45 @@ app.post("/users", (req, res) => {
             statement: []
         };
 
-        users.push(newUser);
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].cpf === newCPF) {
+                cpfFound = true
+            }
+        };
 
-        res.status(201).send("Usuário criado com sucesso!")
+        let birthDateSplit = newDate.split("/");
+        arrayBirthDate.push(birthDateSplit[1], birthDateSplit[0], birthDateSplit[2]);
+        const formattedBirthDate: number = new Date(Date.parse(arrayBirthDate.join("/"))).getTime();
+        const age: number = Math.floor((dateToday.getTime() - formattedBirthDate) /  31536000000)
+        console.log(age)
+
+        if (age < 18) {
+
+            throw new Error("Precisa ter no mínimo 18 anos para se cadastrar.");
+
+        } else if (cpfFound === true) {
+
+           throw new Error("Esse CPF já existe.") ;
+
+        } else {
+
+            users.push(newUser);
+
+            res.status(201).send("Usuário criado com sucesso!")
+        };
 
     } catch (error: any) {
-        res.status(400).send(error.message)
+        switch(error.message) {
+            case "Precisa ter no mínimo 18 anos para se cadastrar.":
+                res.status(400).send(error.message)
+                break
+            case "Esse CPF já existe.":
+                    res.status(400).send(error.message)
+                    break
+            default:
+                res.status(500).send(error.message)
+                break
+        }
     }
 });
 
@@ -102,7 +134,7 @@ app.post("/users/statement/:cpf", (req, res) => {
     } catch (error) {
 
     }
-})
+});
 
 app.get("/users", (req, res) => {
     let statusCode = 400
