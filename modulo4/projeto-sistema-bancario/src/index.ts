@@ -1,4 +1,4 @@
-import express, {Express} from 'express';
+import express, { Express } from 'express';
 import cors from 'cors';
 import { AddressInfo } from "net";
 import { Statement, User, users } from './data';
@@ -65,6 +65,45 @@ app.post("/users/balance", (req, res) => {
     }
 });
 
+app.post("/users/statement/:cpf", (req, res) => {
+    let statusCode = 400
+
+    try {
+
+        const cpf: string = req.params.cpf
+        const payBill: number = req.body.amount as number
+        const dateBill: string = req.body.dateBill
+        const descriptionBill: string = req.body.description
+
+        const newStatement: Statement = {
+            amount: payBill,
+            date: dateBill,
+            description: descriptionBill
+        };
+
+        const addBill = users.filter((user) => {
+            return cpf === user.cpf
+        }).map((user) => {
+            const sumBalance = user.balance - payBill
+            return sumBalance
+        });
+
+        console.log("addBill", addBill)
+
+        const addStatement = users.filter((user) => {
+            return cpf === user.cpf
+        }).map((user) => {
+            (user.statement).push(newStatement)
+            return {name: user.name, cpf: user.cpf, birthDate: user.birthDate, balance: addBill, statement: user.statement}
+        });
+
+        res.status(200).send(addStatement);
+
+    } catch (error) {
+
+    }
+})
+
 app.get("/users", (req, res) => {
     let statusCode = 400
 
@@ -77,7 +116,6 @@ app.get("/users", (req, res) => {
     }
 });
 
-
 app.get("/users/balance/:cpf/:name", (req, res) => {
     let statusCode = 400
 
@@ -89,7 +127,7 @@ app.get("/users/balance/:cpf/:name", (req, res) => {
             return cpf === user.cpf && name === user.name
         }).map((user) => {
             return user.balance
-        }).flat(0);
+        });
         console.log(findBalance)
         res.status(200).send(findBalance);
 
@@ -101,9 +139,9 @@ app.get("/users/balance/:cpf/:name", (req, res) => {
 
 const server = app.listen(process.env.PORT || 3003, () => {
     if (server) {
-       const address = server.address() as AddressInfo;
-       console.log(`Server is running in http://localhost: ${address.port}`);
+        const address = server.address() as AddressInfo;
+        console.log(`Server is running in http://localhost: ${address.port}`);
     } else {
-       console.error(`Failure upon starting server.`);
+        console.error(`Failure upon starting server.`);
     }
 });
