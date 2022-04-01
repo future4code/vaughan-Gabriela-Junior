@@ -76,20 +76,20 @@ app.post("/users/balance", (req, res) => {
         const userCPF: string = req.body.cpf;
         const userBalance: number = req.body.balance as number
 
-        const newBalance = users.filter((user) => {
+        const sumBalance = users.filter((user) => {
             return (username === user.name && userCPF === user.cpf)
         }).map((user) => {
             const addBalance = user.balance + userBalance
             return addBalance
         });
 
-        const newUserBalance = {
-            name: username,
-            cpf: userCPF,
-            balance: newBalance
+        const newBalance = {
+            balance: userBalance,
+            balanceDate: new Date,
+            balanceDescription: "Depósito de dinheiro"
         };
 
-        res.status(200).send(newUserBalance)
+        res.status(200).send(newBalance)
 
 
     } catch (error: any) {
@@ -186,18 +186,48 @@ app.get("/users/balance/:cpf/:name", (req, res) => {
     try {
         const cpf: string = req.params.cpf
         const name: string = req.params.name
+        let cpfFound = false
+        let nameFound = false
 
-        const findBalance = users.filter((user) => {
-            return cpf === user.cpf && name === user.name
-        }).map((user) => {
-            return user.balance
-        });
-        console.log(findBalance)
-        res.status(200).send(findBalance);
+
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].cpf === cpf) {
+                cpfFound = true
+            }
+            if (users[i].name === name) {
+                nameFound = true
+            }
+        };
+
+        console.log(nameFound)
+
+
+        if (cpfFound === false) {
+            throw new Error("CPF não encontrado.")
+        } else if (nameFound === false) {
+            throw new Error("Nome não encontrado")
+        } else {
+            const findBalance = users.filter((user) => {
+                return cpf === user.cpf && name === user.name
+            }).map((user) => {
+                return user.balance
+            });
+            console.log(findBalance)
+            res.status(200).send(findBalance);
+        }
 
     } catch (error: any) {
-
-
+        switch (error.message) {
+            case "CPF não encontrado.":
+                res.status(400).send(error.message)
+                break
+            case "Nome não encontrado.":
+                res.status(400).send(error.message)
+                break
+            default:
+                res.status(400).send(error.message)
+                break
+        }
     }
 });
 
