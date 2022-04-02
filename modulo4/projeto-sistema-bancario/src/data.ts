@@ -23,9 +23,19 @@ export const users: User[] = [{
     name: "Joana",
     cpf: "321.654.987-21",
     birthDate: "09/12/1987",
-    balance: 1,
+    balance: 4,
     statement: [{
-        amount: 0,
+        amount: -1,
+        date: "",
+        description: ""
+    },
+    {
+        amount: -1,
+        date: "",
+        description: ""
+    },
+    {
+        amount: -1,
         date: "",
         description: ""
     }]

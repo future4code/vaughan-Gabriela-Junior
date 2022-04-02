@@ -68,52 +68,60 @@ app.post("/users", (req, res) => {
     }
 });
 
-app.put("/users/balance/:cpf", (req, res) => {
+app.put("/users/balance", (req, res) => {
     let statusCode = 400
 
     try {
-        const userCPF: string = req.params.cpf
+        const userCPF: string = req.body.cpf
+        const username: string = req.body.name
         const userBalance: number = req.body.balance as number
-        let foundCPF = false
         console.log(userCPF)
-        // if (!userCPF) {
-        //     throw new Error ("Colocar CPF.")
-        // }
+        let userFound = false
 
-        // for (let i = 0; users.length; i++) {
-        //     if (users[i].cpf === userCPF) {
-        //         foundCPF = true
-        //     }
-        // }
-        // console.log(foundCPF)
-        // console.log(cpfFound)
+        const newBalance = {
+            name: username,
+            cpf: userCPF,
+            balance: userBalance
+        };
 
-        // if (foundCPF === false) {
-        //     throw new Error("CPF não encontrado.")
-        // } else {
-
-        const returnBalance = {
-            balance: userBalance,
-            balanceDate: new Date,
-            balanceDescription: "Depósito de dinheiro"
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].name === username && users[i].cpf === userCPF) {
+                userFound = true
+            }
         }
 
-        res.status(200).send(returnBalance)
-        // }
+        if (userFound === false) {
+            throw new Error ("Usuário não encontrado.")
 
-        // const sumBalance = users.filter((user) => {
-        //     return (username === user.name && userCPF === user.cpf)
-        // }).map((user) => {
-        //     const addBalance = user.balance + userBalance
-        //     return addBalance
-        // });
+        } else {
+
+            const returnBalance = {
+                balance: newBalance.balance,
+                balanceDate: new Date,
+                balanceDescription: "Depósito de dinheiro"
+            }
+    
+            const sumBalance = users.filter((user) => {
+                return (userCPF === user.cpf)
+            }).map((user) => {
+                const addBalance = user.balance + returnBalance.balance
+                return {totalBalance: addBalance}
+            });
+    
+            const arrayBalance = [returnBalance, sumBalance]
+    
+            res.status(200).send(arrayBalance)
+
+        };
 
     } catch (error: any) {
-        switch (error.message) {
-            case "CPF não encontrado.":
+        switch(error.message) {
+            case "Usuário não encontrado.":
                 res.status(400).send(error.message)
+                break
             default:
                 res.status(400).send(error.message)
+                break
         }
 
     }
@@ -128,7 +136,6 @@ app.post("/users/statement/:cpf", (req, res) => {
         const payBill: number = req.body.amount as number
         let dateBill: string = req.body.date
         const descriptionBill: string = req.body.description
-        const arrayToday = []
         const arrayBillDate = []
         let dateToday = (new Date).toLocaleDateString('pt-br')
 
@@ -188,18 +195,42 @@ app.post("/users/statement/:cpf", (req, res) => {
     };
 });
 
-// app.put("/users/balance/update/:cpf", (req, res) => {
-//     let statusCode = 400
+app.put("/users/balance/update/:cpf", (req, res) => {
+    let statusCode = 400
 
-//     try {
+    try {
+        const cpf = req.params.cpf
+
+        let sum = 0
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].cpf === cpf) {
+                for (let j = 0; j < users[i].statement.length; j++) {
+                    sum = sum + (users[i].statement[j].amount)
+
+                    return sum
+                }
+            }
+        };
+
+        console.log(cpf)
+        console.log("soma", sum)
+        
+
+        const updateBalance = users.filter((user) => {
+            return cpf === user.cpf
+        }).map((user) => {
+            let newBalance = user.balance - sum
+            return { balance: newBalance }
+        });
+
+        res.status(200).send(updateBalance)
 
 
+    } catch (error: any) {
 
-//     } catch (error: any) {
+    }
 
-//     }
-
-// })
+});
 
 app.post("/users/transfer", (req, res) => {
     let statusCode = 400
