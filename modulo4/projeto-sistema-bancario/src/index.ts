@@ -1,4 +1,4 @@
-import express, { Express } from 'express';
+import express, { Express, response } from 'express';
 import cors from 'cors';
 import { AddressInfo } from "net";
 import { Statement, User, users } from './data';
@@ -82,7 +82,7 @@ app.put("/users/balance/:cpf", (req, res) => {
 
         // for (let i = 0; users.length; i++) {
         //     if (users[i].cpf === userCPF) {
-        //         return foundCPF = true
+        //         foundCPF = true
         //     }
         // }
         // console.log(foundCPF)
@@ -92,13 +92,13 @@ app.put("/users/balance/:cpf", (req, res) => {
         //     throw new Error("CPF não encontrado.")
         // } else {
 
-            const returnBalance = {
-                balance: userBalance,
-                balanceDate: new Date,
-                balanceDescription: "Depósito de dinheiro"
-            }
+        const returnBalance = {
+            balance: userBalance,
+            balanceDate: new Date,
+            balanceDescription: "Depósito de dinheiro"
+        }
 
-            res.status(200).send(returnBalance)
+        res.status(200).send(returnBalance)
         // }
 
         // const sumBalance = users.filter((user) => {
@@ -188,6 +188,120 @@ app.post("/users/statement/:cpf", (req, res) => {
                 break
         };
     };
+});
+
+// app.put("/users/balance/update/:cpf", (req, res) => {
+//     let statusCode = 400
+
+//     try {
+
+
+
+//     } catch (error: any) {
+
+//     }
+
+// })
+
+app.post("/users/transfer", (req, res) => {
+    let statusCode = 400
+
+    try {
+        const username: string = req.body.name
+        const userCpf: string = req.body.cpf
+        const recipientName: string = req.body.recipientName
+        const recipientCPF: string = req.body.recipientCpf
+        const amount: number = req.body.amount
+
+        const newTransfer = {
+            name: username,
+            cpf: userCpf,
+            recipientName,
+            recipientCpf: recipientCPF,
+            amount
+        };
+
+        let lessThanAmount: boolean = false
+        let userFound: boolean = false
+        let recipientFound: boolean = false
+
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].cpf === userCpf && users[i].name === username) {
+                userFound = true
+                if (amount > users[i].balance) {
+                    lessThanAmount = true
+                }
+            } else if (users[i].cpf === recipientCPF && users[i].name === recipientName) {
+                recipientFound = true
+            }
+        };
+
+        console.log(lessThanAmount)
+
+        if (lessThanAmount === true) {
+
+            throw new Error("Seu saldo é menor que o valor de transferência.")
+
+        } else if (userFound === false) {
+
+            throw new Error("Usuário que está enviando a transferência não encontrado.")
+
+        } else if (recipientFound === false) {
+
+            throw new Error("Usuário que está recebendo a transferência não encontrado.")
+
+        } else {
+
+            const userStatement: Statement = {
+                amount: - newTransfer.amount,
+                date: (new Date).toLocaleDateString('pt-br'),
+                description: `Transferência para ${newTransfer.recipientName}`
+            };
+
+            const recipientStatement: Statement = {
+                amount: newTransfer.amount,
+                date: userStatement.date,
+                description: `Transferência recebida de ${newTransfer.name}`
+            };
+
+            const userFilter = users.filter((user) => {
+                return userCpf === user.cpf
+            }).map((user) => {
+                (user.statement).push(userStatement)
+                return { name: user.name, cpf: user.cpf, birthDate: user.birthDate, balance: user.balance, statement: user.statement }
+            });
+
+            const recipientFilter = users.filter((user) => {
+                return recipientCPF === user.cpf
+            }).map((user) => {
+                (user.statement).push(recipientStatement)
+                return { name: user.name, cpf: user.cpf, birthDate: user.birthDate, balance: user.balance, statement: user.statement };
+            });
+            console.log(recipientFilter)
+
+            const arrayTransfer = [userFilter, recipientFilter]
+
+            res.status(200).send(arrayTransfer);
+        }
+
+    } catch (error: any) {
+        switch (error.message) {
+            case "Seu saldo é menor que o valor de transferência.":
+                res.status(400).send(error.message)
+                break
+            case "Usuário que está enviando a transferência não encontrado.":
+                res.status(400).send(error.message)
+                break
+            case "Usuário que está recebendo a transferência não encontrado.":
+                res.status(400).send(error.message)
+                break
+            default:
+                res.status(400).send(error.message)
+                break
+        }
+
+    };
+
 });
 
 app.get("/users", (req, res) => {
