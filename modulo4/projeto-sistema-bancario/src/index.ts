@@ -67,63 +67,6 @@ app.post("/users", (req, res) => {
     }
 });
 
-app.put("/users/balance", (req, res) => {
-
-    try {
-        const userCPF: string = req.body.cpf
-        const username: string = req.body.name
-        const userBalance: number = req.body.balance as number
-        let userFound: boolean = false
-
-        const newBalance = {
-            name: username,
-            cpf: userCPF,
-            balance: userBalance
-        };
-
-        for (let i = 0; i < users.length; i++) {
-            if (users[i].name === username && users[i].cpf === userCPF) {
-                userFound = true
-            }
-        }
-
-        if (userFound === false) {
-            throw new Error ("Usuário não encontrado.")
-
-        } else {
-
-            const returnBalance = {
-                balance: newBalance.balance,
-                balanceDate: new Date,
-                balanceDescription: "Depósito de dinheiro"
-            }
-    
-            const sumBalance = users.filter((user) => {
-                return (userCPF === user.cpf)
-            }).map((user) => {
-                const addBalance = user.balance + returnBalance.balance
-                return {totalBalance: addBalance}
-            });
-    
-            const arrayBalance = [returnBalance, sumBalance]
-    
-            res.status(200).send(arrayBalance)
-
-        };
-
-    } catch (error: any) {
-        switch(error.message) {
-            case "Usuário não encontrado.":
-                res.status(404).send(error.message)
-                break
-            default:
-                res.status(500).send(error.message)
-                break
-        }
-
-    }
-});
-
 app.post("/users/statement/:cpf", (req, res) => {
 
     try {
@@ -189,38 +132,6 @@ app.post("/users/statement/:cpf", (req, res) => {
                 break
         };
     };
-});
-
-app.put("/users/balance/update/:cpf", (req, res) => {
-
-    try {
-        const cpf: string = req.params.cpf
-
-        let sum = 0
-        for (let i = 0; i < users.length; i++) {
-            if (users[i].cpf === cpf) {
-                for (let j = 0; j < users[i].statement.length; j++) {
-                    sum = sum + (users[i].statement[j].amount)
-
-                    return sum
-                }
-            }
-        };
-        
-        const updateBalance = users.filter((user) => {
-            return cpf === user.cpf
-        }).map((user) => {
-            let newBalance = user.balance - sum
-            return { balance: newBalance }
-        });
-
-        res.status(200).send(updateBalance)
-
-
-    } catch (error: any) {
-
-    }
-
 });
 
 app.post("/users/transfer", (req, res) => {
@@ -317,6 +228,99 @@ app.post("/users/transfer", (req, res) => {
         }
 
     };
+
+});
+
+app.put("/users/balance", (req, res) => {
+
+    try {
+        const userCPF: string = req.body.cpf
+        const username: string = req.body.name
+        const userBalance: number = req.body.balance as number
+        let userFound: boolean = false
+
+        const newBalance = {
+            name: username,
+            cpf: userCPF,
+            balance: userBalance
+        };
+
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].name === username && users[i].cpf === userCPF) {
+                userFound = true
+            }
+        }
+
+        if (userFound === false) {
+            throw new Error ("Usuário não encontrado.")
+
+        } else {
+
+            const returnBalance = {
+                balance: newBalance.balance,
+                balanceDate: new Date,
+                balanceDescription: "Depósito de dinheiro"
+            }
+    
+            const sumBalance = users.filter((user) => {
+                return (userCPF === user.cpf)
+            }).map((user) => {
+                const addBalance = user.balance + returnBalance.balance
+                return {totalBalance: addBalance}
+            });
+    
+            const arrayBalance = [returnBalance, sumBalance]
+    
+            res.status(200).send(arrayBalance)
+
+        };
+
+    } catch (error: any) {
+        switch(error.message) {
+            case "Usuário não encontrado.":
+                res.status(404).send(error.message)
+                break
+            default:
+                res.status(500).send(error.message)
+                break
+        }
+
+    }
+});
+
+app.put("/users/balance/update", (req, res) => {
+//Não ta funcionando :(
+    try {
+        const cpf: string = req.body.cpf
+
+        const userBalance = {
+            cpf
+        }
+
+        let sum = 0
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].cpf === userBalance.cpf) {
+                for (let j = 0; j < users[i].statement.length; j++) {
+                    sum = sum + (users[i].statement[j].amount)
+
+                    return sum
+                }
+            }
+        };
+        
+        const updateBalance = users.filter((user) => {
+            return userBalance.cpf === user.cpf
+        }).map((user) => {
+            let newBalance = user.balance - sum
+            return { balance: newBalance }
+        });
+
+        res.status(200).send(updateBalance)
+
+
+    } catch (error: any) {
+
+    }
 
 });
 

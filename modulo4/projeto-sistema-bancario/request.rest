@@ -1,0 +1,64 @@
+GET http://localhost:3003/users
+Content-Type: application/json
+
+###
+
+GET http://localhost:3003/users/balance/123.456.789-12/João
+Content-Type: application/json
+
+###
+
+POST http://localhost:3003/users
+Content-Type: application/json
+
+{
+    "name": "Jorge",
+    "cpf": "124.567.980-52",
+    "birthDate": "15/09/1987"
+}
+
+###
+
+POST http://localhost:3003/users/statement/123.456.789-12
+Content-Type: application/json
+
+{
+    "amount": 300,
+    "date": "",
+    "description": "Testando requisição"
+}
+
+###
+
+POST http://localhost:3003/users/transfer
+Content-Type: application/json
+
+{
+    "name": "João",
+    "cpf": "123.456.789-12",
+    "recipientName": "Joana",
+    "recipientCpf": "321.654.987-21",
+    "amount": 300
+}
+
+###
+
+PUT http://localhost:3003/users/balance
+Content-Type: application/json
+
+{
+    "name": "João",
+    "cpf": "123.456.789-12",
+    "balance": 300
+}
+
+###
+
+PUT http://localhost:3003/users/balance/update
+Content-Type: application/json
+
+# NÃO TA FUNCIONANDO 
+
+{
+    "cpf": "123.456.789-12"
+}
