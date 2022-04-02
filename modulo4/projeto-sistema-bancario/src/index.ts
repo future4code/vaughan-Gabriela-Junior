@@ -130,16 +130,14 @@ app.post("/users/statement/:cpf", (req, res) => {
         const descriptionBill: string = req.body.description
         const arrayToday = []
         const arrayBillDate = []
-        const dateToday = ((new Date).toLocaleDateString()).split("/");
-        arrayToday.push(dateToday[1], dateToday[0], dateToday[2]);
-        const todayFormatted = arrayToday.join("/");
+        let dateToday = (new Date).toLocaleDateString('pt-br')
 
         if (!dateBill) {
-            dateBill = todayFormatted;
+            dateBill = dateToday;
         };
 
         const newStatement: Statement = {
-            amount: payBill,
+            amount: - payBill,
             date: dateBill,
             description: descriptionBill
         };
@@ -152,7 +150,7 @@ app.post("/users/statement/:cpf", (req, res) => {
         const addBill = users.filter((user) => {
             return cpf === user.cpf
         }).map((user) => {
-            const sumBalance = user.balance - payBill
+            const sumBalance = user.balance + newStatement.amount
             return sumBalance
         });
 
@@ -169,7 +167,7 @@ app.post("/users/statement/:cpf", (req, res) => {
                 return cpf === user.cpf
             }).map((user) => {
                 (user.statement).push(newStatement)
-                return { name: user.name, cpf: user.cpf, birthDate: user.birthDate, balance: addBill, statement: user.statement }
+                return { name: user.name, cpf: user.cpf, birthDate: user.birthDate, balance: user.balance, statement: user.statement }
             });
 
             res.status(200).send(addStatement);
