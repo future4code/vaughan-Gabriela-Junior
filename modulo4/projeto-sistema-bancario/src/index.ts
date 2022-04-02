@@ -1,4 +1,4 @@
-import express, { Express, response } from 'express';
+import express, { Express } from 'express';
 import cors from 'cors';
 import { AddressInfo } from "net";
 import { Statement, User, users } from './data';
@@ -9,14 +9,14 @@ app.use(express.json());
 app.use(cors());
 
 app.post("/users", (req, res) => {
-    let statusCode = 400
+
     try {
         const newName: string = req.body.name
         const newCPF: string = req.body.cpf
         const newDate: string = req.body.birthDate
         const dateToday: Date = new Date;
         let arrayBirthDate: string[] = []
-        let cpfFound = false
+        let cpfFound: boolean = false
 
         const newUser: User = {
             name: newName,
@@ -36,7 +36,6 @@ app.post("/users", (req, res) => {
         arrayBirthDate.push(birthDateSplit[1], birthDateSplit[0], birthDateSplit[2]);
         const formattedBirthDate: number = new Date(Date.parse(arrayBirthDate.join("/"))).getTime();
         const age: number = Math.floor((dateToday.getTime() - formattedBirthDate) / 31536000000)
-        console.log(age)
 
         if (age < 18) {
 
@@ -56,10 +55,10 @@ app.post("/users", (req, res) => {
     } catch (error: any) {
         switch (error.message) {
             case "Precisa ter no mínimo 18 anos para se cadastrar.":
-                res.status(400).send(error.message)
+                res.status(422).send(error.message)
                 break
             case "Esse CPF já existe.":
-                res.status(400).send(error.message)
+                res.status(409).send(error.message)
                 break
             default:
                 res.status(500).send(error.message)
@@ -69,14 +68,12 @@ app.post("/users", (req, res) => {
 });
 
 app.put("/users/balance", (req, res) => {
-    let statusCode = 400
 
     try {
         const userCPF: string = req.body.cpf
         const username: string = req.body.name
         const userBalance: number = req.body.balance as number
-        console.log(userCPF)
-        let userFound = false
+        let userFound: boolean = false
 
         const newBalance = {
             name: username,
@@ -117,10 +114,10 @@ app.put("/users/balance", (req, res) => {
     } catch (error: any) {
         switch(error.message) {
             case "Usuário não encontrado.":
-                res.status(400).send(error.message)
+                res.status(404).send(error.message)
                 break
             default:
-                res.status(400).send(error.message)
+                res.status(500).send(error.message)
                 break
         }
 
@@ -128,7 +125,6 @@ app.put("/users/balance", (req, res) => {
 });
 
 app.post("/users/statement/:cpf", (req, res) => {
-    let statusCode = 400
 
     try {
 
@@ -137,7 +133,7 @@ app.post("/users/statement/:cpf", (req, res) => {
         let dateBill: string = req.body.date
         const descriptionBill: string = req.body.description
         const arrayBillDate = []
-        let dateToday = (new Date).toLocaleDateString('pt-br')
+        let dateToday: string = (new Date).toLocaleDateString('pt-br')
 
         if (!dateBill) {
             dateBill = dateToday;
@@ -177,16 +173,16 @@ app.post("/users/statement/:cpf", (req, res) => {
                 return { name: user.name, cpf: user.cpf, birthDate: user.birthDate, balance: user.balance, statement: user.statement }
             });
 
-            res.status(200).send(addStatement);
+            res.status(201).send(addStatement);
         };
 
     } catch (error: any) {
         switch (error.message) {
             case "Não foi possível cadastrar essa data. Favor colocar a partir do dia atual.":
-                res.status(400).send(error.message)
+                res.status(422).send(error.message)
                 break
             case "Não foi possível pagar essa conta pois é maior que seu saldo.":
-                res.status(400).send(error.message)
+                res.status(422).send(error.message)
                 break
             default:
                 res.status(400).send(error.message)
@@ -196,10 +192,9 @@ app.post("/users/statement/:cpf", (req, res) => {
 });
 
 app.put("/users/balance/update/:cpf", (req, res) => {
-    let statusCode = 400
 
     try {
-        const cpf = req.params.cpf
+        const cpf: string = req.params.cpf
 
         let sum = 0
         for (let i = 0; i < users.length; i++) {
@@ -211,11 +206,7 @@ app.put("/users/balance/update/:cpf", (req, res) => {
                 }
             }
         };
-
-        console.log(cpf)
-        console.log("soma", sum)
         
-
         const updateBalance = users.filter((user) => {
             return cpf === user.cpf
         }).map((user) => {
@@ -233,7 +224,6 @@ app.put("/users/balance/update/:cpf", (req, res) => {
 });
 
 app.post("/users/transfer", (req, res) => {
-    let statusCode = 400
 
     try {
         const username: string = req.body.name
@@ -264,8 +254,6 @@ app.post("/users/transfer", (req, res) => {
                 recipientFound = true
             }
         };
-
-        console.log(lessThanAmount)
 
         if (lessThanAmount === true) {
 
@@ -306,7 +294,6 @@ app.post("/users/transfer", (req, res) => {
                 (user.statement).push(recipientStatement)
                 return { name: user.name, cpf: user.cpf, birthDate: user.birthDate, balance: user.balance, statement: user.statement };
             });
-            console.log(recipientFilter)
 
             const arrayTransfer = [userFilter, recipientFilter]
 
@@ -316,16 +303,16 @@ app.post("/users/transfer", (req, res) => {
     } catch (error: any) {
         switch (error.message) {
             case "Seu saldo é menor que o valor de transferência.":
-                res.status(400).send(error.message)
+                res.status(422).send(error.message)
                 break
             case "Usuário que está enviando a transferência não encontrado.":
-                res.status(400).send(error.message)
+                res.status(404).send(error.message)
                 break
             case "Usuário que está recebendo a transferência não encontrado.":
-                res.status(400).send(error.message)
+                res.status(404).send(error.message)
                 break
             default:
-                res.status(400).send(error.message)
+                res.status(500).send(error.message)
                 break
         }
 
@@ -334,7 +321,6 @@ app.post("/users/transfer", (req, res) => {
 });
 
 app.get("/users", (req, res) => {
-    let statusCode = 400
 
     try {
 
@@ -346,13 +332,12 @@ app.get("/users", (req, res) => {
 });
 
 app.get("/users/balance/:cpf/:name", (req, res) => {
-    let statusCode = 400
 
     try {
         const cpf: string = req.params.cpf
         const name: string = req.params.name
-        let cpfFound = false
-        let nameFound = false
+        let cpfFound: boolean = false
+        let nameFound: boolean = false
 
 
         for (let i = 0; i < users.length; i++) {
@@ -364,9 +349,6 @@ app.get("/users/balance/:cpf/:name", (req, res) => {
             }
         };
 
-        console.log(nameFound)
-
-
         if (cpfFound === false) {
             throw new Error("CPF não encontrado.")
         } else if (nameFound === false) {
@@ -377,20 +359,20 @@ app.get("/users/balance/:cpf/:name", (req, res) => {
             }).map((user) => {
                 return user.balance
             });
-            console.log(findBalance)
+
             res.status(200).send(findBalance);
         }
 
     } catch (error: any) {
         switch (error.message) {
             case "CPF não encontrado.":
-                res.status(400).send(error.message)
+                res.status(404).send(error.message)
                 break
             case "Nome não encontrado.":
-                res.status(400).send(error.message)
+                res.status(404).send(error.message)
                 break
             default:
-                res.status(400).send(error.message)
+                res.status(500).send(error.message)
                 break
         }
     }
