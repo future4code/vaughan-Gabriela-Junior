@@ -165,7 +165,14 @@ CREATE TABLE Movie (
 );
 
 #### b)
-
+INSERT INTO Movie (id, name, synopsis, release_date, rating)
+VALUES (
+	"001",
+    "Se Eu Fosse Você",
+    "Cláudio e Helena são casados há muitos anos e enfrentam a rotina do casamento. Um dia eles são atingidos por um fenômeno inexplicável e trocam de corpos",
+    "2006-01-06",
+    7
+);
 
 #### c)
 
