@@ -1,5 +1,19 @@
 ### Exercício 1.
 
+CREATE TABLE Actor (
+    id VARCHAR(255) PRIMARY KEY,
+    name VARCHAR (255) NOT NULL,
+    salary FLOAT NOT NULL,
+    birth_date DATE NOT NULL,
+    gender VARCHAR(6) NOT NULL
+);
+
+SHOW DATABASES;
+SHOW TABLES;
+
+DESCRIBE Actor;
+
+
 #### a)
 VARCHAR seria o formato 'string', para escrever e o número entre parênteses (255) ou (6) é o máximo de caracteres que podem ter.
 DATE é para criar no formato de data.
