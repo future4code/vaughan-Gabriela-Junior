@@ -175,6 +175,14 @@ VALUES (
 );
 
 #### c)
+INSERT INTO Movie (id, name, synopsis, release_date, rating)
+VALUES (
+	"002",
+    "Doce de mãe",
+    "Dona Picucha, uma animada senhora de 85 anos, sempre causa grandes confusões. A vida dela e dos seus quatro filhos sofre uma reviravolta depois que Zaida, empregada e amiga de Dona Picucha, anuncia que vai se casar e não poderá mais morar com ela",
+    "2021-12-27",
+    10
+);
 
 
 #### d)
