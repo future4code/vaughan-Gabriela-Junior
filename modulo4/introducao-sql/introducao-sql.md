@@ -128,3 +128,8 @@ SELECT id, name, salary FROM Actor
 WHERE salary <= 500000;
 
 #### e)
+Erro código: 1054. 'nome' não foi encontrado no campo da lista.
+Deu erro pois 'nome' não existe na tabela, está como "name".
+
+SELECT id, name from Actor 
+WHERE id = "002";
