@@ -145,6 +145,10 @@ SELECT * FROM Actor
 WHERE name NOT LIKE "A%" AND salary > 350000;
 
 #### c)
-
+SELECT * FROM Actor
+WHERE name LIKE "%g%" OR name LIKE "%G%";
 
 #### d)
+SELECT * FROM Actor
+WHERE (name LIKE "%a%" OR name LIKE "%A%" OR name LIKE "%g%" OR name LIKE "%G%") 
+AND salary BETWEEN 350000 AND 900000;
