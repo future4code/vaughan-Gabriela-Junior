@@ -39,12 +39,14 @@ VALUES(
 
 #### a)
 INSERT INTO Actor (id, name, salary, birth_date, gender)
-VALUES (
-	"002",
-    "Glória Pires",
-    1200000,
-    1963-08-23,
-    "female"
+VALUES(
+  "002", 
+  "Gloria Pires",
+  1200000,
+  "1963-08-23", 
+  "female"
 );
 
 ### b)
+Código do erro: 1062. Entrada '002' duplicada para a chave 'PRIMÁRIA'.
+O erro aconteceu porque a PRIMARY KEY tem que ser única.
