@@ -204,3 +204,19 @@ VALUES (
     "2012-01-20",
     7
 );
+
+### Exercício 6.
+
+#### a)
+SELECT id, name, rating FROM Movie
+WHERE id = "001";
+
+#### b)
+SELECT * FROM Movie
+WHERE name = "2 Coelhos";
+
+#### c)
+SELECT id, name, synopsis FROM Movie
+WHERE rating >= 7;
+
+### Exercício 7.
