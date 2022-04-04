@@ -117,6 +117,14 @@ SELECT * FROM Actor
 WHERE gender = "female";
 
 #### b)
+SELECT salary FROM Actor
+WHERE name = "Tony Ramos";
+
 #### c)
+O resultado veio todo NULL pois não tem atores ou atrizes sem gênero, já que na criação foi colocado o valor gênero como NOT NULL.
+
 #### d)
+SELECT id, name, salary FROM Actor
+WHERE salary <= 500000;
+
 #### e)
