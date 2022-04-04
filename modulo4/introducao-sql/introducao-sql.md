@@ -7,6 +7,7 @@ PRIMARY KEY seria o id, um valor único para cada usuário da tabela.
 NOT NULL significa que o valor não pode ficar em branco.
 
 #### b)
+SHOW DATABASES mostrou a lista dos bancos de dados. SHOW TABLES mostrou a lista de tabelas.
 
 #### c)
 
