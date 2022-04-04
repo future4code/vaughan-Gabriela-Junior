@@ -152,3 +152,25 @@ WHERE name LIKE "%g%" OR name LIKE "%G%";
 SELECT * FROM Actor
 WHERE (name LIKE "%a%" OR name LIKE "%A%" OR name LIKE "%g%" OR name LIKE "%G%") 
 AND salary BETWEEN 350000 AND 900000;
+
+### Exercício 5.
+
+#### a)
+CREATE TABLE Movie (
+	id VARCHAR(255) PRIMARY KEY,
+	name VARCHAR(255) NOT NULL, 
+	synopsis TEXT NOT NULL, 
+	release_date DATE NOT NULL,
+	rating INT NOT NULL
+);
+
+#### b)
+
+
+#### c)
+
+
+#### d)
+
+
+#### e)
