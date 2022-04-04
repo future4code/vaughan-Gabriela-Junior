@@ -91,3 +91,21 @@ VALUES(
 );
 
 ### f)
+
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "006", 
+  "Marjorie Estiano",
+  8000000,
+  "1982-05-08", 
+  "female"
+);
+
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "007", 
+  "Rodrigo Santoro",
+  380000,
+  "1975-08-22", 
+  "male"
+);
