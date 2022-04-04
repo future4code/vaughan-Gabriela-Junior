@@ -78,5 +78,16 @@ VALUES(
 );
 
 ### e)
+Código do erro: 1292. Valor de data incorreto.
+Ocorreu pois está sem aspas a data.
+
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "005", 
+  "Juliana Paes",
+  719333.33,
+  "1979-03-26", 
+  "female"
+);
 
 ### f)
