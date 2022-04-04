@@ -27,3 +27,16 @@ SHOW DATABASES mostrou a lista dos bancos de dados. SHOW TABLES mostrou a lista 
 DESCRIBE Actor mostra detalhes sobre a tabela Actor.
 
 ### Exercício 2.
+
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "001", 
+  "Tony Ramos",
+  400000,
+  "1948-08-25", 
+  "male"
+);
+
+#### a)
+
+### b)
