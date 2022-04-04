@@ -220,3 +220,22 @@ SELECT id, name, synopsis FROM Movie
 WHERE rating >= 7;
 
 ### Exercício 7.
+
+#### a)
+SELECT * FROM Movie
+WHERE name LIKE "%vida%";
+
+#### b)
+SELECT * FROM Movie
+WHERE name LIKE "%TERMO DE BUSCA%" 
+OR synopsis LIKE "%TERMO DE BUSCA%";
+
+#### c)
+SELECT * FROM Movie
+WHERE release_date < "2020-05-04";
+
+#### d)
+SELECT * FROM Movie
+WHERE release_date < "2020-05-04" 
+AND (name LIKE "%TERMO DE BUSCA%" OR synopsis LIKE "%TERMO DE BUSCA%") 
+AND rating > 7;
