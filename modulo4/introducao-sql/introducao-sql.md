@@ -133,3 +133,18 @@ Deu erro pois 'nome' não existe na tabela, está como "name".
 
 SELECT id, name from Actor 
 WHERE id = "002";
+
+### Exercício 4.
+
+#### a)
+A query mostra (SELECT) da tabela Actor (FROM Actor) onde tem nome que começa com A ou com J (WHERE (name LIKE "A%" OR name LIKE "J%")) e que tenha o salário
+maior que 300 000 (AND salary > 300000).
+
+#### b)
+SELECT * FROM Actor
+WHERE name NOT LIKE "A%" AND salary > 350000;
+
+#### c)
+
+
+#### d)
