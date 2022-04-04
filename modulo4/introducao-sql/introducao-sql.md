@@ -38,5 +38,13 @@ VALUES(
 );
 
 #### a)
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES (
+	"002",
+    "Glória Pires",
+    1200000,
+    1963-08-23,
+    "female"
+);
 
 ### b)
