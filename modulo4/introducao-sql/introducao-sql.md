@@ -109,3 +109,14 @@ VALUES(
   "1975-08-22", 
   "male"
 );
+
+### Exercício 3.
+
+#### a)
+SELECT * FROM Actor
+WHERE gender = "female";
+
+#### b)
+#### c)
+#### d)
+#### e)
