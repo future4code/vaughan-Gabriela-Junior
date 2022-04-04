@@ -186,6 +186,21 @@ VALUES (
 
 
 #### d)
-
+INSERT INTO Movie (id, name, synopsis, release_date, rating)
+VALUES (
+	"003",
+    "Dona Flor e Seus Dois Maridos",
+    "Dona Flor é uma sedutora professora de culinária casada com Vadinho, que só quer saber de farras e jogatina nas boates. A vida de abusos acaba por acarretar sua morte precoce.",
+    "2017-11-02",
+    8
+);
 
 #### e)
+INSERT INTO Movie (id, name, synopsis, release_date, rating)
+VALUES (
+	"004",
+    "2 Coelhos",
+    "Preso entre a criminalidade e o poder público corrupto, Edgar está cansado dessa vida e planeja fazer justiça com as próprias mãos. Ele executa um plano que coloca criminosos e corruptos em rota de colisão.",
+    "2012-01-20",
+    7
+);
