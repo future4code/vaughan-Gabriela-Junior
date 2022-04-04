@@ -50,3 +50,33 @@ VALUES(
 ### b)
 Código do erro: 1062. Entrada '002' duplicada para a chave 'PRIMÁRIA'.
 O erro aconteceu porque a PRIMARY KEY tem que ser única.
+
+### c)
+Código do erro: 1136. Quantidade de colunas não corresponde à quantidade da linha 1.
+O erro aconteceu porque faltou os valores de data de nascimento e gênero logo depois do INSER INTO Actor.
+
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "003", 
+  "Fernanda Montenegro",
+  300000,
+  "1929-10-19", 
+  "female"
+);
+
+### d)
+Código do erro: 1364. Campo 'nome' não tem um valor.
+O erro ocorreu pois faltou o campo do nome que é NOT NULL.
+
+INSERT INTO Actor (id, name, salary, birth_date, gender)
+VALUES(
+  "004",
+  "Antônio Fagundes",
+  400000,
+  "1949-04-18", 
+  "male"
+);
+
+### e)
+
+### f)
