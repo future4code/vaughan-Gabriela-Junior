@@ -10,5 +10,6 @@ NOT NULL significa que o valor não pode ficar em branco.
 SHOW DATABASES mostrou a lista dos bancos de dados. SHOW TABLES mostrou a lista de tabelas.
 
 #### c)
+DESCRIBE Actor mostra detalhes sobre a tabela Actor.
 
 ### Exercício 2.
