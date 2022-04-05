@@ -97,6 +97,32 @@ GROUP BY gender;
 
 ### Exercício 6.
 
+#### a)
+ALTER TABLE Movie
+ADD COLUMN playing_limit_date DATE;
+
+#### b)
+ALTER TABLE Movie
+CHANGE rating rating FLOAT NOT NULL;
+
+#### c)
+UPDATE Movie
+SET playing_limit_date = "2022-05-02"
+WHERE id = "001";
+
+UPDATE Movie
+SET playing_limit_date = "2020-05-02"
+WHERE id = "002";
+
+#### d)
+DELETE FROM Movie
+WHERE id = "002";
+
+UPDATE Movie
+SET synopsis = "Testando sinpse"
+WHERE id="002";
+
+Apareceu que afetou 0 rows pois o id foi deletado.
 
 ## Desafios
 ### Exercício 7.
