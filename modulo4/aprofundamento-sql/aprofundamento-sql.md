@@ -129,29 +129,43 @@ Apareceu que afetou 0 rows pois o id foi deletado.
 #### a)
 SELECT * FROM Movie
 WHERE rating > 7.5;
-Resposta: 'Dona Flor e Seus Dois Maridos'
 
 #### b)
 SELECT AVG(rating) FROM Movie;
-Resposta: '7.333333333333333'
 
 #### c)
 SELECT COUNT(*) FROM Movie
 WHERE playing_limit_date > CURDATE();
-Resposta: 1
 
 #### d)
 SELECT COUNT(*) FROM Movie
 WHERE release_date > CURDATE();
-Resposta: 0
 
 #### e)
 SELECT MAX(rating) FROM Movie;
-Resposta: 8
 
 #### f)
 SELECT MIN(rating) FROM Movie;
-Resposta: 7
 
 
 ### Exercício 8.
+
+#### a)
+SELECT * FROM Movie
+ORDER BY title ASC;
+
+#### b)
+SELECT * FROM Movie
+ORDER BY title DESC
+LIMIT 5;
+
+#### c)
+SELECT * FROM Movie
+WHERE release_date < CURDATE()
+ORDER BY release_date DESC
+LIMIT 3;
+
+#### d)
+SELECT * FROM Movie
+ORDER BY rating DESC
+LIMIT 3;
