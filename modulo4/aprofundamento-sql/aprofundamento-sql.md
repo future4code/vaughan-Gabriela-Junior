@@ -71,6 +71,30 @@ SELECT SUM(salary) FROM Actor;
 
 ### Exercício 5.
 
+#### a)
+SELECT COUNT(*), gender
+FROM Actor
+GROUP BY gender;
+
+Essa query faz a conta de quantos atores e atrizes têm separando pro grupos de gênero.
+
+#### b)
+SELECT id, name FROM Actor
+ORDER BY name DESC;
+
+#### c)
+SELECT * FROM Actor
+ORDER BY salary ASC;
+
+#### d)
+SELECT * FROM Actor
+ORDER BY salary DESC
+LIMIT 3;
+
+#### e)
+SELECT AVG(salary), gender FROM Actor
+GROUP BY gender;
+
 ### Exercício 6.
 
 
