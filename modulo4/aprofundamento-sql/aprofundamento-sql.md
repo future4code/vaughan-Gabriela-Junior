@@ -126,4 +126,32 @@ Apareceu que afetou 0 rows pois o id foi deletado.
 
 ## Desafios
 ### Exercício 7.
+#### a)
+SELECT * FROM Movie
+WHERE rating > 7.5;
+Resposta: 'Dona Flor e Seus Dois Maridos'
+
+#### b)
+SELECT AVG(rating) FROM Movie;
+Resposta: '7.333333333333333'
+
+#### c)
+SELECT COUNT(*) FROM Movie
+WHERE playing_limit_date > CURDATE();
+Resposta: 1
+
+#### d)
+SELECT COUNT(*) FROM Movie
+WHERE release_date > CURDATE();
+Resposta: 0
+
+#### e)
+SELECT MAX(rating) FROM Movie;
+Resposta: 8
+
+#### f)
+SELECT MIN(rating) FROM Movie;
+Resposta: 7
+
+
 ### Exercício 8.
