@@ -40,6 +40,51 @@ Não dá pra deletar uma tabela que tem outra tabela relacionada a ela.
 #### a)
 A tabela Movie Cast tem um id de filme e id de ator conectando-se com as tabelas de filmes e atores.
 
+#### b)
+INSERT INTO MovieCast(movie_id, actor_id)
+VALUES(
+	"333",
+    "010"
+);
+
+INSERT INTO MovieCast(movie_id, actor_id)
+VALUES(
+	"001",
+    "001"
+);
+
+INSERT INTO MovieCast(movie_id, actor_id)
+VALUES(
+	"001",
+    "002"
+);
+
+INSERT INTO MovieCast(movie_id, actor_id)
+VALUES(
+	"003",
+    "004"
+);
+
+INSERT INTO MovieCast(movie_id, actor_id)
+VALUES(
+	"004",
+    "006"
+);
+
+INSERT INTO MovieCast(movie_id, actor_id)
+VALUES(
+	"333",
+    "007"
+);
+
+####  c) 
+Não é possível criar uma relação de um ator com um filme inexistente.
+
+####  d)
+DELETE FROM Actor
+WHERE id = "010";
+Não é possível deletar um item de uma tabela que está atrelado a outro item de outra tabela relacionada.
+
 ### Exercício 3.
 
 #### a)
