@@ -90,6 +90,12 @@ Não é possível deletar um item de uma tabela que está atrelado a outro item 
 #### a)
 Selecione tudo da tabela do filme em conjunto com a tabela Rating em que o movie.id seja igual o rating.movie_id.
 
+#### b)
+SELECT title, Movie.id, rate FROM Movie
+INNER JOIN Rating
+ON Movie.id = Rating.movie_id;
+
+
 ### Exercício 4.
 
 ### Exercício 5.
