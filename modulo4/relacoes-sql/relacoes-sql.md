@@ -98,6 +98,24 @@ ON Movie.id = Rating.movie_id;
 
 ### Exercício 4.
 
+#### a)
+SELECT * FROM Movie
+LEFT JOIN Rating
+ON Movie.id = Rating.movie_id;
+
+#### b)
+
+SELECT Movie.id, Movie.title, MovieCast.actor_id FROM Movie
+RIGHT JOIN MovieCast
+ON Movie.id = MovieCast.movie_id;
+
+#### c)
+
+SELECT AVG(Rating.rate) as rating, Movie.id, Movie.title FROM Movie
+LEFT JOIN Rating
+ON Movie.id = Rating.movie_id
+GROUP BY (Movie.id);
+
 ### Exercício 5.
 
 ### Exercício 6.
