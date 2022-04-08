@@ -7,14 +7,14 @@ import { AddressInfo } from "net";
 dotenv.config();
 
 export const connection = knex({
-	client: "mysql",
-	connection: {
-    host: process.env.DB_HOST,
-    port: 3306,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_SCHEMA
-  }
+    client: "mysql",
+    connection: {
+        host: process.env.DB_HOST,
+        port: 3306,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASS,
+        database: process.env.DB_SCHEMA
+    }
 });
 
 const app: Express = express();
@@ -30,23 +30,23 @@ const createUser = async (name: string, nickname: string, email: string): Promis
             name: name,
             nickname: nickname,
             email: email
-    })
+        })
 };
 
 app.post("/user", async (req: Request, res: Response) => {
     try {
-        const {name, nickname, email} = req.body
-        
+        const { name, nickname, email } = req.body
+
 
         if (!name || !nickname || !email) {
-            throw new Error ("Todos os campos devem ser preenchidos.")
+            throw new Error("Todos os campos devem ser preenchidos.")
 
         } else {
             await createUser(name, nickname, email);
             res.status(201).send("Usuário criado com sucesso!")
 
         }
-        
+
     } catch (error: any) {
         switch (error.message) {
             case "Todos os campos devem ser preenchidos.":
@@ -62,10 +62,10 @@ app.post("/user", async (req: Request, res: Response) => {
 app.get("/user/:id", async (req: Request, res: Response) => {
     try {
         const id = req.params.id
-        const user = await connection("ToDoUser").where({id: id});
+        const user = await connection("ToDoUser").where({ id: id });
 
         const userNameAndID = user.map((user) => {
-            return {id: user.id, name: user.name};
+            return { id: user.id, name: user.name };
         });
 
         if (user.length === 0) {
@@ -91,21 +91,21 @@ const changeUser = async (id: string, name: string, nickname: string): Promise<a
     await connection("ToDoUser").update({
         name,
         nickname
-    }).where({id: id})
+    }).where({ id: id })
 };
 
 app.put("/user/edit/:id", async (req: Request, res: Response) => {
     try {
         const id = req.params.id
-        const {name, nickname} = req.body
+        const { name, nickname } = req.body
 
         if (!id || !name || !nickname) {
-            throw new Error ("Todos os campos devem ser preenchidos.")
+            throw new Error("Todos os campos devem ser preenchidos.")
         } else {
             await changeUser(id, name, nickname)
             res.status(200).send("Usuário modificado com sucesso!")
         }
-      
+
 
     } catch (error: any) {
         switch (error.message) {
@@ -113,15 +113,51 @@ app.put("/user/edit/:id", async (req: Request, res: Response) => {
                 res.status(404).send(error.message)
             default:
                 res.status(500).send(error.message);
+        }
     }
+});
+
+// 4.
+
+const createTask = async (title: string, description: string, limitDate: Date, creatorUserId: string): Promise<any> => {
+    await connection("ToDoTask")
+        .insert({
+           id: Date.now().toString(),
+           title: title,
+           description: description,
+           limit_date: limitDate,
+           creator_id: creatorUserId 
+        });
+};
+
+app.post("/task", async (req: Request, res: Response) => {
+    try {
+        const {title, description, limitDate, creatorUserId} = req.body
+        console.log(new Date(limitDate))
+        const dateFormatted = new Date(limitDate);
+
+        if (!title || !description || !limitDate || !creatorUserId) {
+            throw new Error ("Todos os campos devem ser preenchidos.")
+        } else {
+            await createTask(title, description, dateFormatted, creatorUserId)
+            res.status(201).send("Tarefa criada com sucesso!")
+        }
+
+    } catch (error: any) {
+        switch (error.message) {
+            case "Todos os campos devem ser preenchidos.":
+                res.status(404).send(error.message)
+            default:
+                res.status(500).send(error.message);
+        }
     }
 });
 
 const server = app.listen(process.env.PORT || 3003, () => {
     if (server) {
-       const address = server.address() as AddressInfo;
-       console.log(`Server is running in http://localhost: ${address.port}`);
+        const address = server.address() as AddressInfo;
+        console.log(`Server is running in http://localhost: ${address.port}`);
     } else {
-       console.error(`Failure upon starting server.`);
+        console.error(`Failure upon starting server.`);
     }
 });
