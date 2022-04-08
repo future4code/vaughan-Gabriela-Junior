@@ -153,6 +153,31 @@ app.post("/task", async (req: Request, res: Response) => {
     }
 });
 
+//5.
+
+app.get("/task/:id", async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id
+        const task = await connection("ToDoTask").join('ToDoUser', 'ToDoTask.creator_id', '=', 'ToDoUser.id').where({ 'ToDoTask.id': id });
+
+        const taskMap = task.map((task) => {
+            return {
+                taskId: task.id,
+                title: task.title,
+                description: task.description,
+                limitDate: task.limit_date.toLocaleDateString('pt-br'),
+                status: task.status,
+                creatorUserId: task.creator_id,
+                creatorUserNickname: task.nickname
+            }
+        });
+
+        res.status(200).send(taskMap);
+    } catch (error: any) {
+        res.status(500).send(error.message);
+    }
+});
+
 const server = app.listen(process.env.PORT || 3003, () => {
     if (server) {
         const address = server.address() as AddressInfo;
