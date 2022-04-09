@@ -270,18 +270,18 @@ app.get("/user", async (req: Request, res: Response) => {
 
 const assignTaskToUser = async (taskId: string, responsibleUserId: string): Promise<any> => {
     await connection('ToDoUserTaksRelation')
-    .insert({
-        task_id: taskId,
-        responsible_user_id: responsibleUserId
-    });
+        .insert({
+            task_id: taskId,
+            responsible_user_id: responsibleUserId
+        });
 };
 
 app.post("/task/responsible", async (req: Request, res: Response) => {
     try {
-        const {taskId, responsibleUserId} = req.body
+        const { taskId, responsibleUserId } = req.body
 
         if (!taskId || !responsibleUserId) {
-            throw new Error ("É preciso preencher todos os campos.")
+            throw new Error("É preciso preencher todos os campos.")
 
         } else {
 
@@ -299,6 +299,37 @@ app.post("/task/responsible", async (req: Request, res: Response) => {
     };
 });
 
+// 10.
+
+app.get("/task/:id/responsible", async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id
+       const userByTask = await connection('ToDoTask').join('ToDoUserTaksRelation', 'ToDoTask.id', 'ToDoUserTaksRelation.task_id')
+        .join('ToDoUser', 'ToDoUser.id', 'ToDoUserTaksRelation.responsible_user_id').where('ToDoTask.id', id);
+
+        if (userByTask.length === 0) {
+            throw new Error ("Tarefa não encontrada.")
+        } else {
+
+            const userByTaskMap = userByTask.map((task) => {
+                return {
+                    id: task.responsible_user_id,
+                    nickname: task.nickname
+                }
+            });
+    
+            res.status(200).send(userByTaskMap)
+        };
+
+    } catch (error: any) {
+        switch (error.message) {
+            case "Tarefa não encontrada.":
+                res.status(422).send(error.message)
+            default:
+                res.status(500).send(error.message);
+        }
+    };
+});
 
 const server = app.listen(process.env.PORT || 3003, () => {
     if (server) {
