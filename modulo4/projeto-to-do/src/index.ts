@@ -159,7 +159,7 @@ app.get("/task/:id", async (req: Request, res: Response) => {
     try {
         const id = req.params.id
         const task = await connection("ToDoTask").join('ToDoUser', 'ToDoTask.creator_id', '=', 'ToDoUser.id').where({ 'ToDoTask.id': id });
-
+        console.log(task)
         if (task.length === 0) {
             throw new Error("Tarefa não encontrada.")
         } else {
@@ -206,7 +206,7 @@ app.get("/users", async (req: Request, res: Response): Promise<any> => {
 app.get("/task", async (req: Request, res: Response): Promise<any> => {
     try {
         const creatorUserId = req.query.creatorUserId
-        const task = await connection("ToDoTask").join('ToDoUser', 'ToDoTask.creator_id', '=', 'ToDoUser.id').where({ 'ToDoUser.id': creatorUserId });
+        const task = await connection("ToDoTask").rightJoin('ToDoUser', 'ToDoTask.creator_id', 'ToDoUser.id').where({ 'ToDoUser.id': creatorUserId });
 
         if (!creatorUserId) {
             throw new Error("É necessário informar o usuário.")
@@ -243,7 +243,7 @@ app.get("/user", async (req: Request, res: Response) => {
         const user = await connection('ToDoUser').where('nickname', 'like', `%${query}%`).orWhere('email', 'like', `%${query}%`);
 
         if (!query) {
-            throw new Error ("É necessário informar o usuário.")
+            throw new Error("É necessário informar o usuário.")
 
         } else {
             const userMap = user.map((user) => {
@@ -264,6 +264,39 @@ app.get("/user", async (req: Request, res: Response) => {
                 res.status(500).send(error.message);
         }
     }
+});
+
+// 9.
+
+const assignTaskToUser = async (taskId: string, responsibleUserId: string): Promise<any> => {
+    await connection('ToDoUserTaksRelation')
+    .insert({
+        task_id: taskId,
+        responsible_user_id: responsibleUserId
+    });
+};
+
+app.post("/task/responsible", async (req: Request, res: Response) => {
+    try {
+        const {taskId, responsibleUserId} = req.body
+
+        if (!taskId || !responsibleUserId) {
+            throw new Error ("É preciso preencher todos os campos.")
+
+        } else {
+
+            await assignTaskToUser(taskId, responsibleUserId)
+            res.status(200).send("Tarefa atribuída ao usuário com sucesso.")
+        };
+
+    } catch (error: any) {
+        switch (error.message) {
+            case "É preciso preencher todos os campos.":
+                res.status(422).send(error.message)
+            default:
+                res.status(500).send(error.message);
+        }
+    };
 });
 
 
