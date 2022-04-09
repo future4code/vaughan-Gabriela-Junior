@@ -188,19 +188,84 @@ app.get("/task/:id", async (req: Request, res: Response) => {
     }
 });
 
-
 // 6.
 
 app.get("/users", async (req: Request, res: Response): Promise<any> => {
     try {
-        const allTasks  = await connection ("ToDoUser")
+        const allTasks = await connection("ToDoUser")
 
         res.status(200).send(allTasks)
 
     } catch (error: any) {
-
+        res.status(500).send(error.message);
     }
 });
+
+// 7.
+
+app.get("/task", async (req: Request, res: Response): Promise<any> => {
+    try {
+        const creatorUserId = req.query.creatorUserId
+        const task = await connection("ToDoTask").join('ToDoUser', 'ToDoTask.creator_id', '=', 'ToDoUser.id').where({ 'ToDoUser.id': creatorUserId });
+
+        if (!creatorUserId) {
+            throw new Error("É necessário informar o usuário.")
+        } else {
+            const taskMap = task.map((task) => {
+                return {
+                    taskId: task.id,
+                    title: task.title,
+                    description: task.description,
+                    limitDate: task.limit_date.toLocaleDateString('pt-br'),
+                    creatorUserId: task.creator_id,
+                    status: task.status,
+                    creatorUserNickname: task.nickname
+                }
+            })
+            res.status(200).send(taskMap);
+        }
+
+    } catch (error: any) {
+        switch (error.message) {
+            case "É necessário informar o usuário.":
+                res.status(422).send(error.message)
+            default:
+                res.status(500).send(error.message);
+        }
+    };
+});
+
+// 8.
+
+app.get("/user", async (req: Request, res: Response) => {
+    try {
+        const query = req.query.query
+        const user = await connection('ToDoUser').where('nickname', 'like', `%${query}%`).orWhere('email', 'like', `%${query}%`);
+
+        if (!query) {
+            throw new Error ("É necessário informar o usuário.")
+
+        } else {
+            const userMap = user.map((user) => {
+                return {
+                    id: user.id,
+                    nickname: user.nickname
+                }
+            });
+
+            res.status(200).send(userMap)
+        }
+
+    } catch (error: any) {
+        switch (error.message) {
+            case "É necessário informar o usuário.":
+                res.status(422).send(error.message)
+            default:
+                res.status(500).send(error.message);
+        }
+    }
+});
+
 
 const server = app.listen(process.env.PORT || 3003, () => {
     if (server) {
