@@ -540,8 +540,8 @@ app.get("/tasks", async (req: Request, res: Response) => {
             throw new Error("É necessário preencher todos os campos.")
         } else {
             const findTask = await connection("ToDoTask")
-            .where('title', 'like', `%${query}%`)
-            .orWhere('description', 'like', `%${query}%`)
+                .where('title', 'like', `%${query}%`)
+                .orWhere('description', 'like', `%${query}%`)
 
             res.status(200).send(findTask)
         }
@@ -553,8 +553,34 @@ app.get("/tasks", async (req: Request, res: Response) => {
             default:
                 res.status(500).send(error.message);
         }
-
     }
+});
+
+// 18.
+
+// 19.
+
+app.delete("/task/:id", async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id
+        const task = await connection("ToDoTask").where({ id: id });
+
+        if (task.length === 0) {
+            throw new Error("Tarefa não encontrada.")
+        } else {
+            await connection("ToDoUserTaksRelation").del().where({ 'task_id': id });
+            await connection("ToDoTask").del().where({ id: id });
+
+            res.status(200).send("Tarefa deletada com sucesso.")
+        }
+    } catch (error: any) {
+        switch (error.message) {
+            case "Tarefa não encontrada.":
+                res.status(422).send(error.message)
+            default:
+                res.status(500).send(error.message);
+        }
+    };
 });
 
 const server = app.listen(process.env.PORT || 3003, () => {
