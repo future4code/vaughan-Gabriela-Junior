@@ -528,6 +528,35 @@ app.delete("/tasks/:taskId/responsible/:responsibleUserId", async (req: Request,
     }
 });
 
+// 16.
+
+// 17.
+
+app.get("/tasks", async (req: Request, res: Response) => {
+    try {
+        const query = req.query.query
+
+        if (!query) {
+            throw new Error("É necessário preencher todos os campos.")
+        } else {
+            const findTask = await connection("ToDoTask")
+            .where('title', 'like', `%${query}%`)
+            .orWhere('description', 'like', `%${query}%`)
+
+            res.status(200).send(findTask)
+        }
+
+    } catch (error: any) {
+        switch (error.message) {
+            case "É necessário preencher todos os campos.":
+                res.status(422).send(error.message)
+            default:
+                res.status(500).send(error.message);
+        }
+
+    }
+});
+
 const server = app.listen(process.env.PORT || 3003, () => {
     if (server) {
         const address = server.address() as AddressInfo;
