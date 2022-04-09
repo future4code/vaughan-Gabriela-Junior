@@ -583,6 +583,31 @@ app.delete("/task/:id", async (req: Request, res: Response) => {
     };
 });
 
+// 20. 
+app.delete("/user/:id", async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id
+        const user = await connection("ToDoUser").where({ id: id });
+
+        if (user.length === 0) {
+            throw new Error("Usuário não encontrado.")
+        } else {
+            await connection("ToDoUserTaksRelation").del().where({'responsible_user_id': id});
+            await connection("ToDoTask").del().where('creator_id', id)
+            await connection("ToDoUser").del().where({ id: id });
+
+            res.status(200).send("Usuário deletado com sucesso.")
+        }
+    } catch (error: any) {
+        switch (error.message) {
+            case "Tarefa não encontrada.":
+                res.status(422).send(error.message)
+            default:
+                res.status(500).send(error.message);
+        }
+    };
+});
+
 const server = app.listen(process.env.PORT || 3003, () => {
     if (server) {
         const address = server.address() as AddressInfo;
