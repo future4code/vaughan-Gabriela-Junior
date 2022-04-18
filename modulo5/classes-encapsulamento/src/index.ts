@@ -1,3 +1,4 @@
+import { Bank } from "./Bank";
 import { Transaction } from "./Transaction";
 import { UserAccount } from "./UserAccount";
 
@@ -13,6 +14,12 @@ const newUser = new UserAccount("cpf", "joana", 23);
 
 // Exercício 2.
 
-const newTransaction= new Transaction("descrição", 123, "02/2022");
+const newTransaction = new Transaction("descrição", 123, "02/2022");
 
 newUser.setTransaction(newTransaction);
+
+// Exercício 3.
+
+const newBank = new Bank([newUser]);
+
+newBank.getAccounts();
