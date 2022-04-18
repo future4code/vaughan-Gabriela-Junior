@@ -9,8 +9,10 @@ export class UserAccount {
     private balance: number = 0;
     private transactions: Transaction[] = [];
   
-    public setTransaction(transaction: Transaction[]) {
-        this.transactions = transaction
+    public setTransaction(transaction: Transaction) {
+        (this.transactions).push(transaction)
+        console.log("Transaction feita")
+        console.log(this.transactions)
     }
 
     public getCpf() {
