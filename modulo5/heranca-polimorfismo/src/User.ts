@@ -28,4 +28,8 @@ export class User {
       public getName(): string {
           return this.name
       }
+
+      public introduceYourself(): void {
+        console.log("Olá, bom dia!")
+      }
   }

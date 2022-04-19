@@ -29,6 +29,8 @@ console.log(newUser.getName());
 console.log(newCustomer.purchaseTotal);
 console.log(newCustomer.getCreditCard());
 
+
 // a) Não, porque é privada e não tem um get publico.
 
 // Exercício 4.
+newCustomer.introduceYourself();
