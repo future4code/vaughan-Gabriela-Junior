@@ -30,6 +30,6 @@ export class User {
       }
 
       public introduceYourself(): void {
-        console.log("Olá, bom dia!")
+        console.log(`Olá, sou ${this.name}, bom dia!`)
       }
   }
