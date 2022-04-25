@@ -1,9 +1,5 @@
 import { server, app } from "./app";
 import { v4 } from "uuid"
+import { signUp } from "./endpoint/signUp";
 
-server
-
-const id = v4();
-
-console.log("Generate Id", id);
-
+app.post("/user/signup", signUp);
