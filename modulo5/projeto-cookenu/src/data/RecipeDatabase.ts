@@ -28,5 +28,18 @@ export class RecipeDatabase extends BaseDatabase {
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }
+    };
+
+
+    public async getRecipeById(id: string): Promise<Recipe[]>{
+        try {
+            const recipes = await BaseDatabase.connection("cookenu_recipes")
+                .where({id});
+    
+            return recipes.map((recipe => Recipe.toRecipeModel(recipe)))
+
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message)
+        }
     }
 }

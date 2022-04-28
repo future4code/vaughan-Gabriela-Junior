@@ -3,6 +3,7 @@ import { Migrations } from "./data/Migrations";
 import { createRecipe } from "./endpoints/createRecipe";
 import { getOtherProfile } from "./endpoints/getOtherProfile";
 import { getOwnProfile } from "./endpoints/getOwnProfile";
+import { getRecipe } from "./endpoints/getRecipe";
 import { login } from "./endpoints/login";
 import { signUp } from "./endpoints/signUp";
 
@@ -16,3 +17,4 @@ app.get("/user/profile", getOwnProfile);
 app.get("/user/:id", getOtherProfile);
 
 app.post("/recipe", createRecipe);
+app.get("/recipe/:id", getRecipe);

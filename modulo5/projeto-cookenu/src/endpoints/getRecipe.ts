@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { UserDatabase } from "../data/UserDatabase";
+import { RecipeDatabase } from "../data/RecipeDatabase";
 import { Authenticator } from "../services/Authenticator";
 
-export const getOtherProfile = async (req: Request, res: Response): Promise<void> => {
+export const getRecipe = async (req: Request, res: Response): Promise<void> => {
     try {
-        const {id} = req.params
+        const { id } = req.params
         const token = req.headers.authorization
 
         if (!token) {
@@ -18,10 +18,10 @@ export const getOtherProfile = async (req: Request, res: Response): Promise<void
             throw new Error("É necessário estar logado para acessar essa funcionalidade.")
         };
 
-        const userDatabase = new UserDatabase();
-        const user = await userDatabase.getUserById(id);
+        const recipeDatabase = new RecipeDatabase();
+        const recipe = await recipeDatabase.getRecipeById(id);
 
-        res.status(200).send(user)
+        res.status(200).send(recipe)
 
     } catch (error: any) {
         switch (error.message) {
@@ -37,4 +37,4 @@ export const getOtherProfile = async (req: Request, res: Response): Promise<void
         }
 
     }
-};
+}
