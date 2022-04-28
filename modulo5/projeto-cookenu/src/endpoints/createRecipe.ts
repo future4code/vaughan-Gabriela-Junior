@@ -36,9 +36,6 @@ export const createRecipe = async (req: Request, res: Response): Promise<void> =
 
         const newDate = new Date().toISOString().split("T")[0]
 
-        console.log(newDate)
-
-
         const newRecipe = new Recipe(
             id,
             title,
@@ -48,16 +45,22 @@ export const createRecipe = async (req: Request, res: Response): Promise<void> =
 
         await recipeDatabase.createRecipe(newRecipe);
 
-        res.status(200).send("teste")
+        res.status(200).send("Receita criada com sucesso!")
 
 
     } catch (error: any) {
-        
+
         switch (error.message) {
             case "É necessária autorização passada pelo headers.":
                 res.status(400).send({ message: error.message })
                 break
             case "É necessário estar logado para acessar essa funcionalidade.":
+                res.status(400).send({ message: error.message })
+                break
+            case "É necessário preencher todos os campos.":
+                res.status(400).send({ message: error.message })
+                break
+            case "Já existe uma receita com esse título.":
                 res.status(400).send({ message: error.message })
                 break
             default:
