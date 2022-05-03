@@ -1,4 +1,5 @@
 import User from "../model/User";
+import { FindByEmailResponse } from "../types/findByEmailResponse";
 import { BaseDatabase } from "./BaseDatabase";
 
 export default class UserDatabase extends BaseDatabase{
@@ -8,6 +9,19 @@ export default class UserDatabase extends BaseDatabase{
         try {
             await this.connection(this.TABLE_NAME)
                 .insert(user)
+
+        } catch (error: any) {
+
+        }
+    }
+
+    findByEmail = async (email: string) => {
+        try {
+
+            const response: FindByEmailResponse[] = await this.connection(this.TABLE_NAME)
+                .where({email})
+
+                return response[0]
 
         } catch (error: any) {
 
